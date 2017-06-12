@@ -1,393 +1,73 @@
-
-CREATE TABLE Paciente (
-	[Email]				[NVARCHAR](80)  PRIMARY KEY NOT NULL,
-	[Nombre]			[NVARCHAR](50)  NOT NULL,
-	[Apellido1]			[NVARCHAR](50)  NOT NULL,
-	[Apellido2]			[NVARCHAR](50)  NULL,
-	[Sexo]				BIT		        NOT NULL,	
-	[TipoSangre]		DATETIME2		NULL
+CREATE TABLE Empresa(
+	Codigo	   INT PRIMARY KEY IDENTITY,
+	Nombre     NVARCHAR(100),
+	Fisica	   BIT NOT NULL DEFAULT 1,
+	Cedula	   NVARCHAR(10),
+	Telefono   NVARCHAR(10),
 );
 
-CREATE TABLE Peso(
-	[Codigo]			BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]			[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),
-	[Peso]				FLOAT			NOT NULL DEFAULT 0,  
-	[Fecha]				DATE			NOT NULL, 
-	[Detalle]			TEXT
-)
-
-CREATE TABLE Altura(
-	[Codigo]			BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]			[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),
-	[Altura]			FLOAT			NOT NULL DEFAULT 0,
-	[Fecha]				DATE			NOT NULL,
-	[Detalle]			TEXT
-)
-
-CREATE TABLE PresionArterial(
-	[Codigo]			BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]			[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),
-	[Sistolica]			FLOAT			NOT NULL DEFAULT 0,
-	[Diastolica]		FLOAT			NOT NULL DEFAULT 0,
-	[Pulso]				FLOAT			NOT NULL DEFAULT 0,
-	[RitmoIrregular]	BIT				NOT NULL DEFAULT 0, 
-	[Fecha]				DATE			NOT NULL,
-	[Detalle]			TEXT
-)
-
-CREATE TABLE TipoMedicacion (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(50),
-);
-INSERT INTO TipoMedicacion VALUES('Plasma');
-INSERT INTO TipoMedicacion VALUES('Sangre completa');
-
-CREATE TABLE TipoAlimentacion (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(50),
-);
-INSERT INTO TipoAlimentacion VALUES('Antes de dormir');
-INSERT INTO TipoAlimentacion VALUES('Antes de hacer ejercicio');
-INSERT INTO TipoAlimentacion VALUES('Antes de la cena');
-INSERT INTO TipoAlimentacion VALUES('Antes del almuerzo');
-INSERT INTO TipoAlimentacion VALUES('Antes del desayuno');
-INSERT INTO TipoAlimentacion VALUES('No en ayuno');
-INSERT INTO TipoAlimentacion VALUES('Después de hacer ejercicio');
-INSERT INTO TipoAlimentacion VALUES('Después de cenar');
-INSERT INTO TipoAlimentacion VALUES('Después del almuerzo');
-INSERT INTO TipoAlimentacion VALUES('Después de la cena');
-
-CREATE TABLE Glucemia (
-	[Codigo]			BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]			[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),
-	[Medicion]			[INT]  			NOT NULL FOREIGN KEY REFERENCES TipoMedicacion(Codigo),
-	[Alimentacion]		[INT]  			NOT NULL FOREIGN KEY REFERENCES TipoAlimentacion(Codigo),
-	[Fecha]				DATE			NOT NULL,
-	[Detalle]			TEXT
-)
-
-CREATE TABLE Colesterol (
-	[Codigo]			BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]			[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),
-	[LDL]				FLOAT			NOT NULL DEFAULT 0,
-	[HDL]				FLOAT			NOT NULL DEFAULT 0,
-	[Trigliceridos]		FLOAT			NOT NULL DEFAULT 0,
-	[Colesterol]		FLOAT			NOT NULL DEFAULT 0,
-	[Fecha]				DATE			NOT NULL,
-	[Detalle]			TEXT
-)
-
-CREATE TABLE TipoEstadoAfeccion (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(50),
-);
-INSERT INTO TipoEstadoAfeccion VALUES('Actualmente lo padece');
-INSERT INTO TipoEstadoAfeccion VALUES('Ya no lo padece');
-INSERT INTO TipoEstadoAfeccion VALUES('Intermitente');
-
-CREATE TABLE  Afeccion (
-	[Codigo]			BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]			[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),
-	[Nombre]			[NVARCHAR](50)	NOT NULL, 
-	[Estado]			[INT]			NOT NULL FOREIGN KEY REFERENCES TipoEstadoAfeccion(Codigo),
-	[FechaInicio]		DATE 			NOT NULL,
-	[FechaFin]			DATE			NULL,
-	[Detalle]			TEXT
-)
-
-CREATE TABLE TipoAdministracionVacuna (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(50),
-);
-INSERT INTO TipoAdministracionVacuna VALUES('Inyectado');
-INSERT INTO TipoAdministracionVacuna VALUES('Oral');
-INSERT INTO TipoAdministracionVacuna VALUES('Vaporización nasal');
-
-CREATE TABLE Vacuna  (
-	[Codigo]				BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]				[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),
-	[Nombre]				[NVARCHAR](50)	NOT NULL, 
-	[FechaRecepcion]		DATE			NOT NULL,
-	[Administracion]		INT				NOT NULL FOREIGN KEY REFERENCES TipoAdministracionVacuna(Codigo),
-	[NumeroSecuencia]		TEXT 					,
-	[EfectoSecundarios]		TEXT 					,	
-	[ParteCuerpo]			TEXT,
-	[Detalle]				TEXT
-)
-
-CREATE TABLE TipoAlergia (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(50),
-);
-INSERT INTO TipoAlergia VALUES('Alimento');
-INSERT INTO TipoAlergia VALUES('Ambiental');
-INSERT INTO TipoAlergia VALUES('Animal');
-INSERT INTO TipoAlergia VALUES('Medicamento');
-INSERT INTO TipoAlergia VALUES('Vegetal');
-
-CREATE TABLE TipoReacción (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(100),
-);
-INSERT INTO TipoReacción VALUES('Acidez');
-INSERT INTO TipoReacción VALUES('Alteración del olfato y del gusto');
-INSERT INTO TipoReacción VALUES('Alucinaciones');
-INSERT INTO TipoReacción VALUES('Ansiedad o sensación de fracaso inminente');
-INSERT INTO TipoReacción VALUES('Arritmia');
-INSERT INTO TipoReacción VALUES('Aumento de peso');
-INSERT INTO TipoReacción VALUES('Cambios auditivos');
-INSERT INTO TipoReacción VALUES('Cambios visuales');
-INSERT INTO TipoReacción VALUES('Coagulación anormal');
-INSERT INTO TipoReacción VALUES('Congestión nasal/romadizo');
-INSERT INTO TipoReacción VALUES('Constipación');
-INSERT INTO TipoReacción VALUES('Convulsiones');
-INSERT INTO TipoReacción VALUES('Cuello rígido');
-INSERT INTO TipoReacción VALUES('Debilidad');
-INSERT INTO TipoReacción VALUES('Debilidad facial');
-INSERT INTO TipoReacción VALUES('Desvanecimiento o pérdida de conciencia');
-INSERT INTO TipoReacción VALUES('Diarrea');
-INSERT INTO TipoReacción VALUES('Dificultad para tragar');
-INSERT INTO TipoReacción VALUES('Dolor abdominal');
-INSERT INTO TipoReacción VALUES('Dolor al orinar');
-INSERT INTO TipoReacción VALUES('Dolor de cabeza');
-INSERT INTO TipoReacción VALUES('Dolor de garganta');
-INSERT INTO TipoReacción VALUES('Dolores musculares');
-INSERT INTO TipoReacción VALUES('Enrojecimiento');
-INSERT INTO TipoReacción VALUES('Enzimas hepáticas elevadas');
-INSERT INTO TipoReacción VALUES('Erupción cutánea');
-INSERT INTO TipoReacción VALUES('Espasmos');
-INSERT INTO TipoReacción VALUES('Estornudos');
-INSERT INTO TipoReacción VALUES('Evacuación líquida');
-INSERT INTO TipoReacción VALUES('Falta de coordinación');
-INSERT INTO TipoReacción VALUES('Fatiga');
-INSERT INTO TipoReacción VALUES('Fiebre');
-INSERT INTO TipoReacción VALUES('Flema verde o amarilla');
-INSERT INTO TipoReacción VALUES('Formación fácil de hematomas');
-INSERT INTO TipoReacción VALUES('Frecuencia cardiaca rápida');
-INSERT INTO TipoReacción VALUES('Gases');
-INSERT INTO TipoReacción VALUES('Inflamadas');
-INSERT INTO TipoReacción VALUES('Glándulas');
-INSERT INTO TipoReacción VALUES('Hemograma bajo');
-INSERT INTO TipoReacción VALUES('Hemorragia nasal');
-INSERT INTO TipoReacción VALUES('Hipertensión arterial');
-INSERT INTO TipoReacción VALUES('Hiperventilación');
-INSERT INTO TipoReacción VALUES('Hipo');
-INSERT INTO TipoReacción VALUES('Hipotensión arterial');
-INSERT INTO TipoReacción VALUES('Ictericia o piel amarilla');
-INSERT INTO TipoReacción VALUES('Inconsciencia');
-INSERT INTO TipoReacción VALUES('Infección de la sangre');
-INSERT INTO TipoReacción VALUES('Inflación');
-INSERT INTO TipoReacción VALUES('Inflación abdominal');
-INSERT INTO TipoReacción VALUES('Insomnio');
-INSERT INTO TipoReacción VALUES('Insuficiencia respiratoria');
-INSERT INTO TipoReacción VALUES('Jadeo');
-INSERT INTO TipoReacción VALUES('Llanto excesivo de infante');
-INSERT INTO TipoReacción VALUES('Mareos o aturdimiento');
-INSERT INTO TipoReacción VALUES('Náuseas o vómitos');
-INSERT INTO TipoReacción VALUES('Orina frecuente');
-INSERT INTO TipoReacción VALUES('Palidez');
-INSERT INTO TipoReacción VALUES('Parálisis');
-INSERT INTO TipoReacción VALUES('Presión o molestia en el pecho');
-INSERT INTO TipoReacción VALUES('Problemas con la voz');
-INSERT INTO TipoReacción VALUES('Problemas de crecimiento');
-INSERT INTO TipoReacción VALUES('Problemas para caminar');
-INSERT INTO TipoReacción VALUES('Problemas para hablar');
-INSERT INTO TipoReacción VALUES('Pérdida de apetito');
-INSERT INTO TipoReacción VALUES('Pérdida de memoria');
-INSERT INTO TipoReacción VALUES('Pérdida de orina');
-INSERT INTO TipoReacción VALUES('Pérdida de peso');
-INSERT INTO TipoReacción VALUES('Reducción de orina');
-INSERT INTO TipoReacción VALUES('Reflejos anormales');
-INSERT INTO TipoReacción VALUES('Respiración dolorosa');
-INSERT INTO TipoReacción VALUES('Respiración ruidosa');
-INSERT INTO TipoReacción VALUES('Respiración rápida');
-INSERT INTO TipoReacción VALUES('Retención de orina');
-INSERT INTO TipoReacción VALUES('Sarpullido o adormecimiento u hormigueo');
-INSERT INTO TipoReacción VALUES('Sarpullido');
-INSERT INTO TipoReacción VALUES('Ojos lloros');
-INSERT INTO TipoReacción VALUES('Sed anormal');
-INSERT INTO TipoReacción VALUES('Shock');
-INSERT INTO TipoReacción VALUES('Shock anafiláctico');
-INSERT INTO TipoReacción VALUES('Solo náuseas');
-INSERT INTO TipoReacción VALUES('Solo vómito');
-INSERT INTO TipoReacción VALUES('Somnolencia excesiva');
-INSERT INTO TipoReacción VALUES('Soplo cardiaco');
-INSERT INTO TipoReacción VALUES('Sudoración');
-INSERT INTO TipoReacción VALUES('Tos');
-INSERT INTO TipoReacción VALUES('Toser sangre y urticaria (protuberancias rojas, levantadas y con sarpullido)');
-
-CREATE TABLE Alergia  (
-	[Codigo]			BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]			[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),	
-	[Tipo]				INT				NOT NULL FOREIGN KEY REFERENCES TipoAlergia(Codigo),
-	[Reaccion]			INT				NOT NULL FOREIGN KEY REFERENCES TipoReacción(Codigo),
-	[Tratamiento]		TEXT			,
-	Detalle				TEXT			
-)
-
-CREATE TABLE TipoEstadoLaboratorio (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(50),
-);
-INSERT INTO TipoEstadoLaboratorio VALUES('Cantidad insuficiente');
-INSERT INTO TipoEstadoLaboratorio VALUES('Finalizada');
-INSERT INTO TipoEstadoLaboratorio VALUES('Paciente rechazó prueba');
-INSERT INTO TipoEstadoLaboratorio VALUES('Pendiente');
-
-CREATE TABLE TipoMarca (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(50),
-);
-INSERT INTO TipoMarca VALUES('Alto');
-INSERT INTO TipoMarca VALUES('Anormal');
-INSERT INTO TipoMarca VALUES('Bajo');
-INSERT INTO TipoMarca VALUES('Crítico');
-INSERT INTO TipoMarca VALUES('Indeterminado');
-INSERT INTO TipoMarca VALUES('Normal');
-
-CREATE TABLE Laboratorio (
-	[Codigo]					BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]					[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),	
-	[Estado]					INT				NOT NULL FOREIGN KEY REFERENCES TipoEstadoLaboratorio(Codigo),
-	[NombrePanelLaboratorio]	TEXT,
-	[Solicitado]				TEXT,
-	[Laboratorio]				TEXT,
-	[NumeroSecuencia]			TEXT,
-	[Fecha]						DATE NOT NULL
-)
-
-CREATE TABLE ResultadoLaboratorio (
-	[Codigo]				BIGINT	PRIMARY KEY IDENTITY,
-	[Laboratorio]			BIGINT	NOT NULL FOREIGN KEY REFERENCES Laboratorio(Codigo),
-	[Marca]					INT  	NOT NULL FOREIGN KEY REFERENCES TipoMarca(Codigo),
-	[Nombre]				TEXT,	
-	[Valor]					TEXT,	
-	[Unidad]				TEXT,	
-)
-
-CREATE TABLE TipoConcentracion (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(100),
-);
-INSERT INTO TipoConcentracion VALUES('Microgramos (mcg)');
-INSERT INTO TipoConcentracion VALUES('Miliequivalente (meq)');
-INSERT INTO TipoConcentracion VALUES('Miliequivalente por mililitro (meq/ml)');
-INSERT INTO TipoConcentracion VALUES('Miligramo (mg)');
-INSERT INTO TipoConcentracion VALUES('Miligramo por mililitro (mg/ml)');
-INSERT INTO TipoConcentracion VALUES('Mililitro (ml)');
-INSERT INTO TipoConcentracion VALUES('Porcentaje (%)');
-INSERT INTO TipoConcentracion VALUES('Unidad (u)');
-INSERT INTO TipoConcentracion VALUES('Unidad internacional (ui)');
-INSERT INTO TipoConcentracion VALUES('Unidades formadores de colonias por mililitro(ufc/ml)');
-INSERT INTO TipoConcentracion VALUES('Unidades por mililitro (u/ml)');
-
-CREATE TABLE TipoDosis (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(50),
-);
-INSERT INTO TipoDosis VALUES('Almohadillas');
-INSERT INTO TipoDosis VALUES('Aplicador');
-INSERT INTO TipoDosis VALUES('Barras');
-INSERT INTO TipoDosis VALUES('Bolsas');
-INSERT INTO TipoDosis VALUES('Comprimidos');
-INSERT INTO TipoDosis VALUES('Cucharadas (cdas)');
-INSERT INTO TipoDosis VALUES('Cucharaditas (cdtas)');
-INSERT INTO TipoDosis VALUES('Cápsulas');
-INSERT INTO TipoDosis VALUES('Dosis de inhalador');
-INSERT INTO TipoDosis VALUES('Gotas');
-INSERT INTO TipoDosis VALUES('Goteros');
-INSERT INTO TipoDosis VALUES('Gramos (g)');
-INSERT INTO TipoDosis VALUES('Inhalaciones');
-INSERT INTO TipoDosis VALUES('Inyecciones');
-INSERT INTO TipoDosis VALUES('Jeringa');
-INSERT INTO TipoDosis VALUES('Medidas');
-INSERT INTO TipoDosis VALUES('Microgramos (mcg)');
-INSERT INTO TipoDosis VALUES('Miligramos (mg)');
-INSERT INTO TipoDosis VALUES('Mililitros (ml)');
-INSERT INTO TipoDosis VALUES('Paquetes');
-INSERT INTO TipoDosis VALUES('Parches');
-INSERT INTO TipoDosis VALUES('Pastillas');
-INSERT INTO TipoDosis VALUES('Porcentaje (%)');
-INSERT INTO TipoDosis VALUES('Supositorios');
-INSERT INTO TipoDosis VALUES('Unidades (U)');
-INSERT INTO TipoDosis VALUES('Vaporizaciones');
-
-CREATE TABLE TipoAdministracion (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(50),
-);
-INSERT INTO TipoAdministracion VALUES('A través de la piel');
-INSERT INTO TipoAdministracion VALUES('A través de una sonda nasogástrica');
-INSERT INTO TipoAdministracion VALUES('Bajo la lengua');
-INSERT INTO TipoAdministracion VALUES('En el ojo');
-INSERT INTO TipoAdministracion VALUES('En el oído');
-INSERT INTO TipoAdministracion VALUES('En la nariz (vaporización/gotas)');
-INSERT INTO TipoAdministracion VALUES('Inhalado');
-INSERT INTO TipoAdministracion VALUES('Por inyección');
-INSERT INTO TipoAdministracion VALUES('Por la boca');
-INSERT INTO TipoAdministracion VALUES('Por una vía intravenosa (IV)');
-INSERT INTO TipoAdministracion VALUES('Recta');
-INSERT INTO TipoAdministracion VALUES('Vaginal');
-
-CREATE TABLE Medicamento (
-	[Codigo]			BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]			[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),	
-	[Concentracion]		INT  NOT NULL FOREIGN KEY REFERENCES TipoConcentracion(Codigo),
-	[Dosis]				INT  NOT NULL FOREIGN KEY REFERENCES TipoDosis(Codigo),	
-	[Administracion]	INT  NOT NULL FOREIGN KEY REFERENCES TipoDosis(Codigo),			
-	[Nombre]			TEXT,	
-	[Frecuencia]		TEXT,
-	[Motivo]			TEXT,		
-	[FechaInicio]		DATE NOT NULL,
-	[FechaFin]			DATE 	 NULL,
-	[Detalle]			TEXT			
+CREATE TABLE Unidad(
+	Codigo	   			  INT PRIMARY KEY IDENTITY,
+	Empresa    			  INT FOREIGN KEY REFERENCES Empresa(Codigo),
+	Placa      			  NVARCHAR(100),
+	Anno        			  NVARCHAR(100),
+	UltimoAnnoRevision	  int,
+	Marca      			  NVARCHAR(100),
+	Modelo     			  NVARCHAR(100),
+	Latitud				  FLOAT NOT NULL DEFAULT 0,
+	Longitud			  FLOAT NOT NULL DEFAULT 0,
+	Capacidad  			  INT NOT NULL,
+	URLFotografiaUnidad   TEXT,
+	URLTarjetaCirculacion TEXT,
+	URLRevisionTecnica    TEXT
 );
 
-CREATE TABLE Procedimiento (
-	[Codigo]				BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]				[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),			
-	[Procedimiento]			TEXT,	
-	[UbicacionAnatomica]	TEXT,
-	[Motivo]				TEXT,		
-	[Fecha]					DATE NOT NULL,
-	[Detalle]				TEXT			
+CREATE TABLE Conductor(
+	Codigo	   			  INT PRIMARY KEY IDENTITY,
+	Empresa    			  INT FOREIGN KEY REFERENCES Empresa(Codigo),
+	Nombre     			  NVARCHAR(100),
+	URLFotografiaCedula   TEXT,
+	URLFotografiaLicencia TEXT,
+	TipoLicencia		  TEXT,
+	FechaVencimiento	  DATE
 );
-
-CREATE TABLE TipoCobertura (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(50),
-);
-INSERT INTO TipoCobertura VALUES('Dental');
-INSERT INTO TipoCobertura VALUES('Médico');
-INSERT INTO TipoCobertura VALUES('Vida');
-INSERT INTO TipoCobertura VALUES('Visión');
-INSERT INTO TipoCobertura VALUES('Otros');
 
 CREATE TABLE Seguro (
-	[Codigo]					BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]					[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),
-	[Cobertura]					INT  NOT NULL FOREIGN KEY REFERENCES TipoCobertura(Codigo),						
-	[Principal]					BIT  NOT NULL DEFAULT 0,
-	[IdentificadorAbonado]  	TEXT,
-	[FechaInicio]  				DATE,
-	[FechaFin]  				DATE,	
-	[Detalle]					TEXT		
+	Codigo	   			  INT PRIMARY KEY IDENTITY,
+	Empresa    			  INT FOREIGN KEY REFERENCES Empresa(Codigo),
+	Nombre     			  NVARCHAR(100),
+	Tipo     			            NVARCHAR(100),
+	Detalle				  TEXT
 );
 
-CREATE TABLE TipoContactoEmergencia (
-	[Codigo]         INT PRIMARY KEY IDENTITY,
-	[Descripcion]    NVARCHAR(50),
-);
-INSERT INTO TipoContactoEmergencia VALUES('Contacto de emergencia');
-INSERT INTO TipoContactoEmergencia VALUES('Farmacia');
-INSERT INTO TipoContactoEmergencia VALUES('Médico de cabecera');
 
-CREATE TABLE ContactoEmergencia (
-	[Codigo]					BIGINT			PRIMARY KEY IDENTITY,
-	[Paciente]					[NVARCHAR](80)  NOT NULL FOREIGN KEY REFERENCES Paciente(email),
-	[Tipo]						INT			    NOT NULL FOREIGN KEY REFERENCES TipoContactoEmergencia(Codigo),
-	[NombreContacto]			TEXT,
-	[Email]						TEXT,
-	[Telefono]					TEXT,
-	[Dirección]					TEXT		
+
+CREATE TABLE PadreCliente (
+	Codigo	   			  INT PRIMARY KEY IDENTITY,
+	Empresa    			  INT FOREIGN KEY REFERENCES Empresa(Codigo),
+	Nombre     			  NVARCHAR(100),
+	MostrarComo			  NVARCHAR(100),
+	Direccion			            TEXT
+);
+
+
+CREATE TABLE ClienteHijo (
+	Codigo	   			  INT PRIMARY KEY IDENTITY,
+	PadreCliente                 		  INT FOREIGN KEY REFERENCES PadreCliente (Codigo),
+	Nombre     			  NVARCHAR(100),
+	MostrarComo			  NVARCHAR(100),
+);
+
+CREATE TABLE Ruta (
+	Codigo	   			  INT PRIMARY KEY IDENTITY,
+	Empresa    			  INT FOREIGN KEY REFERENCES Empresa(Codigo),
+	Conductor  			  INT FOREIGN KEY REFERENCES Conductor(Codigo),
+	Vehiculo   			  INT FOREIGN KEY REFERENCES Unidad(Codigo),
+	Nombre     			  NVARCHAR(100),
+);
+
+CREATE TABLE ClienteRuta (
+	Ruta    			  INT FOREIGN KEY REFERENCES Ruta(Codigo),
+	ClienteHijo			  INT FOREIGN KEY REFERENCES ClienteHijo(Codigo),
+	CONSTRAINT PK_CLIENTE_RUTA PRIMARY KEY (Ruta, ClienteHijo)
 );

@@ -30,18 +30,21 @@ namespace Modelo.Database
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertEmpresa(Empresa instance);
-    partial void UpdateEmpresa(Empresa instance);
-    partial void DeleteEmpresa(Empresa instance);
-    partial void InsertConductor(Conductor instance);
-    partial void UpdateConductor(Conductor instance);
-    partial void DeleteConductor(Conductor instance);
     partial void InsertClienteRuta(ClienteRuta instance);
     partial void UpdateClienteRuta(ClienteRuta instance);
     partial void DeleteClienteRuta(ClienteRuta instance);
-    partial void InsertCliente(Cliente instance);
-    partial void UpdateCliente(Cliente instance);
-    partial void DeleteCliente(Cliente instance);
+    partial void InsertConductor(Conductor instance);
+    partial void UpdateConductor(Conductor instance);
+    partial void DeleteConductor(Conductor instance);
+    partial void InsertClienteHijo(ClienteHijo instance);
+    partial void UpdateClienteHijo(ClienteHijo instance);
+    partial void DeleteClienteHijo(ClienteHijo instance);
+    partial void InsertEmpresa(Empresa instance);
+    partial void UpdateEmpresa(Empresa instance);
+    partial void DeleteEmpresa(Empresa instance);
+    partial void InsertPadreCliente(PadreCliente instance);
+    partial void UpdatePadreCliente(PadreCliente instance);
+    partial void DeletePadreCliente(PadreCliente instance);
     partial void InsertRuta(Ruta instance);
     partial void UpdateRuta(Ruta instance);
     partial void DeleteRuta(Ruta instance);
@@ -83,11 +86,11 @@ namespace Modelo.Database
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Empresa> Empresa
+		public System.Data.Linq.Table<ClienteRuta> ClienteRuta
 		{
 			get
 			{
-				return this.GetTable<Empresa>();
+				return this.GetTable<ClienteRuta>();
 			}
 		}
 		
@@ -99,19 +102,27 @@ namespace Modelo.Database
 			}
 		}
 		
-		public System.Data.Linq.Table<ClienteRuta> ClienteRuta
+		public System.Data.Linq.Table<ClienteHijo> ClienteHijo
 		{
 			get
 			{
-				return this.GetTable<ClienteRuta>();
+				return this.GetTable<ClienteHijo>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Cliente> Cliente
+		public System.Data.Linq.Table<Empresa> Empresa
 		{
 			get
 			{
-				return this.GetTable<Cliente>();
+				return this.GetTable<Empresa>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PadreCliente> PadreCliente
+		{
+			get
+			{
+				return this.GetTable<PadreCliente>();
 			}
 		}
 		
@@ -140,186 +151,39 @@ namespace Modelo.Database
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Empresa")]
-	public partial class Empresa : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ClienteRuta")]
+	public partial class ClienteRuta : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Codigo;
+		private int _Ruta;
 		
-		private string _Nombre;
+		private int _ClienteHijo;
 		
-		private bool _Fisica;
+		private EntityRef<ClienteHijo> _ClienteHijo1;
 		
-		private string _Cedula;
-		
-		private string _Telefono;
-		
-		private EntitySet<Conductor> _Conductor;
-		
-		private EntitySet<Cliente> _Cliente;
-		
-		private EntitySet<Ruta> _Ruta;
-		
-		private EntitySet<Seguro> _Seguro;
-		
-		private EntitySet<Unidad> _Unidad;
+		private EntityRef<Ruta> _Ruta1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnCodigoChanging(int value);
-    partial void OnCodigoChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    partial void OnFisicaChanging(bool value);
-    partial void OnFisicaChanged();
-    partial void OnCedulaChanging(string value);
-    partial void OnCedulaChanged();
-    partial void OnTelefonoChanging(string value);
-    partial void OnTelefonoChanged();
+    partial void OnRutaChanging(int value);
+    partial void OnRutaChanged();
+    partial void OnClienteHijoChanging(int value);
+    partial void OnClienteHijoChanged();
     #endregion
 		
-		public Empresa()
+		public ClienteRuta()
 		{
-			this._Conductor = new EntitySet<Conductor>(new Action<Conductor>(this.attach_Conductor), new Action<Conductor>(this.detach_Conductor));
-			this._Cliente = new EntitySet<Cliente>(new Action<Cliente>(this.attach_Cliente), new Action<Cliente>(this.detach_Cliente));
-			this._Ruta = new EntitySet<Ruta>(new Action<Ruta>(this.attach_Ruta), new Action<Ruta>(this.detach_Ruta));
-			this._Seguro = new EntitySet<Seguro>(new Action<Seguro>(this.attach_Seguro), new Action<Seguro>(this.detach_Seguro));
-			this._Unidad = new EntitySet<Unidad>(new Action<Unidad>(this.attach_Unidad), new Action<Unidad>(this.detach_Unidad));
+			this._ClienteHijo1 = default(EntityRef<ClienteHijo>);
+			this._Ruta1 = default(EntityRef<Ruta>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Codigo
-		{
-			get
-			{
-				return this._Codigo;
-			}
-			set
-			{
-				if ((this._Codigo != value))
-				{
-					this.OnCodigoChanging(value);
-					this.SendPropertyChanging();
-					this._Codigo = value;
-					this.SendPropertyChanged("Codigo");
-					this.OnCodigoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this.OnNombreChanging(value);
-					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fisica", DbType="Bit NOT NULL")]
-		public bool Fisica
-		{
-			get
-			{
-				return this._Fisica;
-			}
-			set
-			{
-				if ((this._Fisica != value))
-				{
-					this.OnFisicaChanging(value);
-					this.SendPropertyChanging();
-					this._Fisica = value;
-					this.SendPropertyChanged("Fisica");
-					this.OnFisicaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cedula", DbType="NVarChar(10)")]
-		public string Cedula
-		{
-			get
-			{
-				return this._Cedula;
-			}
-			set
-			{
-				if ((this._Cedula != value))
-				{
-					this.OnCedulaChanging(value);
-					this.SendPropertyChanging();
-					this._Cedula = value;
-					this.SendPropertyChanged("Cedula");
-					this.OnCedulaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="NVarChar(10)")]
-		public string Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this.OnTelefonoChanging(value);
-					this.SendPropertyChanging();
-					this._Telefono = value;
-					this.SendPropertyChanged("Telefono");
-					this.OnTelefonoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Conductor", Storage="_Conductor", ThisKey="Codigo", OtherKey="Empresa")]
-		public EntitySet<Conductor> Conductor
-		{
-			get
-			{
-				return this._Conductor;
-			}
-			set
-			{
-				this._Conductor.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Cliente", Storage="_Cliente", ThisKey="Codigo", OtherKey="Empresa")]
-		public EntitySet<Cliente> Cliente
-		{
-			get
-			{
-				return this._Cliente;
-			}
-			set
-			{
-				this._Cliente.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Ruta", Storage="_Ruta", ThisKey="Codigo", OtherKey="Empresa")]
-		public EntitySet<Ruta> Ruta
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ruta", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Ruta
 		{
 			get
 			{
@@ -327,33 +191,110 @@ namespace Modelo.Database
 			}
 			set
 			{
-				this._Ruta.Assign(value);
+				if ((this._Ruta != value))
+				{
+					if (this._Ruta1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRutaChanging(value);
+					this.SendPropertyChanging();
+					this._Ruta = value;
+					this.SendPropertyChanged("Ruta");
+					this.OnRutaChanged();
+				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Seguro", Storage="_Seguro", ThisKey="Codigo", OtherKey="Empresa")]
-		public EntitySet<Seguro> Seguro
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClienteHijo", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ClienteHijo
 		{
 			get
 			{
-				return this._Seguro;
+				return this._ClienteHijo;
 			}
 			set
 			{
-				this._Seguro.Assign(value);
+				if ((this._ClienteHijo != value))
+				{
+					if (this._ClienteHijo1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnClienteHijoChanging(value);
+					this.SendPropertyChanging();
+					this._ClienteHijo = value;
+					this.SendPropertyChanged("ClienteHijo");
+					this.OnClienteHijoChanged();
+				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Unidad", Storage="_Unidad", ThisKey="Codigo", OtherKey="Empresa")]
-		public EntitySet<Unidad> Unidad
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ClienteHijo_ClienteRuta", Storage="_ClienteHijo1", ThisKey="ClienteHijo", OtherKey="Codigo", IsForeignKey=true)]
+		public ClienteHijo ClienteHijo1
 		{
 			get
 			{
-				return this._Unidad;
+				return this._ClienteHijo1.Entity;
 			}
 			set
 			{
-				this._Unidad.Assign(value);
+				ClienteHijo previousValue = this._ClienteHijo1.Entity;
+				if (((previousValue != value) 
+							|| (this._ClienteHijo1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ClienteHijo1.Entity = null;
+						previousValue.ClienteRuta.Remove(this);
+					}
+					this._ClienteHijo1.Entity = value;
+					if ((value != null))
+					{
+						value.ClienteRuta.Add(this);
+						this._ClienteHijo = value.Codigo;
+					}
+					else
+					{
+						this._ClienteHijo = default(int);
+					}
+					this.SendPropertyChanged("ClienteHijo1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ruta_ClienteRuta", Storage="_Ruta1", ThisKey="Ruta", OtherKey="Codigo", IsForeignKey=true)]
+		public Ruta Ruta1
+		{
+			get
+			{
+				return this._Ruta1.Entity;
+			}
+			set
+			{
+				Ruta previousValue = this._Ruta1.Entity;
+				if (((previousValue != value) 
+							|| (this._Ruta1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ruta1.Entity = null;
+						previousValue.ClienteRuta.Remove(this);
+					}
+					this._Ruta1.Entity = value;
+					if ((value != null))
+					{
+						value.ClienteRuta.Add(this);
+						this._Ruta = value.Codigo;
+					}
+					else
+					{
+						this._Ruta = default(int);
+					}
+					this.SendPropertyChanged("Ruta1");
+				}
 			}
 		}
 		
@@ -375,66 +316,6 @@ namespace Modelo.Database
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Conductor(Conductor entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empresa1 = this;
-		}
-		
-		private void detach_Conductor(Conductor entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empresa1 = null;
-		}
-		
-		private void attach_Cliente(Cliente entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empresa1 = this;
-		}
-		
-		private void detach_Cliente(Cliente entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empresa1 = null;
-		}
-		
-		private void attach_Ruta(Ruta entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empresa1 = this;
-		}
-		
-		private void detach_Ruta(Ruta entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empresa1 = null;
-		}
-		
-		private void attach_Seguro(Seguro entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empresa1 = this;
-		}
-		
-		private void detach_Seguro(Seguro entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empresa1 = null;
-		}
-		
-		private void attach_Unidad(Unidad entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empresa1 = this;
-		}
-		
-		private void detach_Unidad(Unidad entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empresa1 = null;
 		}
 	}
 	
@@ -713,149 +594,172 @@ namespace Modelo.Database
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ClienteRuta")]
-	public partial class ClienteRuta : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ClienteHijo")]
+	public partial class ClienteHijo : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Ruta;
+		private int _Codigo;
 		
-		private int _Cliente;
+		private System.Nullable<int> _PadreCliente;
 		
-		private EntityRef<Cliente> _Cliente1;
+		private string _Nombre;
 		
-		private EntityRef<Ruta> _Ruta1;
+		private string _MostrarComo;
+		
+		private EntitySet<ClienteRuta> _ClienteRuta;
+		
+		private EntityRef<PadreCliente> _PadreCliente1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnRutaChanging(int value);
-    partial void OnRutaChanged();
-    partial void OnClienteChanging(int value);
-    partial void OnClienteChanged();
+    partial void OnCodigoChanging(int value);
+    partial void OnCodigoChanged();
+    partial void OnPadreClienteChanging(System.Nullable<int> value);
+    partial void OnPadreClienteChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnMostrarComoChanging(string value);
+    partial void OnMostrarComoChanged();
     #endregion
 		
-		public ClienteRuta()
+		public ClienteHijo()
 		{
-			this._Cliente1 = default(EntityRef<Cliente>);
-			this._Ruta1 = default(EntityRef<Ruta>);
+			this._ClienteRuta = new EntitySet<ClienteRuta>(new Action<ClienteRuta>(this.attach_ClienteRuta), new Action<ClienteRuta>(this.detach_ClienteRuta));
+			this._PadreCliente1 = default(EntityRef<PadreCliente>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ruta", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Ruta
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Codigo
 		{
 			get
 			{
-				return this._Ruta;
+				return this._Codigo;
 			}
 			set
 			{
-				if ((this._Ruta != value))
+				if ((this._Codigo != value))
 				{
-					if (this._Ruta1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRutaChanging(value);
+					this.OnCodigoChanging(value);
 					this.SendPropertyChanging();
-					this._Ruta = value;
-					this.SendPropertyChanged("Ruta");
-					this.OnRutaChanged();
+					this._Codigo = value;
+					this.SendPropertyChanged("Codigo");
+					this.OnCodigoChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cliente", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Cliente
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PadreCliente", DbType="Int")]
+		public System.Nullable<int> PadreCliente
 		{
 			get
 			{
-				return this._Cliente;
+				return this._PadreCliente;
 			}
 			set
 			{
-				if ((this._Cliente != value))
+				if ((this._PadreCliente != value))
 				{
-					if (this._Cliente1.HasLoadedOrAssignedValue)
+					if (this._PadreCliente1.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnClienteChanging(value);
+					this.OnPadreClienteChanging(value);
 					this.SendPropertyChanging();
-					this._Cliente = value;
-					this.SendPropertyChanged("Cliente");
-					this.OnClienteChanged();
+					this._PadreCliente = value;
+					this.SendPropertyChanged("PadreCliente");
+					this.OnPadreClienteChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Cliente_ClienteRuta", Storage="_Cliente1", ThisKey="Cliente", OtherKey="Codigo", IsForeignKey=true)]
-		public Cliente Cliente1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100)")]
+		public string Nombre
 		{
 			get
 			{
-				return this._Cliente1.Entity;
+				return this._Nombre;
 			}
 			set
 			{
-				Cliente previousValue = this._Cliente1.Entity;
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MostrarComo", DbType="NVarChar(100)")]
+		public string MostrarComo
+		{
+			get
+			{
+				return this._MostrarComo;
+			}
+			set
+			{
+				if ((this._MostrarComo != value))
+				{
+					this.OnMostrarComoChanging(value);
+					this.SendPropertyChanging();
+					this._MostrarComo = value;
+					this.SendPropertyChanged("MostrarComo");
+					this.OnMostrarComoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ClienteHijo_ClienteRuta", Storage="_ClienteRuta", ThisKey="Codigo", OtherKey="ClienteHijo")]
+		public EntitySet<ClienteRuta> ClienteRuta
+		{
+			get
+			{
+				return this._ClienteRuta;
+			}
+			set
+			{
+				this._ClienteRuta.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PadreCliente_ClienteHijo", Storage="_PadreCliente1", ThisKey="PadreCliente", OtherKey="Codigo", IsForeignKey=true)]
+		public PadreCliente PadreCliente1
+		{
+			get
+			{
+				return this._PadreCliente1.Entity;
+			}
+			set
+			{
+				PadreCliente previousValue = this._PadreCliente1.Entity;
 				if (((previousValue != value) 
-							|| (this._Cliente1.HasLoadedOrAssignedValue == false)))
+							|| (this._PadreCliente1.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Cliente1.Entity = null;
-						previousValue.ClienteRuta.Remove(this);
+						this._PadreCliente1.Entity = null;
+						previousValue.ClienteHijo.Remove(this);
 					}
-					this._Cliente1.Entity = value;
+					this._PadreCliente1.Entity = value;
 					if ((value != null))
 					{
-						value.ClienteRuta.Add(this);
-						this._Cliente = value.Codigo;
+						value.ClienteHijo.Add(this);
+						this._PadreCliente = value.Codigo;
 					}
 					else
 					{
-						this._Cliente = default(int);
+						this._PadreCliente = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("Cliente1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ruta_ClienteRuta", Storage="_Ruta1", ThisKey="Ruta", OtherKey="Codigo", IsForeignKey=true)]
-		public Ruta Ruta1
-		{
-			get
-			{
-				return this._Ruta1.Entity;
-			}
-			set
-			{
-				Ruta previousValue = this._Ruta1.Entity;
-				if (((previousValue != value) 
-							|| (this._Ruta1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Ruta1.Entity = null;
-						previousValue.ClienteRuta.Remove(this);
-					}
-					this._Ruta1.Entity = value;
-					if ((value != null))
-					{
-						value.ClienteRuta.Add(this);
-						this._Ruta = value.Codigo;
-					}
-					else
-					{
-						this._Ruta = default(int);
-					}
-					this.SendPropertyChanged("Ruta1");
+					this.SendPropertyChanged("PadreCliente1");
 				}
 			}
 		}
@@ -879,10 +783,320 @@ namespace Modelo.Database
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_ClienteRuta(ClienteRuta entity)
+		{
+			this.SendPropertyChanging();
+			entity.ClienteHijo1 = this;
+		}
+		
+		private void detach_ClienteRuta(ClienteRuta entity)
+		{
+			this.SendPropertyChanging();
+			entity.ClienteHijo1 = null;
+		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Cliente")]
-	public partial class Cliente : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Empresa")]
+	public partial class Empresa : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Codigo;
+		
+		private string _Nombre;
+		
+		private bool _Fisica;
+		
+		private string _Cedula;
+		
+		private string _Telefono;
+		
+		private EntitySet<Conductor> _Conductor;
+		
+		private EntitySet<PadreCliente> _PadreCliente;
+		
+		private EntitySet<Ruta> _Ruta;
+		
+		private EntitySet<Seguro> _Seguro;
+		
+		private EntitySet<Unidad> _Unidad;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodigoChanging(int value);
+    partial void OnCodigoChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnFisicaChanging(bool value);
+    partial void OnFisicaChanged();
+    partial void OnCedulaChanging(string value);
+    partial void OnCedulaChanged();
+    partial void OnTelefonoChanging(string value);
+    partial void OnTelefonoChanged();
+    #endregion
+		
+		public Empresa()
+		{
+			this._Conductor = new EntitySet<Conductor>(new Action<Conductor>(this.attach_Conductor), new Action<Conductor>(this.detach_Conductor));
+			this._PadreCliente = new EntitySet<PadreCliente>(new Action<PadreCliente>(this.attach_PadreCliente), new Action<PadreCliente>(this.detach_PadreCliente));
+			this._Ruta = new EntitySet<Ruta>(new Action<Ruta>(this.attach_Ruta), new Action<Ruta>(this.detach_Ruta));
+			this._Seguro = new EntitySet<Seguro>(new Action<Seguro>(this.attach_Seguro), new Action<Seguro>(this.detach_Seguro));
+			this._Unidad = new EntitySet<Unidad>(new Action<Unidad>(this.attach_Unidad), new Action<Unidad>(this.detach_Unidad));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Codigo
+		{
+			get
+			{
+				return this._Codigo;
+			}
+			set
+			{
+				if ((this._Codigo != value))
+				{
+					this.OnCodigoChanging(value);
+					this.SendPropertyChanging();
+					this._Codigo = value;
+					this.SendPropertyChanged("Codigo");
+					this.OnCodigoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fisica", DbType="Bit NOT NULL")]
+		public bool Fisica
+		{
+			get
+			{
+				return this._Fisica;
+			}
+			set
+			{
+				if ((this._Fisica != value))
+				{
+					this.OnFisicaChanging(value);
+					this.SendPropertyChanging();
+					this._Fisica = value;
+					this.SendPropertyChanged("Fisica");
+					this.OnFisicaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cedula", DbType="NVarChar(10)")]
+		public string Cedula
+		{
+			get
+			{
+				return this._Cedula;
+			}
+			set
+			{
+				if ((this._Cedula != value))
+				{
+					this.OnCedulaChanging(value);
+					this.SendPropertyChanging();
+					this._Cedula = value;
+					this.SendPropertyChanged("Cedula");
+					this.OnCedulaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="NVarChar(10)")]
+		public string Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this.OnTelefonoChanging(value);
+					this.SendPropertyChanging();
+					this._Telefono = value;
+					this.SendPropertyChanged("Telefono");
+					this.OnTelefonoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Conductor", Storage="_Conductor", ThisKey="Codigo", OtherKey="Empresa")]
+		public EntitySet<Conductor> Conductor
+		{
+			get
+			{
+				return this._Conductor;
+			}
+			set
+			{
+				this._Conductor.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_PadreCliente", Storage="_PadreCliente", ThisKey="Codigo", OtherKey="Empresa")]
+		public EntitySet<PadreCliente> PadreCliente
+		{
+			get
+			{
+				return this._PadreCliente;
+			}
+			set
+			{
+				this._PadreCliente.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Ruta", Storage="_Ruta", ThisKey="Codigo", OtherKey="Empresa")]
+		public EntitySet<Ruta> Ruta
+		{
+			get
+			{
+				return this._Ruta;
+			}
+			set
+			{
+				this._Ruta.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Seguro", Storage="_Seguro", ThisKey="Codigo", OtherKey="Empresa")]
+		public EntitySet<Seguro> Seguro
+		{
+			get
+			{
+				return this._Seguro;
+			}
+			set
+			{
+				this._Seguro.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Unidad", Storage="_Unidad", ThisKey="Codigo", OtherKey="Empresa")]
+		public EntitySet<Unidad> Unidad
+		{
+			get
+			{
+				return this._Unidad;
+			}
+			set
+			{
+				this._Unidad.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Conductor(Conductor entity)
+		{
+			this.SendPropertyChanging();
+			entity.Empresa1 = this;
+		}
+		
+		private void detach_Conductor(Conductor entity)
+		{
+			this.SendPropertyChanging();
+			entity.Empresa1 = null;
+		}
+		
+		private void attach_PadreCliente(PadreCliente entity)
+		{
+			this.SendPropertyChanging();
+			entity.Empresa1 = this;
+		}
+		
+		private void detach_PadreCliente(PadreCliente entity)
+		{
+			this.SendPropertyChanging();
+			entity.Empresa1 = null;
+		}
+		
+		private void attach_Ruta(Ruta entity)
+		{
+			this.SendPropertyChanging();
+			entity.Empresa1 = this;
+		}
+		
+		private void detach_Ruta(Ruta entity)
+		{
+			this.SendPropertyChanging();
+			entity.Empresa1 = null;
+		}
+		
+		private void attach_Seguro(Seguro entity)
+		{
+			this.SendPropertyChanging();
+			entity.Empresa1 = this;
+		}
+		
+		private void detach_Seguro(Seguro entity)
+		{
+			this.SendPropertyChanging();
+			entity.Empresa1 = null;
+		}
+		
+		private void attach_Unidad(Unidad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Empresa1 = this;
+		}
+		
+		private void detach_Unidad(Unidad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Empresa1 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PadreCliente")]
+	public partial class PadreCliente : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -897,7 +1111,7 @@ namespace Modelo.Database
 		
 		private string _Direccion;
 		
-		private EntitySet<ClienteRuta> _ClienteRuta;
+		private EntitySet<ClienteHijo> _ClienteHijo;
 		
 		private EntityRef<Empresa> _Empresa1;
 		
@@ -917,9 +1131,9 @@ namespace Modelo.Database
     partial void OnDireccionChanged();
     #endregion
 		
-		public Cliente()
+		public PadreCliente()
 		{
-			this._ClienteRuta = new EntitySet<ClienteRuta>(new Action<ClienteRuta>(this.attach_ClienteRuta), new Action<ClienteRuta>(this.detach_ClienteRuta));
+			this._ClienteHijo = new EntitySet<ClienteHijo>(new Action<ClienteHijo>(this.attach_ClienteHijo), new Action<ClienteHijo>(this.detach_ClienteHijo));
 			this._Empresa1 = default(EntityRef<Empresa>);
 			OnCreated();
 		}
@@ -1028,20 +1242,20 @@ namespace Modelo.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Cliente_ClienteRuta", Storage="_ClienteRuta", ThisKey="Codigo", OtherKey="Cliente")]
-		public EntitySet<ClienteRuta> ClienteRuta
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PadreCliente_ClienteHijo", Storage="_ClienteHijo", ThisKey="Codigo", OtherKey="PadreCliente")]
+		public EntitySet<ClienteHijo> ClienteHijo
 		{
 			get
 			{
-				return this._ClienteRuta;
+				return this._ClienteHijo;
 			}
 			set
 			{
-				this._ClienteRuta.Assign(value);
+				this._ClienteHijo.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Cliente", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_PadreCliente", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
 		public Empresa Empresa1
 		{
 			get
@@ -1058,12 +1272,12 @@ namespace Modelo.Database
 					if ((previousValue != null))
 					{
 						this._Empresa1.Entity = null;
-						previousValue.Cliente.Remove(this);
+						previousValue.PadreCliente.Remove(this);
 					}
 					this._Empresa1.Entity = value;
 					if ((value != null))
 					{
-						value.Cliente.Add(this);
+						value.PadreCliente.Add(this);
 						this._Empresa = value.Codigo;
 					}
 					else
@@ -1095,16 +1309,16 @@ namespace Modelo.Database
 			}
 		}
 		
-		private void attach_ClienteRuta(ClienteRuta entity)
+		private void attach_ClienteHijo(ClienteHijo entity)
 		{
 			this.SendPropertyChanging();
-			entity.Cliente1 = this;
+			entity.PadreCliente1 = this;
 		}
 		
-		private void detach_ClienteRuta(ClienteRuta entity)
+		private void detach_ClienteHijo(ClienteHijo entity)
 		{
 			this.SendPropertyChanging();
-			entity.Cliente1 = null;
+			entity.PadreCliente1 = null;
 		}
 	}
 	
@@ -1628,9 +1842,9 @@ namespace Modelo.Database
 		
 		private string _Placa;
 		
-		private string _Ano;
+		private string _Anno;
 		
-		private System.Nullable<int> _UltimoAnoRevision;
+		private System.Nullable<int> _UltimoAnnoRevision;
 		
 		private string _Marca;
 		
@@ -1662,10 +1876,10 @@ namespace Modelo.Database
     partial void OnEmpresaChanged();
     partial void OnPlacaChanging(string value);
     partial void OnPlacaChanged();
-    partial void OnAnoChanging(string value);
-    partial void OnAnoChanged();
-    partial void OnUltimoAnoRevisionChanging(System.Nullable<int> value);
-    partial void OnUltimoAnoRevisionChanged();
+    partial void OnAnnoChanging(string value);
+    partial void OnAnnoChanged();
+    partial void OnUltimoAnnoRevisionChanging(System.Nullable<int> value);
+    partial void OnUltimoAnnoRevisionChanged();
     partial void OnMarcaChanging(string value);
     partial void OnMarcaChanged();
     partial void OnModeloChanging(string value);
@@ -1755,42 +1969,42 @@ namespace Modelo.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ano", DbType="NVarChar(100)")]
-		public string Ano
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Anno", DbType="NVarChar(100)")]
+		public string Anno
 		{
 			get
 			{
-				return this._Ano;
+				return this._Anno;
 			}
 			set
 			{
-				if ((this._Ano != value))
+				if ((this._Anno != value))
 				{
-					this.OnAnoChanging(value);
+					this.OnAnnoChanging(value);
 					this.SendPropertyChanging();
-					this._Ano = value;
-					this.SendPropertyChanged("Ano");
-					this.OnAnoChanged();
+					this._Anno = value;
+					this.SendPropertyChanged("Anno");
+					this.OnAnnoChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoAnoRevision", DbType="Int")]
-		public System.Nullable<int> UltimoAnoRevision
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoAnnoRevision", DbType="Int")]
+		public System.Nullable<int> UltimoAnnoRevision
 		{
 			get
 			{
-				return this._UltimoAnoRevision;
+				return this._UltimoAnnoRevision;
 			}
 			set
 			{
-				if ((this._UltimoAnoRevision != value))
+				if ((this._UltimoAnnoRevision != value))
 				{
-					this.OnUltimoAnoRevisionChanging(value);
+					this.OnUltimoAnnoRevisionChanging(value);
 					this.SendPropertyChanging();
-					this._UltimoAnoRevision = value;
-					this.SendPropertyChanged("UltimoAnoRevision");
-					this.OnUltimoAnoRevisionChanged();
+					this._UltimoAnnoRevision = value;
+					this.SendPropertyChanged("UltimoAnnoRevision");
+					this.OnUltimoAnnoRevisionChanged();
 				}
 			}
 		}

@@ -16,8 +16,8 @@ namespace ControlVehicular.Models
         public string Placa { get; set; }
 
         [MaxLength(100)]
-        public string Ano { get; set; }
-        public int? UltimoAnoRevision {get; set;}
+        public string Anno { get; set; }
+        public int? UltimoAnnoRevision {get; set;}
 
         [MaxLength(100)]
         public string Marca { get; set; }
@@ -42,8 +42,8 @@ namespace ControlVehicular.Models
             this.Codigo = unidad.Codigo;
             this.Empresa = unidad.Empresa;
             this.Placa = unidad.Placa;
-            this.Ano = unidad.Ano;
-            this.UltimoAnoRevision = unidad.UltimoAnoRevision;
+            this.Anno = unidad.Anno;
+            this.UltimoAnnoRevision = unidad.UltimoAnnoRevision;
             this.Marca = unidad.Marca;
             this.Modelo = unidad.Modelo;
             this.Latitud = unidad.Latitud;

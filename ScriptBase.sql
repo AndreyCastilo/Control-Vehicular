@@ -10,8 +10,8 @@ CREATE TABLE Unidad(
 	Codigo	   			  INT PRIMARY KEY IDENTITY,
 	Empresa    			  INT FOREIGN KEY REFERENCES Empresa(Codigo),
 	Placa      			  NVARCHAR(100),
-	Año        			  NVARCHAR(100),
-	UltimoAñoRevision	  int,
+	Anno        			  NVARCHAR(100),
+	UltimoAnnoRevision	  int,
 	Marca      			  NVARCHAR(100),
 	Modelo     			  NVARCHAR(100),
 	Latitud				  FLOAT NOT NULL DEFAULT 0,
@@ -53,7 +53,7 @@ CREATE TABLE PadreCliente (
 
 CREATE TABLE ClienteHijo (
 	Codigo	   			  INT PRIMARY KEY IDENTITY,
-          PadreCliente                 		  INT FOREIGN KEY REFERENCES PadreCliente (Codigo),
+    PadreCliente                 		  INT FOREIGN KEY REFERENCES PadreCliente (Codigo),
 	Nombre     			  NVARCHAR(100),
 	MostrarComo			  NVARCHAR(100),
 );
