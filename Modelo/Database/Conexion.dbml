@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ControlVehicular" Class="ConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=USER\SQLEXPRESS;Initial Catalog=ControlVehicular;Integrated Security=True" SettingsObjectName="Modelo.Properties.Settings" SettingsPropertyName="ControlVehicularConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Empresa" Member="Empresa">
+    <Type Name="Empresa">
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Fisica" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Cedula" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Association Name="Empresa_Conductor" Member="Conductor" ThisKey="Codigo" OtherKey="Empresa" Type="Conductor" />
+      <Association Name="Empresa_Cliente" Member="Cliente" ThisKey="Codigo" OtherKey="Empresa" Type="Cliente" />
+      <Association Name="Empresa_Ruta" Member="Ruta" ThisKey="Codigo" OtherKey="Empresa" Type="Ruta" />
+      <Association Name="Empresa_Seguro" Member="Seguro" ThisKey="Codigo" OtherKey="Empresa" Type="Seguro" />
+      <Association Name="Empresa_Unidad" Member="Unidad" ThisKey="Codigo" OtherKey="Empresa" Type="Unidad" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Conductor" Member="Conductor">
+    <Type Name="Conductor">
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Empresa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="URLFotografiaCedula" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="URLFotografiaLicencia" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TipoLicencia" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FechaVencimiento" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Conductor_Ruta" Member="Ruta" ThisKey="Codigo" OtherKey="Conductor" Type="Ruta" />
+      <Association Name="Empresa_Conductor" Member="Empresa1" ThisKey="Empresa" OtherKey="Codigo" Type="Empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ClienteRuta" Member="ClienteRuta">
+    <Type Name="ClienteRuta">
+      <Column Name="Ruta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Cliente_ClienteRuta" Member="Cliente1" ThisKey="Cliente" OtherKey="Codigo" Type="Cliente" IsForeignKey="true" />
+      <Association Name="Ruta_ClienteRuta" Member="Ruta1" ThisKey="Ruta" OtherKey="Codigo" Type="Ruta" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cliente" Member="Cliente">
+    <Type Name="Cliente">
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Empresa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MostrarComo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Cliente_ClienteRuta" Member="ClienteRuta" ThisKey="Codigo" OtherKey="Cliente" Type="ClienteRuta" />
+      <Association Name="Empresa_Cliente" Member="Empresa1" ThisKey="Empresa" OtherKey="Codigo" Type="Empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ruta" Member="Ruta">
+    <Type Name="Ruta">
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Empresa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Conductor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Vehiculo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Ruta_ClienteRuta" Member="ClienteRuta" ThisKey="Codigo" OtherKey="Ruta" Type="ClienteRuta" />
+      <Association Name="Conductor_Ruta" Member="Conductor1" ThisKey="Conductor" OtherKey="Codigo" Type="Conductor" IsForeignKey="true" />
+      <Association Name="Empresa_Ruta" Member="Empresa1" ThisKey="Empresa" OtherKey="Codigo" Type="Empresa" IsForeignKey="true" />
+      <Association Name="Unidad_Ruta" Member="Unidad" ThisKey="Vehiculo" OtherKey="Codigo" Type="Unidad" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Seguro" Member="Seguro">
+    <Type Name="Seguro">
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Empresa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Detalle" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Empresa_Seguro" Member="Empresa1" ThisKey="Empresa" OtherKey="Codigo" Type="Empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Unidad" Member="Unidad">
+    <Type Name="Unidad">
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Empresa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Placa" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Ano" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="UltimoAnoRevision" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Modelo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Latitud" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Longitud" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Capacidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="URLFotografiaUnidad" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="URLTarjetaCirculacion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="URLRevisionTecnica" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Unidad_Ruta" Member="Ruta" ThisKey="Codigo" OtherKey="Vehiculo" Type="Ruta" />
+      <Association Name="Empresa_Unidad" Member="Empresa1" ThisKey="Empresa" OtherKey="Codigo" Type="Empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
