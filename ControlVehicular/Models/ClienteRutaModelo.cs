@@ -14,7 +14,7 @@ namespace ControlVehicular.Models
 
         public ClienteRutaModelo(ClienteRuta rutaCliente)
         {
-            this.Cliente = rutaCliente.Cliente;
+            this.Cliente = rutaCliente.ClienteHijo;
             this.Ruta = rutaCliente.Ruta;
         }
     }
