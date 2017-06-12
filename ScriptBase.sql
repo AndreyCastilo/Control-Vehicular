@@ -53,7 +53,7 @@ CREATE TABLE PadreCliente (
 
 CREATE TABLE ClienteHijo (
 	Codigo	   			  INT PRIMARY KEY IDENTITY,
-	PadreCliente                 		  INT FOREIGN KEY REFERENCES PadreCliente (Codigo),
+    PadreCliente                 		  INT FOREIGN KEY REFERENCES PadreCliente (Codigo),
 	Nombre     			  NVARCHAR(100),
 	MostrarComo			  NVARCHAR(100),
 );
