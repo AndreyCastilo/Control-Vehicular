@@ -2150,6 +2150,82 @@
 				width: 100%;
 			}
 
+
+/* Map */
+
+/* Image */
+
+	.map {
+		border: 0;
+		display: inline-block;
+		position: relative;
+	}
+
+		.map div {
+			display: block;
+		}
+
+		.map.left, .map.right {
+			max-width: 40%;
+		}
+
+			.map.left div, .map.right div {
+				width: 100%;
+			}
+
+		.map.left {
+			float: left;
+			padding: 0 1.5em 1em 0;
+			top: 0.25em;
+		}
+
+		.map.right {
+			float: right;
+			padding: 0 0 1em 1.5em;
+			top: 0.25em;
+		}
+
+		.map.fit {
+			display: block;
+			margin: 0 0 2em 0;
+			width: 100%;
+		}
+
+			.map.fit div {
+				width: 100%;
+			}
+
+		.map.featured {
+			display: block;
+			margin: 0 0 3em 0;
+			width: 100%;
+            height: 300px;
+		}
+
+			.map.featured > div {
+				width: 100%;
+			    height: 100%;
+            }
+
+			@media screen and (max-width: 736px) {
+
+				.map.featured {
+					margin: 0 0 1.5em 0;
+				}
+
+			}
+
+		.map.main {
+			display: block;
+			margin: 0 0 3em 0;
+			width: 100%;
+		}
+
+			.map.main div {
+				width: 100%;
+			}
+
+
 /* List */
 
 	ol {

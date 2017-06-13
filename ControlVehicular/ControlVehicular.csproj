@@ -170,7 +170,12 @@
     <Content Include="Content\ie8.css" />
     <Content Include="Content\ie9.css" />
     <Content Include="Content\main.css" />
+<<<<<<< HEAD
     <Content Include="Content\sweetalert.css" />
+=======
+    <Content Include="Content\nav-expand.png" />
+    <Content Include="Content\nicemodal.css" />
+>>>>>>> refs/remotes/AndreyCastilo/master
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -227,6 +232,7 @@
     <Content Include="sass\libs\_skel.scss" />
     <Content Include="sass\libs\_vars.scss" />
     <Content Include="sass\main.scss" />
+    <Content Include="sass\components\_map.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
     <Content Include="Scripts\Conductor\ScriptConductor.js" />
