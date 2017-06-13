@@ -21,6 +21,10 @@ namespace ControlVehicular.Models
         public string URLFotografiaCedula { get; set; }
 
         public string URLFotografiaLicencia { get; set; }
+
+
+        [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? FechaVencimiento { get; set; }
 
         public ConductorModelo(Conductor conductor)
