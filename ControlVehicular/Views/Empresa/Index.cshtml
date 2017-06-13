@@ -64,6 +64,27 @@
     </div>
 </div>
 
+<table id="tablaEmpresas"
+       class="sortable table-bordered" 
+       data-toolbar="#toolbar"
+       data-search="true"
+       data-pagination="true" 
+       data-minimum-count-columns="2"  
+       data-id-field="Codigo"
+       data-unique-id="Codigo"
+       data-page-size="8"
+       data-show-footer="false">
+   <thead>
+       <tr>
+           <th data-field="Nombre" data-sortable="true">Nombre</th>
+           <th data-field="Fisica" data-sortable="true">Fisica</th>
+           <th data-field="Cedula" data-sortable="true">Cedula</th>
+           <th data-field="Telefono">Telefono</th>
+       </tr>
+   </thead>
+   <tbody></tbody>
+</table>
+
 <div id="modalEditar" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->

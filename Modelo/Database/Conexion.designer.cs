@@ -30,12 +30,12 @@ namespace Modelo.Database
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertClienteHijo(ClienteHijo instance);
-    partial void UpdateClienteHijo(ClienteHijo instance);
-    partial void DeleteClienteHijo(ClienteHijo instance);
     partial void InsertClienteRuta(ClienteRuta instance);
     partial void UpdateClienteRuta(ClienteRuta instance);
     partial void DeleteClienteRuta(ClienteRuta instance);
+    partial void InsertClienteHijo(ClienteHijo instance);
+    partial void UpdateClienteHijo(ClienteHijo instance);
+    partial void DeleteClienteHijo(ClienteHijo instance);
     partial void InsertConductor(Conductor instance);
     partial void UpdateConductor(Conductor instance);
     partial void DeleteConductor(Conductor instance);
@@ -57,7 +57,7 @@ namespace Modelo.Database
     #endregion
 		
 		public ConexionDataContext() : 
-				base(global::Modelo.Properties.Settings.Default.ControlVehicularConnectionString1, mappingSource)
+				base(global::Modelo.Properties.Settings.Default.ControlVehicularConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -86,19 +86,19 @@ namespace Modelo.Database
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<ClienteHijo> ClienteHijo
-		{
-			get
-			{
-				return this.GetTable<ClienteHijo>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ClienteRuta> ClienteRuta
 		{
 			get
 			{
 				return this.GetTable<ClienteRuta>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ClienteHijo> ClienteHijo
+		{
+			get
+			{
+				return this.GetTable<ClienteHijo>();
 			}
 		}
 		
@@ -147,6 +147,174 @@ namespace Modelo.Database
 			get
 			{
 				return this.GetTable<Unidad>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ClienteRuta")]
+	public partial class ClienteRuta : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Ruta;
+		
+		private int _ClienteHijo;
+		
+		private EntityRef<ClienteHijo> _ClienteHijo1;
+		
+		private EntityRef<Ruta> _Ruta1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRutaChanging(int value);
+    partial void OnRutaChanged();
+    partial void OnClienteHijoChanging(int value);
+    partial void OnClienteHijoChanged();
+    #endregion
+		
+		public ClienteRuta()
+		{
+			this._ClienteHijo1 = default(EntityRef<ClienteHijo>);
+			this._Ruta1 = default(EntityRef<Ruta>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ruta", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Ruta
+		{
+			get
+			{
+				return this._Ruta;
+			}
+			set
+			{
+				if ((this._Ruta != value))
+				{
+					if (this._Ruta1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRutaChanging(value);
+					this.SendPropertyChanging();
+					this._Ruta = value;
+					this.SendPropertyChanged("Ruta");
+					this.OnRutaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClienteHijo", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ClienteHijo
+		{
+			get
+			{
+				return this._ClienteHijo;
+			}
+			set
+			{
+				if ((this._ClienteHijo != value))
+				{
+					if (this._ClienteHijo1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnClienteHijoChanging(value);
+					this.SendPropertyChanging();
+					this._ClienteHijo = value;
+					this.SendPropertyChanged("ClienteHijo");
+					this.OnClienteHijoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ClienteHijo_ClienteRuta", Storage="_ClienteHijo1", ThisKey="ClienteHijo", OtherKey="Codigo", IsForeignKey=true)]
+		public ClienteHijo ClienteHijo1
+		{
+			get
+			{
+				return this._ClienteHijo1.Entity;
+			}
+			set
+			{
+				ClienteHijo previousValue = this._ClienteHijo1.Entity;
+				if (((previousValue != value) 
+							|| (this._ClienteHijo1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ClienteHijo1.Entity = null;
+						previousValue.ClienteRuta.Remove(this);
+					}
+					this._ClienteHijo1.Entity = value;
+					if ((value != null))
+					{
+						value.ClienteRuta.Add(this);
+						this._ClienteHijo = value.Codigo;
+					}
+					else
+					{
+						this._ClienteHijo = default(int);
+					}
+					this.SendPropertyChanged("ClienteHijo1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ruta_ClienteRuta", Storage="_Ruta1", ThisKey="Ruta", OtherKey="Codigo", IsForeignKey=true)]
+		public Ruta Ruta1
+		{
+			get
+			{
+				return this._Ruta1.Entity;
+			}
+			set
+			{
+				Ruta previousValue = this._Ruta1.Entity;
+				if (((previousValue != value) 
+							|| (this._Ruta1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ruta1.Entity = null;
+						previousValue.ClienteRuta.Remove(this);
+					}
+					this._Ruta1.Entity = value;
+					if ((value != null))
+					{
+						value.ClienteRuta.Add(this);
+						this._Ruta = value.Codigo;
+					}
+					else
+					{
+						this._Ruta = default(int);
+					}
+					this.SendPropertyChanged("Ruta1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -351,174 +519,6 @@ namespace Modelo.Database
 		{
 			this.SendPropertyChanging();
 			entity.ClienteHijo1 = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ClienteRuta")]
-	public partial class ClienteRuta : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Ruta;
-		
-		private int _ClienteHijo;
-		
-		private EntityRef<ClienteHijo> _ClienteHijo1;
-		
-		private EntityRef<Ruta> _Ruta1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnRutaChanging(int value);
-    partial void OnRutaChanged();
-    partial void OnClienteHijoChanging(int value);
-    partial void OnClienteHijoChanged();
-    #endregion
-		
-		public ClienteRuta()
-		{
-			this._ClienteHijo1 = default(EntityRef<ClienteHijo>);
-			this._Ruta1 = default(EntityRef<Ruta>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ruta", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Ruta
-		{
-			get
-			{
-				return this._Ruta;
-			}
-			set
-			{
-				if ((this._Ruta != value))
-				{
-					if (this._Ruta1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRutaChanging(value);
-					this.SendPropertyChanging();
-					this._Ruta = value;
-					this.SendPropertyChanged("Ruta");
-					this.OnRutaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClienteHijo", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ClienteHijo
-		{
-			get
-			{
-				return this._ClienteHijo;
-			}
-			set
-			{
-				if ((this._ClienteHijo != value))
-				{
-					if (this._ClienteHijo1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnClienteHijoChanging(value);
-					this.SendPropertyChanging();
-					this._ClienteHijo = value;
-					this.SendPropertyChanged("ClienteHijo");
-					this.OnClienteHijoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ClienteHijo_ClienteRuta", Storage="_ClienteHijo1", ThisKey="ClienteHijo", OtherKey="Codigo", IsForeignKey=true)]
-		public ClienteHijo ClienteHijo1
-		{
-			get
-			{
-				return this._ClienteHijo1.Entity;
-			}
-			set
-			{
-				ClienteHijo previousValue = this._ClienteHijo1.Entity;
-				if (((previousValue != value) 
-							|| (this._ClienteHijo1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ClienteHijo1.Entity = null;
-						previousValue.ClienteRuta.Remove(this);
-					}
-					this._ClienteHijo1.Entity = value;
-					if ((value != null))
-					{
-						value.ClienteRuta.Add(this);
-						this._ClienteHijo = value.Codigo;
-					}
-					else
-					{
-						this._ClienteHijo = default(int);
-					}
-					this.SendPropertyChanged("ClienteHijo1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ruta_ClienteRuta", Storage="_Ruta1", ThisKey="Ruta", OtherKey="Codigo", IsForeignKey=true)]
-		public Ruta Ruta1
-		{
-			get
-			{
-				return this._Ruta1.Entity;
-			}
-			set
-			{
-				Ruta previousValue = this._Ruta1.Entity;
-				if (((previousValue != value) 
-							|| (this._Ruta1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Ruta1.Entity = null;
-						previousValue.ClienteRuta.Remove(this);
-					}
-					this._Ruta1.Entity = value;
-					if ((value != null))
-					{
-						value.ClienteRuta.Add(this);
-						this._Ruta = value.Codigo;
-					}
-					else
-					{
-						this._Ruta = default(int);
-					}
-					this.SendPropertyChanged("Ruta1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	

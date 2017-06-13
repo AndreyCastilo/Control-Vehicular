@@ -51,5 +51,9 @@ namespace Modelo.Modelo
             }
         }
 
+        public IEnumerable<Empresa> ObtenerTodas() {
+            return Conexion.Open.Empresa.OrderBy(em => em.Nombre);
+        }
+
     }
 }

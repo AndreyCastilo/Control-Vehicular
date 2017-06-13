@@ -1,9 +1,24 @@
 ﻿$(document).ready(function () {
   
-
-
+    cargarTabla();
 });
 
+
+function cargarTabla() {
+    $.get("/Empresa/ObtenerTodas",
+       function resultado(result) {
+
+           var $table = $('#tablaEmpresas');
+
+
+           $table.bootstrapTable({
+               data: result.registro,
+           });
+
+          // onclick();
+
+       })
+}
 
 function Guardar() {
 

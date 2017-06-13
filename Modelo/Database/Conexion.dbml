@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ControlVehicular" Class="ConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=USER\SQLEXPRESS;Initial Catalog=ControlVehicular;Integrated Security=True" SettingsObjectName="Modelo.Properties.Settings" SettingsPropertyName="ControlVehicularConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=USER\SQLEXPRESS;Initial Catalog=ControlVehicular;Integrated Security=True" SettingsObjectName="Modelo.Properties.Settings" SettingsPropertyName="ControlVehicularConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ClienteRuta" Member="ClienteRuta">
+    <Type Name="ClienteRuta">
+      <Column Name="Ruta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ClienteHijo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="ClienteHijo_ClienteRuta" Member="ClienteHijo1" ThisKey="ClienteHijo" OtherKey="Codigo" Type="ClienteHijo" IsForeignKey="true" />
+      <Association Name="Ruta_ClienteRuta" Member="Ruta1" ThisKey="Ruta" OtherKey="Codigo" Type="Ruta" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.ClienteHijo" Member="ClienteHijo">
     <Type Name="ClienteHijo">
       <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -8,14 +16,6 @@
       <Column Name="MostrarComo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="ClienteHijo_ClienteRuta" Member="ClienteRuta" ThisKey="Codigo" OtherKey="ClienteHijo" Type="ClienteRuta" />
       <Association Name="PadreCliente_ClienteHijo" Member="PadreCliente1" ThisKey="PadreCliente" OtherKey="Codigo" Type="PadreCliente" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ClienteRuta" Member="ClienteRuta">
-    <Type Name="ClienteRuta">
-      <Column Name="Ruta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ClienteHijo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="ClienteHijo_ClienteRuta" Member="ClienteHijo1" ThisKey="ClienteHijo" OtherKey="Codigo" Type="ClienteHijo" IsForeignKey="true" />
-      <Association Name="Ruta_ClienteRuta" Member="Ruta1" ThisKey="Ruta" OtherKey="Codigo" Type="Ruta" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Conductor" Member="Conductor">

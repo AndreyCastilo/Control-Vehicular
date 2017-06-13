@@ -59,5 +59,10 @@ namespace ControlVehicular.Controllers
         }
 
 
+        public JsonResult ObtenerTodas() {
+            IEnumerable<Empresa> empresasDB = ConexionEmpresa.ObtenerTodas();
+            return Json(new { registro = empresasDB.Select(em => new EmpresaModelo(em))},JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
