@@ -33,5 +33,14 @@ namespace Modelo.Properties {
                 return ((string)(this["ControlVehicularConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        public string ControlVehicularConnectionString1 {
+            get {
+                return ((string)(this["ControlVehicularConnectionString1"]));
+            }
+        }
     }
 }
