@@ -38,10 +38,9 @@
             </nav>
         </header>
 
-        <!-- Este es el body que se escriba en cada pagina 
+        <!-- Este es el body que se escriba en cada pagina
             no se si despues hace falta meterlo en un div o section, pero por el momento lo voy
             a dejar ahi.-->
-        @RenderBody()
 
         <!-- Menu -->
         <section id="menu">
@@ -107,7 +106,10 @@
                         <a href="#" class="author"><span class="name">Jane Doe</span><img src="../../images/avatar.jpg" alt="" /></a>
                     </div>
                 </header>
-                <div  class="map featured">
+                @RenderBody()
+
+
+                <div class="map featured">
                     <div id="map"></div>
                 </div>
                 <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
@@ -631,10 +633,12 @@
         </section>
 
     </div>
-
     @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+
     @Scripts.Render("~/bundles/bootstrap")
-        <script>
+    <script>
       var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -676,10 +680,9 @@
                               'Error: Your browser doesn\'t support geolocation.');
       }
 
-      
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCCIL8RHRFSKIUHCaeViYANI9oe0N3gCs&callback=initMap"
             async defer></script>
-    @RenderSection("scripts", required: false)
 </body>
 </html>
