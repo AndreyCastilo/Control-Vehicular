@@ -11,4 +11,7 @@
 /// <reference path="modernizr-2.6.2.js" />
 /// <reference path="respond.js" />
 /// <reference path="skel.min.js" />
+/// <reference path="sweetalert.min.js" />
+/// <reference path="sweetalert-dev.js" />
 /// <reference path="util.js" />
+/// <reference path="utilidades.js" />

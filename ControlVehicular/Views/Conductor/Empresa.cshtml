@@ -43,7 +43,7 @@
     <div id="modalAgregarConductor" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
-            @using (Html.BeginForm("", "", FormMethod.Post, new { id = "formAgregar" }))
+            @using (Html.BeginForm("", "", FormMethod.Post, new { id = "formAgregarConductor" }))
             {
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="modal-content">

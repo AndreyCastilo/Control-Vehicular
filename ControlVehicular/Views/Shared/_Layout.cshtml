@@ -6,6 +6,7 @@
     <title>Future Imperfect by HTML5 UP</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Wrapper -->
@@ -212,5 +213,8 @@
             @Scripts.Render("~/bundles/jquery")
             @Scripts.Render("~/bundles/bootstrap")
             @RenderSection("scripts", required: false)
+            <script src="~/Scripts/sweetalert.min.js"></script>
+            <script src="~/Scripts/Utilidades.js"></script>
+
 </body>
 </html>
