@@ -79,6 +79,12 @@
 			}
 		}
 
+        > div.map{
+            overflow: hidden;
+            width: 100% !important;
+            height: 300px !important;
+        }
+
 		> footer {
 			@include vendor('display', 'flex');
 			@include vendor('align-items', 'center');
