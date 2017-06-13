@@ -16,7 +16,7 @@ namespace ControlVehicular.Models
         public string Nombre { get; set; }
 
         [Required]
-        public Boolean Fisica { get; set; }
+        public bool Fisica { get; set; }
 
         [MaxLength(10)]
         public string Cedula { get; set; }
@@ -32,4 +32,6 @@ namespace ControlVehicular.Models
             this.Telefono = empresa.Telefono;
         }
     }
+
+  
 }
