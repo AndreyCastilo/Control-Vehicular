@@ -57,7 +57,7 @@ namespace Modelo.Database
     #endregion
 		
 		public ConexionDataContext() : 
-				base(global::Modelo.Properties.Settings.Default.ControlVehicularConnectionString, mappingSource)
+				base(global::Modelo.Properties.Settings.Default.ControlVehicularConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}

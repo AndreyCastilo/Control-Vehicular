@@ -148,6 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\ConductorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -232,6 +233,7 @@
     <Content Include="sass\components\_map.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
+    <Content Include="Scripts\Empresa.js" />
     <Content Include="Scripts\Conductor\ScriptConductor.js" />
     <Content Include="Scripts\ie\html5shiv.js" />
     <Content Include="Scripts\ie\respond.min.js" />
@@ -267,6 +269,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Empresa\Index.cshtml" />
     <Content Include="Views\Conductor\Empresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
