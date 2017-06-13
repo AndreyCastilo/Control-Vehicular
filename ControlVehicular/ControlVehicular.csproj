@@ -170,12 +170,9 @@
     <Content Include="Content\ie8.css" />
     <Content Include="Content\ie9.css" />
     <Content Include="Content\main.css" />
-<<<<<<< HEAD
     <Content Include="Content\sweetalert.css" />
-=======
     <Content Include="Content\nav-expand.png" />
     <Content Include="Content\nicemodal.css" />
->>>>>>> refs/remotes/AndreyCastilo/master
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
