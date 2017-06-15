@@ -272,7 +272,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Empresa\Index.cshtml" />
-    <Content Include="Views\Conductor\Empresa.cshtml" />
+    <Content Include="Views\Conductor\EmpresaConductor.cshtml" />
     <Content Include="Views\Seguros\Index.cshtml" />
     <Content Include="Views\Empresa\ModalAgregarEmpresa.cshtml" />
     <Content Include="Views\Empresa\ModalEditarEmpresa.cshtml" />

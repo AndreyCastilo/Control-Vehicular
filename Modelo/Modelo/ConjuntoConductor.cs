@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Modelo.Modelo
 {
-   public class ConjuntoConductor
+    public class ConjuntoConductor
     {
         public Conductor Agregar(Conductor conductor)
         {
@@ -19,9 +19,11 @@ namespace Modelo.Modelo
             return conductor;
         }
 
-        public IEnumerable<Conductor> Listar()
+        public IEnumerable<Conductor> Listar(int empresa)
         {
-            return Conexion.Open.Conductor.
+            IEnumerable<Conductor> asaa = Conexion.Open.Conductor;
+            List<Conductor> as1 = asaa.ToList();
+            return Conexion.Open.Conductor.Where(x => x.Empresa == empresa).
                 OrderBy(e => e.Nombre).
                 ThenBy(e => e.FechaVencimiento);
         }
@@ -44,12 +46,13 @@ namespace Modelo.Modelo
             }
         }
 
-        public Boolean Editar(Conductor conductor)
+        public Conductor Editar(Conductor conductor)
         {
             using (var cnx = Conexion.Open)
             {
                 var conductorAux = cnx.Conductor.FirstOrDefault(x => x.Codigo == conductor.Codigo);
-                if (conductorAux != null) {
+                if (conductorAux != null)
+                {
                     conductorAux.Nombre = conductor.Nombre;
                     conductorAux.Empresa = conductor.Empresa;
                     conductorAux.URLFotografiaCedula = conductor.URLFotografiaCedula;
@@ -57,12 +60,13 @@ namespace Modelo.Modelo
                     conductorAux.TipoLicencia = conductor.TipoLicencia;
                     conductorAux.FechaVencimiento = conductor.FechaVencimiento;
                     cnx.SubmitChanges();
-                    return true;
+                    return conductorAux;
                 }
-                else  {
-                    return false; 
+                else
+                {
+                    return null;
                 }
-            }       
+            }
         }
 
         public Conductor Obtener(int codigo)
