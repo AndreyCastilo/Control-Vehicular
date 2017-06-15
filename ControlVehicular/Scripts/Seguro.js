@@ -15,7 +15,7 @@ function cargarTabla() {
                data: result.registro,
            });
 
-           // onclick();
+           $table.on('click-row.bs.table', function (e, row, $element) { Elemento(row.Codigo) });
 
        })
 }
@@ -26,7 +26,7 @@ function Guardar() {
         $("#formAgregarSeguro").serialize(),
         function resultado(data) {
 
-
+            $('#tablaSeguros').bootstrapTable("append", data.Seguro);
 
             $("#formAgregarSeguro #Empresa").val("")
             $("#formAgregarSeguro #Nombre").val("")
@@ -40,10 +40,10 @@ function Guardar() {
 }
 
 
-function Elemento() {
-    $.get("/Seguros/Elemento", { codigo: 2 },
+function Elemento(cod) {
+    $.get("/Seguros/Elemento", { codigo: cod },
         function resultado(data) {
-            $("#formEditarSeguro #Codigo").val(2);
+            $("#formEditarSeguro #Codigo").val(cod);
             $("#formEditarSeguro #Nombre").val(data.Seguro.Nombre)
             $("#formEditarSeguro #Empresa").val(data.Seguro.Empresa)
             $("#formEditarSeguro #Tipo").val(data.Seguro.Tipo)
@@ -61,7 +61,11 @@ function Editar() {
     $.post("/Seguros/Editar",
         $("#formEditarSeguro").serialize(),
         function resultado(data) {
-            alert("Se edito")
+            var $table = $('#tablaSeguros');
+            $table.bootstrapTable('updateByUniqueId', {
+                id: codigo,
+                row: data.Empresa
+            });
             $("#formsEditarSeguro #Nombre").val("")
             $("#formEditarSeguro #Empresa").val("")
             $("#formEditarSeguro #Tipo").val("")
@@ -78,6 +82,8 @@ function Borrar() {
     $.post("/Seguros/Eliminar",
         { codigo: codigo },
         function resultado(data) {
+            var $table = $('#tablaSeguros');
+            $table.bootstrapTable('removeByUniqueId', codigo);
 
             $("#formEditarEmpresa #Nombre").val("")
             $("#formEditarEmpresa #Empresa").val("")
