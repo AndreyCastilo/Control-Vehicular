@@ -15,8 +15,9 @@ function cargarTabla() {
                data: result.registro,
            });
 
-          // onclick();
+           $table.on('click-row.bs.table', function (e, row, $element) { Elemento(row.Codigo) });
 
+         
        })
 }
 
@@ -26,7 +27,8 @@ function Guardar() {
         $("#formAgregarEmpresa").serialize(),
         function resultado(data) {
 
-          
+            console.log(data.Empresa)
+            $('#tablaEmpresas').bootstrapTable("append", data.Empresa);
 
             $("#formAgregarEmpresa #Nombre").val("")
             $("#formAgregarEmpresa #Fisica").val("")
@@ -34,23 +36,23 @@ function Guardar() {
             $("#formAgregarEmpresa #Cedula").val("")
 
 
-            $("#modalAgregar").modal("hide");
+            $("#modalAgregarEmpresa").modal("hide");
            
         })
 }
 
 
-function Elemento() {
-    $.get("/Empresa/Elemento", { codigo: 3 },
+function Elemento(cod) {
+    $.get("/Empresa/Elemento", { codigo: cod },
         function resultado(data) {
-            $("#formEditarEmpresa #Codigo").val(3);
+            $("#formEditarEmpresa #Codigo").val(cod);
             $("#formEditarEmpresa #Nombre").val(data.Empresa.Nombre)
             $("#formEditarEmpresa #Fisico").val(data.Empresa.Fisico)
             $("#formEditarEmpresa #Telefono").val(data.Empresa.Telefono)
             $("#formEditarEmpresa #Cedula").val(data.Empresa.Cedula)
        
 
-            $("#modalEditar").modal("show");
+            $("#modalEditarEmpresa").modal("show");
         })
 }
 
@@ -61,12 +63,17 @@ function Editar() {
     $.post("/Empresa/Editar",
         $("#formEditarEmpresa").serialize(),
         function resultado(data) {
-            alert("sdfsdf")
+            var $table = $('#tablaEmpresas');
+            $table.bootstrapTable('updateByUniqueId', {
+                id: codigo,
+                row: data.Empresa
+            });
+
             $("#formsEditarEmpresa #Nombre").val("")
             $("#formEditarEmpresa #Fisica").val("")
             $("#formEditarEmpresa #Telefono").val("")
             $("#formEditarEmpresa #Cedula").val("")
-            $("#modalEditar").modal("hide");
+            $("#modalEditarEmpresa").modal("hide");
           
         })
 
@@ -78,13 +85,14 @@ function Borrar() {
     $.post("/Empresa/Eliminar",
         { codigo: codigo },
         function resultado(data) {
-
+            var $table = $('#tablaEmpresas');
+            $table.bootstrapTable('removeByUniqueId', codigo);
             $("#formEditarEmpresa #Nombre").val("")
             $("#formEditarEmpresa #Fisica").val("")
             $("#formEditarEmpresa #Telefono").val("")
             $("#formEditarEmpresa #Cedula").val("")
 
-            $("#modalEditar").modal("hide");
+            $("#modalEditarEmpresa").modal("hide");
 
 
         });
