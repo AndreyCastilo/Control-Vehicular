@@ -20,6 +20,11 @@ function cargarTabla() {
        })
 }
 
+
+function formatoFisica(value) {
+    return (value) ? 'Si' : 'No';
+}
+
 function Guardar() {
 
     $.post("/Empresa/Guardar",
