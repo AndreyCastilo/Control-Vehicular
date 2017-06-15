@@ -34,8 +34,8 @@ namespace ControlVehicular.Controllers
         [HttpPost]
         public JsonResult Editar(Empresa emp)
         {
-            ConexionEmpresa.Editar(emp);
-            return Json(true);
+            var cod = ConexionEmpresa.Editar(emp);
+            return Json( new { Resultado = true, Empresa = new EmpresaModelo(cod) });
         }
 
         public JsonResult Elemento(int codigo)
@@ -60,8 +60,8 @@ namespace ControlVehicular.Controllers
 
 
         public JsonResult ObtenerTodas() {
-            IEnumerable<Empresa> empresasDB = ConexionEmpresa.ObtenerTodas();
-            return Json(new { registro = empresasDB.Select(em => new EmpresaModelo(em))},JsonRequestBehavior.AllowGet);
+            var empresasDB = ConexionEmpresa.ObtenerTodas().Select(em => new EmpresaModelo(em)).ToList();
+            return Json(new { registro = empresasDB},JsonRequestBehavior.AllowGet);
         }
 
     }
