@@ -234,7 +234,7 @@
     <Content Include="sass\components\_map.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
-    <Content Include="Scripts\Empresa.js" />
+    <Content Include="Scripts\Empresa\Empresa.js" />
     <Content Include="Scripts\Conductor\ScriptConductor.js" />
     <Content Include="Scripts\ie\html5shiv.js" />
     <Content Include="Scripts\ie\respond.min.js" />
@@ -274,6 +274,8 @@
     <Content Include="Views\Empresa\Index.cshtml" />
     <Content Include="Views\Conductor\Empresa.cshtml" />
     <Content Include="Views\Seguros\Index.cshtml" />
+    <Content Include="Views\Empresa\ModalAgregarEmpresa.cshtml" />
+    <Content Include="Views\Empresa\ModalEditarEmpresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
