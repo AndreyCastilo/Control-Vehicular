@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ControlVehicular.Models
 {
@@ -21,12 +22,27 @@ namespace ControlVehicular.Models
         [DataType(DataType.MultilineText)]
         public string Detalle { get; set; }
 
+        public IEnumerable<SelectListItem> Empresas { get; set; }
+
         public SeguroModelo(Seguro seguro) {
             this.Codigo = seguro.Codigo;
             this.Empresa = seguro.Empresa;
             this.Nombre = seguro.Nombre;
             this.Tipo = seguro.Tipo;
             this.Detalle = seguro.Detalle;
+        }
+
+        public SeguroModelo(IEnumerable<Empresa> empresas) {
+
+            List<SelectListItem> items = new List<SelectListItem>();
+
+            foreach (var empresa in empresas)
+            {
+                items.Add(new SelectListItem { Text = empresa.Nombre, Value = empresa.Codigo.ToString() });
+            }
+
+            this.Empresas = items;
+
         }
     }
 }

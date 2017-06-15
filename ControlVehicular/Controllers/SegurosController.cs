@@ -12,11 +12,16 @@ namespace ControlVehicular.Controllers
     public class SegurosController : Controller
     {
         private ConjuntoSeguro ConexionSeguro = new ConjuntoSeguro();
+        private ConjuntoEmpresa ConexionEmpresa = new ConjuntoEmpresa();
 
         // GET: Seguro
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<Empresa> empresas = ConexionEmpresa.ObtenerTodas();
+
+            var vm = new SeguroModelo(empresas);
+
+            return View(vm);
         }
 
         [HttpPost]

@@ -31,9 +31,22 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            @Html.LabelFor(model => model.Empresa)
-                            @Html.TextBoxFor(model => model.Empresa, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Empresa, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Empresa)
+                                @Html.DropDownListFor(m => m.Empresa, // 1. Store selected value in Model.State;
+                                                                             // when page is rendered after postback,
+                                                                             // take selected value from Model.State.
+
+                                              // 2. Take list of values from Model.States
+                                              Model.Empresas,
+
+                                              // 3. Text for the first 'default' option
+                                              "- Escoja una Empresa -",
+
+                                              //4. A class name to assign to <select> tag
+                                              new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Empresa, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
                     <div class="row">
