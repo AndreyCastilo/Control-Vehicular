@@ -1,0 +1,175 @@
+﻿@model SeguroModelo
+@using ControlVehicular.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Seguro</h2>
+
+<div id="modalAgregar" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        @using (Html.BeginForm("", "", FormMethod.Post, new { id = "formAgregarSeguro" }))
+        {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Agregar un Seguro</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Nombre)
+                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @style = "width: 100%; max-width:100%;" })
+                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Empresa)
+                            @Html.TextBoxFor(model => model.Empresa, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Empresa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Tipo)
+                            @Html.TextBoxFor(model => model.Tipo, new { @class = "form-control", @style = "width: 100%; max-width:100%;" })
+                            @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Detalle)
+                            @Html.TextBoxFor(model => model.Detalle, new { @class = "form-control", @style = "width: 100%; max-width:100%;" })
+                            @Html.ValidationMessageFor(model => model.Detalle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="Guardar()" class="btn btn-outline-info"> Guardar</button>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<table id="tablaSeguros"
+       class="sortable table-bordered"
+       data-toolbar="#toolbar"
+       data-search="true"
+       data-pagination="true"
+       data-minimum-count-columns="2"
+       data-id-field="Codigo"
+       data-unique-id="Codigo"
+       data-page-size="8"
+       data-show-footer="false">
+    <thead>
+        <tr>
+            <th data-field="Nombre" data-sortable="true">Nombre</th>
+            <th data-field="Empresa" data-sortable="true">Empresa</th>
+            <th data-field="Tipo" data-sortable="true">Tipo</th>
+            <th data-field="Detalle" data_soportable>Detalle</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<div id="modalEditar" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        @using (Html.BeginForm("", "", FormMethod.Post, new { id = "formEditarSeguro" }))
+        {
+
+        @Html.Hidden("Codigo")
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Editar Seguro</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Nombre)
+                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @style = "width: 100%; max-width:100%;" })
+                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Empresa)
+                            @Html.TextBoxFor(model => model.Empresa, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Empresa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Tipo)
+                            @Html.TextBoxFor(model => model.Tipo, new { @class = "form-control", @style = "width: 100%; max-width:100%;" })
+                            @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Detalle)
+                            @Html.TextBoxFor(model => model.Detalle, new { @class = "form-control", @style = "width: 100%; max-width:100%;" })
+                            @Html.ValidationMessageFor(model => model.Detalle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" onclick="Borrar()" class="btn btn-danger"> Borrar</button>
+                    <button type="button" onclick="Editar()" class="btn btn-info"> Guardar</button>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+<div class="row">
+
+    <div class="col-md-12">
+        <br />
+        <a href="#modalAgregar" data-toggle="modal" class="btn btn-default">
+            <i class="fa fa-plus"></i> Agregar Seguro
+        </a>
+    </div>
+</div>
+<br />
+
+<button onclick="Elemento()">Editar</button>
+
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/Seguro.js")
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+
