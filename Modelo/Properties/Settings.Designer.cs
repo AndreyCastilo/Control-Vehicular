@@ -64,5 +64,16 @@ namespace Modelo.Properties {
                 return ((string)(this["ControlVehicularConnectionString2"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=USER\\SQLEXPRESS;Initial Catalog=ControlVehicular;Integrated Security=" +
+            "True")]
+        public string ControlVehicularConnectionString3 {
+            get {
+                return ((string)(this["ControlVehicularConnectionString3"]));
+            }
+        }
     }
 }
