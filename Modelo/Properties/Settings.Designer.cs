@@ -57,8 +57,8 @@ namespace Modelo.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=USER\\SQLEXPRESS;Initial Catalog=ControlVehicular;Integrated Security=" +
-            "True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DANEL-PC;Initial Catalog=ControlVehicular;Persist Security Info=True;" +
+            "User ID=SA;Password=123456")]
         public string ControlVehicularConnectionString2 {
             get {
                 return ((string)(this["ControlVehicularConnectionString2"]));
