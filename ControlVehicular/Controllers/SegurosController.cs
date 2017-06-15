@@ -38,8 +38,8 @@ namespace ControlVehicular.Controllers
         [HttpPost]
         public JsonResult Editar(Seguro seg)
         {
-            ConexionSeguro.Editar(seg);
-            return Json(true);
+            var cod = ConexionSeguro.Editar(seg);
+            return Json(new { Resultado = true, Empresa = new SeguroModelo(cod) });
         }
 
         public JsonResult Elemento(int codigo)

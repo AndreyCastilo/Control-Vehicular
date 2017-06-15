@@ -21,7 +21,7 @@ namespace Modelo.Modelo
             }
         }
 
-        public void Editar(Seguro seg)
+        public Seguro Editar(Seguro seg)
         {
             using (var cnx = Conexion.Open)
             {
@@ -31,6 +31,7 @@ namespace Modelo.Modelo
                 registro.Tipo = seg.Tipo;
                 registro.Detalle = seg.Detalle;
                 cnx.SubmitChanges();
+                return seg;
             }
         }
 
