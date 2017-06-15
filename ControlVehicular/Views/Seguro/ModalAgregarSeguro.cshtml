@@ -1,0 +1,66 @@
+﻿@model SeguroModelo
+@using ControlVehicular.Models
+
+<div id="modalAgregarSeguro" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        @using (Html.BeginForm("", "", FormMethod.Post, new { id = "formAgregarSeguro" }))
+        {
+
+        @Html.ValidationSummary(true, "Por favor corrija los siguiente errores.")
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Nuevo seguro</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.Empresa)
+                            @Html.DropDownListFor(p => p.Empresa,
+                           new SelectList(Model.ListaEmpresas, "Codigo", "Descripcion"),
+                           "", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(p => p.Empresa)
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Nombre, new { @class = "labels" })
+                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @style = "width: 100%; max-width:100%;" } })
+                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.Tipo)
+                            @Html.DropDownListFor(p => p.Tipo,
+                           new SelectList(Model.ListaTipos, "Codigo", "Descripcion"),
+                           "", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(p => p.Tipo)
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Detalle, new { @class = "labels" })
+                            @Html.TextAreaFor(model => model.Detalle, new { @class = "form-control", @style = "width: 100%; max-width:100%;" })
+                            @Html.ValidationMessageFor(model => model.Detalle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    @Html.Hidden("Paciente", Model.Paciente.Email)
+                </div>
+                <div class="modal-footer">
+
+
+                    <button type="button" onclick="nuevoSeguro()" class="btn btn-outline-info">Agregar</button>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
