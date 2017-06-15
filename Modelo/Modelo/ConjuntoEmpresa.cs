@@ -22,7 +22,7 @@ namespace Modelo.Modelo
             }
         }
 
-        public void Editar(Empresa emp)
+        public Empresa Editar(Empresa emp)
         {
             using (var cnx = Conexion.Open)
             {
@@ -32,6 +32,7 @@ namespace Modelo.Modelo
                 registro.Nombre = emp.Nombre;
                 registro.Telefono = emp.Telefono;
                 cnx.SubmitChanges();
+                return emp;
             }
         }
 
