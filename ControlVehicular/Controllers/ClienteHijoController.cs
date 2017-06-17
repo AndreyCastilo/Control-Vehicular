@@ -21,11 +21,11 @@ namespace ControlVehicular.Controllers
         {
             int a = id;
 
-            ViewBag.Padre = padres.Elemento(1); //Cabmiar
+            ViewBag.Padre = padres.Obtener(1); //Cabmiar
             return View();
         }
         [HttpGet]
-        public JsonResult GetHijoesPadre(int id)
+        public JsonResult GetHijosPadre(int id)
         {
             var hijosLista = hijos.Listar(id).ToList();
             var listaAux = hijosLista.Select(x => new ClienteHijoModelo(x));
@@ -68,6 +68,6 @@ namespace ControlVehicular.Controllers
         }
 
         private ConjuntoClienteHijo hijos = new ConjuntoClienteHijo();
-        private ConjuntoPadreCliente padres = new ConjuntoPadreCliente();
+        private ConjuntoPadresClientes padres = new ConjuntoPadresClientes();
     }
 }

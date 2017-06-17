@@ -16,7 +16,7 @@ namespace Modelo.Modelo
                 cnx.PadreCliente.InsertOnSubmit(cliente);
                 cnx.SubmitChanges();
             }
-            return cliente;
+            return Obtener(cliente.Codigo);
         }
 
         public PadreCliente Editar(PadreCliente cliente)
@@ -31,7 +31,7 @@ namespace Modelo.Modelo
                     clienteAux.MostrarComo = cliente.MostrarComo;
                     clienteAux.Direccion = cliente.Direccion;
                     cnx.SubmitChanges();
-                    return clienteAux;
+                    return Obtener(clienteAux.Codigo);
                 }
                 else
                 {
