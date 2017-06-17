@@ -55,8 +55,6 @@ function Elemento(cod) {
             $("#formEditarEmpresa #Fisico").val(data.Empresa.Fisico)
             $("#formEditarEmpresa #Telefono").val(data.Empresa.Telefono)
             $("#formEditarEmpresa #Cedula").val(data.Empresa.Cedula)
-       
-
             $("#modalEditarEmpresa").modal("show");
         })
 }
@@ -101,6 +99,5 @@ function Borrar() {
 
 
         });
-
 }
 

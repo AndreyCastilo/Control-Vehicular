@@ -172,7 +172,7 @@ function limpiarFormEditar() {
 }
 
 
-function Borrar() {
+function borrarCliente() {
     var codigo = $("#formEditarConductor #Codigo").val();
     $.post("/Conductor/Remover",
         { codigo: codigo },

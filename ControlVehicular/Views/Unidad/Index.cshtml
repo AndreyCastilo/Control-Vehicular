@@ -1,0 +1,38 @@
+﻿<a href="#modalAgregarUnidad" data-toggle="modal" class="btn btn-outline-info btn-sm float-right">
+    <i class="fa fa-plus"></i> Agregar Unidad
+</a>
+
+<table id="tablaUnidad"
+       class="sortable table-bordered"
+       data-toolbar="#toolbar"
+       data-search="true"
+       data-pagination="true"
+       data-minimum-count-columns="2"
+       data-id-field="Codigo"
+       data-unique-id="Codigo"
+       data-page-size="8"
+       data-show-footer="false">
+    <thead>
+        <tr>
+            <th data-field="Empresa" data-sortable="true">Empresa</th>
+            <th data-field="Marca" data-sortable="true">Marca</th>
+            <th data-field="Modelo" data-sortable="true">Modelo</th>
+            <th data-field="Placa" data-sortable="true">Placa</th>
+            <th data-field="UltimoAnnoRevision" data-sortable="true">Ultima Revision</th>
+            <th data-field="Latitud" data-sortable="true"></th>
+            <th data-field="Longitud" data-sortable="true">Longitud</th>
+            <th data-field="Capacidad" data-sortable="true">Capacidad</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+@Html.Partial("ModalAgregarUnidad")
+@Html.Partial("ModalEditarUnidad")
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/unidad")
+    @Scripts.Render("~/bundles/jqueryval")
+}

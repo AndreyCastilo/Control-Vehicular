@@ -148,14 +148,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClienteHijoController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\ConductorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PadreClienteController.cs" />
     <Compile Include="Controllers\SegurosController.cs" />
+    <Compile Include="Controllers\UnidadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ClienteHijo.cs" />
+    <Compile Include="Models\ClienteHijoModelo.cs" />
     <Compile Include="Models\PadreClienteModelo.cs" />
     <Compile Include="Models\ConductorModelo.cs" />
     <Compile Include="Models\EmpresaModelo.cs" />
@@ -235,10 +238,12 @@
     <Content Include="sass\components\_map.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
+    <Content Include="Scripts\Cliente\PadreClienteScript.js" />
     <Content Include="Scripts\Empresa\Empresa.js" />
     <Content Include="Scripts\Conductor\ScriptConductor.js" />
     <Content Include="Scripts\ie\html5shiv.js" />
     <Content Include="Scripts\ie\respond.min.js" />
+    <Content Include="Scripts\unidad.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
     <Content Include="Scripts\jquery-1.11.3.min.map" />
@@ -277,10 +282,12 @@
     <Content Include="Views\Empresa\ModalAgregarEmpresa.cshtml" />
     <Content Include="Views\Empresa\ModalEditarEmpresa.cshtml" />
     <Content Include="Views\Conductor\EmpresaConductor.cshtml" />
+	<Content Include="Views\PadreCliente\Cliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Storage\" />
+	<Folder Include="Storage\" />
+    <Folder Include="Views\ClienteHijo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

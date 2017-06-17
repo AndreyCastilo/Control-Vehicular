@@ -42,13 +42,7 @@ namespace ControlVehicular.Controllers
         {
 
             var registro = ConexionEmpresa.Elemento(codigo);
-
-            return Json(new { Resultado = true, Empresa = new EmpresaModelo(registro) }
-            
-               
-
-
-            , JsonRequestBehavior.AllowGet);
+            return Json(new { Resultado = true, Empresa = new EmpresaModelo(registro) }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
