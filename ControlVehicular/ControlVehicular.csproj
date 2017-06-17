@@ -171,8 +171,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Conductor.css" />
     <Content Include="Content\font-awesome.min.css" />
+	<Content Include="Content\Conductor.css" />
     <Content Include="Content\ie8.css" />
     <Content Include="Content\ie9.css" />
     <Content Include="Content\main.css" />
@@ -278,16 +278,19 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Empresa\Index.cshtml" />
+    <Content Include="Views\Conductor\EmpresaConductor.cshtml" />
     <Content Include="Views\Seguros\Index.cshtml" />
     <Content Include="Views\Empresa\ModalAgregarEmpresa.cshtml" />
     <Content Include="Views\Empresa\ModalEditarEmpresa.cshtml" />
-    <Content Include="Views\Conductor\EmpresaConductor.cshtml" />
-	<Content Include="Views\PadreCliente\Cliente.cshtml" />
+    <Content Include="Views\Unidad\Index.cshtml" />
+    <Content Include="Views\Unidad\ModalAgregarUnidad.cshtml" />
+    <Content Include="Views\Unidad\ModalEditarUnidad.cshtml" />
+    <Content Include="Views\PadreCliente\Cliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-	<Folder Include="Storage\" />
     <Folder Include="Views\ClienteHijo\" />
+	 <Folder Include="Storage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
