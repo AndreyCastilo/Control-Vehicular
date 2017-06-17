@@ -244,6 +244,7 @@
     <Content Include="Scripts\Conductor\ScriptConductor.js" />
     <Content Include="Scripts\ie\html5shiv.js" />
     <Content Include="Scripts\ie\respond.min.js" />
+    <Content Include="Scripts\Mapa.js" />
     <Content Include="Scripts\unidad.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
