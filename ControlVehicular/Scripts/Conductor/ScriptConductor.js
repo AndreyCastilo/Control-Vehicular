@@ -1,8 +1,56 @@
 ﻿$(function () {
     cargarTabla();
+
+
+
 });
 
+
+$('#modalAgregarConductor #formAgregarConductor #FileCedulaImg').bind('change', function () {
+    var str = "";
+    str = $(this).val();
+    var url = str.split("\\");
+    $("#formAgregarConductor #URLFotografiaCedula").val(url[2]);
+});
+
+
+$('#modalAgregarConductor #formAgregarConductor #FileLicenciaImg').bind('change', function () {
+    var str = "";
+    str = $(this).val();
+    var url = str.split("\\");
+    $("#formAgregarConductor #URLFotografiaLicencia").val(url[2]);
+});
+
+
+$('#modalEditarConductor #formEditarConductor #FileCedulaImgEditar').bind('change', function () {
+    
+    var str = "";
+    str = $(this).val();
+    var url = str.split("\\");
+    var imagenURL = url[2];
+    if (imagenURL.length > 0) {
+        $("#formEditarConductor #URLFotografiaCedula").val(imagenURL);
+    }
+
+
+});
+
+
+$('#modalEditarConductor #formEditarConductor #FileLicenciaImgEditar').bind('change', function () {
+    var str = "";
+    str = $(this).val();
+    var url = str.split("\\");
+    var imagenURL = url[2];
+    if (imagenURL.length > 0) {
+        $("#formEditarConductor #URLFotografiaLicencia").val(imagenURL);
+    }
+});
+
+
+
+
 function AbrilModalAgregarConductor() {
+    limpiarFormAgregar();
     $("#modalAgregarConductor").modal("show");
 }
 
@@ -10,7 +58,6 @@ function AbrilModalEditarConductor(codigoConductor) {
     $.get("/Conductor/Obtener", { codigo: codigoConductor },
         function resultado(data) {
             if (data.Resultado) {
-
                 var codigoEmpresa = $("#EmpresaId").html();
                 $("#formEditarConductor  #Empresa").val(codigoEmpresa);
                 $("#formEditarConductor  #Nombre").val(data.Conductor.Nombre);
@@ -25,45 +72,61 @@ function AbrilModalEditarConductor(codigoConductor) {
 }
 
 
-
 function guardarConductor() {
     var codigoEmpresa = $("#EmpresaId").html();
+    var form = $("#formAgregarConductor");
     $("#formAgregarConductor #Empresa").val(codigoEmpresa);
-    var a = $("#formAgregarConductor #Empresa").val();
-    if ($("#formAgregarConductor").valid()) { 
-        $.post("/Conductor/Guardar",
-        $("#formAgregarConductor").serialize(),
-       function (data) {
-           if (data.Resultado) {
-               mensajeOk("Exito!", "Conductor agregado correctamente!", function () {               
-                   $('#TablaConductores').bootstrapTable("append", data.Conductor);
-                   limpiarFormAgregar();
-                   $("#modalAgregarConductor").modal("hide");
-               })
-           }
-       });
-    }
+//    if ($("#formAgregarConductor").valid()) {
+        formdata = new FormData(form[0]);
+        $.ajax({
+            url: '/Conductor/Guardar',
+            data: formdata,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function (data, textStatus, jqXHR) {
+                if (data.Resultado) {
+                    mensajeOk("Exito!", "Conductor agregado correctamente!", function () {
+                        $('#TablaConductores').bootstrapTable("append", data.Conductor);
+                        limpiarFormAgregar();
+                        $("#modalAgregarConductor").modal("hide");
+                    })
+                }
+            }
+        });
+ //   }
 }
 
-
 function guardarEditarConductor() {
-   var conductorId= $("#formEditarConductor  #Codigo").val();
-    $.post("/Conductor/Editar",
-       $("#formEditarConductor").serialize(),
-       function resultado(data) {
-           if (data.Resultado) {
-               mensajeOk("Exito!", "Conductor editado correctamente!", function () {
-                   $('#TablaConductores').bootstrapTable('updateByUniqueId', {
-                       id: conductorId,
-                       row: data.Conductor
-                   });
-                   limpiarFormEditar();
-                   $("#modalEditarConductor").modal("hide");
-               })
-           }
+    var conductorId = $("#modalEditarConductor #formEditarConductor  #Codigo").val();
+    var form = $("#modalEditarConductor #formEditarConductor");
+   // if ($("#modalEditarConductor #formEditarConductor").valid()) {
+   //     $("#formEditarConductor  #URLFotografiaCedula").prop("disabled", false);
+   //     $("#formEditarConductor  #URLFotografiaLicencia").prop("disabled", false);
+        formdata = new FormData(form[0]);
+        $.ajax({
+            url: '/Conductor/Editar',
+            data: formdata,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function (data, textStatus, jqXHR) {
+                if (data.Resultado) {
+                    mensajeOk("Exito!", "Conductor editado correctamente!", function () {
+                        $('#TablaConductores').bootstrapTable('updateByUniqueId', {
+                            id: conductorId,
+                            row: data.Conductor
+                        });
+                        limpiarFormEditar();
+                        $("#modalEditarConductor").modal("hide");
+                    })
+                }
+            }
+        });
+   // }
 
-
-       })
 }
 
 
@@ -93,6 +156,8 @@ function limpiarFormAgregar() {
     $("#formAgregarConductor  #FechaVencimiento").val("");
     $("#formAgregarConductor  #URLFotografiaCedula").val("");
     $("#formAgregarConductor  #URLFotografiaLicencia").val("");
+    $('#formAgregarConductor #FileCedulaImg').val("")
+    $("#formAgregarConductor #FileLicenciaImg").val("");
 }
 
 function limpiarFormEditar() {
@@ -102,10 +167,12 @@ function limpiarFormEditar() {
     $("#formEditarConductor  #URLFotografiaCedula").val("");
     $("#formEditarConductor  #URLFotografiaLicencia").val("");
     $("#formEditarConductor  #Codigo").val("");
+    $('#formEditarConductor #FileCedulaImg').val("")
+    $("#formEditarConductor #FileLicenciaImg").val("");
 }
 
 
-function borrarCliente() {
+function borrarConductor() {
     var codigo = $("#formEditarConductor #Codigo").val();
     $.post("/Conductor/Remover",
         { codigo: codigo },
@@ -120,5 +187,11 @@ function borrarCliente() {
             }
         
         });
+}
+
+
+function OnChangeEvent() {
+    alert("cambio");
+
 }
 
