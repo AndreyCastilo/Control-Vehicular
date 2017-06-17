@@ -151,6 +151,7 @@
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\ConductorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PadreClienteController.cs" />
     <Compile Include="Controllers\SegurosController.cs" />
     <Compile Include="Controllers\UnidadController.cs" />
     <Compile Include="Global.asax.cs">
@@ -235,6 +236,7 @@
     <Content Include="sass\components\_map.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
+    <Content Include="Scripts\Cliente\PadreClienteScript.js" />
     <Content Include="Scripts\Empresa\Empresa.js" />
     <Content Include="Scripts\Conductor\ScriptConductor.js" />
     <Content Include="Scripts\ie\html5shiv.js" />
@@ -281,6 +283,7 @@
     <Content Include="Views\Unidad\Index.cshtml" />
     <Content Include="Views\Unidad\ModalAgregarUnidad.cshtml" />
     <Content Include="Views\Unidad\ModalEditarUnidad.cshtml" />
+    <Content Include="Views\PadreCliente\Cliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
