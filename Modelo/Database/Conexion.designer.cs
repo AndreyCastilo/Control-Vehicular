@@ -36,12 +36,12 @@ namespace Modelo.Database
     partial void InsertClienteRuta(ClienteRuta instance);
     partial void UpdateClienteRuta(ClienteRuta instance);
     partial void DeleteClienteRuta(ClienteRuta instance);
-    partial void InsertEmpresa(Empresa instance);
-    partial void UpdateEmpresa(Empresa instance);
-    partial void DeleteEmpresa(Empresa instance);
     partial void InsertConductor(Conductor instance);
     partial void UpdateConductor(Conductor instance);
     partial void DeleteConductor(Conductor instance);
+    partial void InsertEmpresa(Empresa instance);
+    partial void UpdateEmpresa(Empresa instance);
+    partial void DeleteEmpresa(Empresa instance);
     partial void InsertPadreCliente(PadreCliente instance);
     partial void UpdatePadreCliente(PadreCliente instance);
     partial void DeletePadreCliente(PadreCliente instance);
@@ -57,7 +57,7 @@ namespace Modelo.Database
     #endregion
 		
 		public ConexionDataContext() : 
-				base(global::Modelo.Properties.Settings.Default.ControlVehicularConnectionString2, mappingSource)
+				base(global::Modelo.Properties.Settings.Default.ControlVehicularConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -102,19 +102,19 @@ namespace Modelo.Database
 			}
 		}
 		
-		public System.Data.Linq.Table<Empresa> Empresa
-		{
-			get
-			{
-				return this.GetTable<Empresa>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Conductor> Conductor
 		{
 			get
 			{
 				return this.GetTable<Conductor>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Empresa> Empresa
+		{
+			get
+			{
+				return this.GetTable<Empresa>();
 			}
 		}
 		
@@ -522,6 +522,281 @@ namespace Modelo.Database
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Conductor")]
+	public partial class Conductor : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Codigo;
+		
+		private System.Nullable<int> _Empresa;
+		
+		private string _Nombre;
+		
+		private string _URLFotografiaCedula;
+		
+		private string _URLFotografiaLicencia;
+		
+		private string _TipoLicencia;
+		
+		private System.Nullable<System.DateTime> _FechaVencimiento;
+		
+		private EntitySet<Ruta> _Ruta;
+		
+		private EntityRef<Empresa> _Empresa1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodigoChanging(int value);
+    partial void OnCodigoChanged();
+    partial void OnEmpresaChanging(System.Nullable<int> value);
+    partial void OnEmpresaChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnURLFotografiaCedulaChanging(string value);
+    partial void OnURLFotografiaCedulaChanged();
+    partial void OnURLFotografiaLicenciaChanging(string value);
+    partial void OnURLFotografiaLicenciaChanged();
+    partial void OnTipoLicenciaChanging(string value);
+    partial void OnTipoLicenciaChanged();
+    partial void OnFechaVencimientoChanging(System.Nullable<System.DateTime> value);
+    partial void OnFechaVencimientoChanged();
+    #endregion
+		
+		public Conductor()
+		{
+			this._Ruta = new EntitySet<Ruta>(new Action<Ruta>(this.attach_Ruta), new Action<Ruta>(this.detach_Ruta));
+			this._Empresa1 = default(EntityRef<Empresa>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Codigo
+		{
+			get
+			{
+				return this._Codigo;
+			}
+			set
+			{
+				if ((this._Codigo != value))
+				{
+					this.OnCodigoChanging(value);
+					this.SendPropertyChanging();
+					this._Codigo = value;
+					this.SendPropertyChanged("Codigo");
+					this.OnCodigoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Empresa", DbType="Int")]
+		public System.Nullable<int> Empresa
+		{
+			get
+			{
+				return this._Empresa;
+			}
+			set
+			{
+				if ((this._Empresa != value))
+				{
+					if (this._Empresa1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEmpresaChanging(value);
+					this.SendPropertyChanging();
+					this._Empresa = value;
+					this.SendPropertyChanged("Empresa");
+					this.OnEmpresaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URLFotografiaCedula", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string URLFotografiaCedula
+		{
+			get
+			{
+				return this._URLFotografiaCedula;
+			}
+			set
+			{
+				if ((this._URLFotografiaCedula != value))
+				{
+					this.OnURLFotografiaCedulaChanging(value);
+					this.SendPropertyChanging();
+					this._URLFotografiaCedula = value;
+					this.SendPropertyChanged("URLFotografiaCedula");
+					this.OnURLFotografiaCedulaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URLFotografiaLicencia", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string URLFotografiaLicencia
+		{
+			get
+			{
+				return this._URLFotografiaLicencia;
+			}
+			set
+			{
+				if ((this._URLFotografiaLicencia != value))
+				{
+					this.OnURLFotografiaLicenciaChanging(value);
+					this.SendPropertyChanging();
+					this._URLFotografiaLicencia = value;
+					this.SendPropertyChanged("URLFotografiaLicencia");
+					this.OnURLFotografiaLicenciaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoLicencia", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string TipoLicencia
+		{
+			get
+			{
+				return this._TipoLicencia;
+			}
+			set
+			{
+				if ((this._TipoLicencia != value))
+				{
+					this.OnTipoLicenciaChanging(value);
+					this.SendPropertyChanging();
+					this._TipoLicencia = value;
+					this.SendPropertyChanged("TipoLicencia");
+					this.OnTipoLicenciaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaVencimiento", DbType="Date")]
+		public System.Nullable<System.DateTime> FechaVencimiento
+		{
+			get
+			{
+				return this._FechaVencimiento;
+			}
+			set
+			{
+				if ((this._FechaVencimiento != value))
+				{
+					this.OnFechaVencimientoChanging(value);
+					this.SendPropertyChanging();
+					this._FechaVencimiento = value;
+					this.SendPropertyChanged("FechaVencimiento");
+					this.OnFechaVencimientoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Conductor_Ruta", Storage="_Ruta", ThisKey="Codigo", OtherKey="Conductor")]
+		public EntitySet<Ruta> Ruta
+		{
+			get
+			{
+				return this._Ruta;
+			}
+			set
+			{
+				this._Ruta.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Conductor", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
+		public Empresa Empresa1
+		{
+			get
+			{
+				return this._Empresa1.Entity;
+			}
+			set
+			{
+				Empresa previousValue = this._Empresa1.Entity;
+				if (((previousValue != value) 
+							|| (this._Empresa1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Empresa1.Entity = null;
+						previousValue.Conductor.Remove(this);
+					}
+					this._Empresa1.Entity = value;
+					if ((value != null))
+					{
+						value.Conductor.Add(this);
+						this._Empresa = value.Codigo;
+					}
+					else
+					{
+						this._Empresa = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Empresa1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Ruta(Ruta entity)
+		{
+			this.SendPropertyChanging();
+			entity.Conductor1 = this;
+		}
+		
+		private void detach_Ruta(Ruta entity)
+		{
+			this.SendPropertyChanging();
+			entity.Conductor1 = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Empresa")]
 	public partial class Empresa : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -817,281 +1092,6 @@ namespace Modelo.Database
 		{
 			this.SendPropertyChanging();
 			entity.Empresa1 = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Conductor")]
-	public partial class Conductor : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Codigo;
-		
-		private System.Nullable<int> _Empresa;
-		
-		private string _Nombre;
-		
-		private string _URLFotografiaCedula;
-		
-		private string _URLFotografiaLicencia;
-		
-		private string _TipoLicencia;
-		
-		private System.Nullable<System.DateTime> _FechaVencimiento;
-		
-		private EntitySet<Ruta> _Ruta;
-		
-		private EntityRef<Empresa> _Empresa1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCodigoChanging(int value);
-    partial void OnCodigoChanged();
-    partial void OnEmpresaChanging(System.Nullable<int> value);
-    partial void OnEmpresaChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    partial void OnURLFotografiaCedulaChanging(string value);
-    partial void OnURLFotografiaCedulaChanged();
-    partial void OnURLFotografiaLicenciaChanging(string value);
-    partial void OnURLFotografiaLicenciaChanged();
-    partial void OnTipoLicenciaChanging(string value);
-    partial void OnTipoLicenciaChanged();
-    partial void OnFechaVencimientoChanging(System.Nullable<System.DateTime> value);
-    partial void OnFechaVencimientoChanged();
-    #endregion
-		
-		public Conductor()
-		{
-			this._Ruta = new EntitySet<Ruta>(new Action<Ruta>(this.attach_Ruta), new Action<Ruta>(this.detach_Ruta));
-			this._Empresa1 = default(EntityRef<Empresa>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Codigo
-		{
-			get
-			{
-				return this._Codigo;
-			}
-			set
-			{
-				if ((this._Codigo != value))
-				{
-					this.OnCodigoChanging(value);
-					this.SendPropertyChanging();
-					this._Codigo = value;
-					this.SendPropertyChanged("Codigo");
-					this.OnCodigoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Empresa", DbType="Int")]
-		public System.Nullable<int> Empresa
-		{
-			get
-			{
-				return this._Empresa;
-			}
-			set
-			{
-				if ((this._Empresa != value))
-				{
-					if (this._Empresa1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnEmpresaChanging(value);
-					this.SendPropertyChanging();
-					this._Empresa = value;
-					this.SendPropertyChanged("Empresa");
-					this.OnEmpresaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this.OnNombreChanging(value);
-					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URLFotografiaCedula", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string URLFotografiaCedula
-		{
-			get
-			{
-				return this._URLFotografiaCedula;
-			}
-			set
-			{
-				if ((this._URLFotografiaCedula != value))
-				{
-					this.OnURLFotografiaCedulaChanging(value);
-					this.SendPropertyChanging();
-					this._URLFotografiaCedula = value;
-					this.SendPropertyChanged("URLFotografiaCedula");
-					this.OnURLFotografiaCedulaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URLFotografiaLicencia", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string URLFotografiaLicencia
-		{
-			get
-			{
-				return this._URLFotografiaLicencia;
-			}
-			set
-			{
-				if ((this._URLFotografiaLicencia != value))
-				{
-					this.OnURLFotografiaLicenciaChanging(value);
-					this.SendPropertyChanging();
-					this._URLFotografiaLicencia = value;
-					this.SendPropertyChanged("URLFotografiaLicencia");
-					this.OnURLFotografiaLicenciaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoLicencia", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string TipoLicencia
-		{
-			get
-			{
-				return this._TipoLicencia;
-			}
-			set
-			{
-				if ((this._TipoLicencia != value))
-				{
-					this.OnTipoLicenciaChanging(value);
-					this.SendPropertyChanging();
-					this._TipoLicencia = value;
-					this.SendPropertyChanged("TipoLicencia");
-					this.OnTipoLicenciaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaVencimiento", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaVencimiento
-		{
-			get
-			{
-				return this._FechaVencimiento;
-			}
-			set
-			{
-				if ((this._FechaVencimiento != value))
-				{
-					this.OnFechaVencimientoChanging(value);
-					this.SendPropertyChanging();
-					this._FechaVencimiento = value;
-					this.SendPropertyChanged("FechaVencimiento");
-					this.OnFechaVencimientoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Conductor_Ruta", Storage="_Ruta", ThisKey="Codigo", OtherKey="Conductor")]
-		public EntitySet<Ruta> Ruta
-		{
-			get
-			{
-				return this._Ruta;
-			}
-			set
-			{
-				this._Ruta.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Conductor", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
-		public Empresa Empresa1
-		{
-			get
-			{
-				return this._Empresa1.Entity;
-			}
-			set
-			{
-				Empresa previousValue = this._Empresa1.Entity;
-				if (((previousValue != value) 
-							|| (this._Empresa1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Empresa1.Entity = null;
-						previousValue.Conductor.Remove(this);
-					}
-					this._Empresa1.Entity = value;
-					if ((value != null))
-					{
-						value.Conductor.Add(this);
-						this._Empresa = value.Codigo;
-					}
-					else
-					{
-						this._Empresa = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Empresa1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Ruta(Ruta entity)
-		{
-			this.SendPropertyChanging();
-			entity.Conductor1 = this;
-		}
-		
-		private void detach_Ruta(Ruta entity)
-		{
-			this.SendPropertyChanging();
-			entity.Conductor1 = null;
 		}
 	}
 	

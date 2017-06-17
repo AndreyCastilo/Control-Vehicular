@@ -30,9 +30,11 @@ namespace ControlVehicular
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                       "~/Content/main.css"));
+                      "~/Content/fileinput.css",
+                      "~/Content/main.css"));
             bundles.Add(new ScriptBundle("~/bundles/unidad").Include(
-                       "~/Scripts/unidad.js"));
+                       "~/Scripts/unidad.js",
+                       "~/Scripts/fileinput.js"));
         }
     }
 }
