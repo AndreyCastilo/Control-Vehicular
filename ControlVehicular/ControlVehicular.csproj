@@ -238,6 +238,7 @@
     <Content Include="sass\components\_map.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
+    <Content Include="Scripts\Cliente\ClienteHijoScript.js" />
     <Content Include="Scripts\Cliente\PadreClienteScript.js" />
     <Content Include="Scripts\Empresa\Empresa.js" />
     <Content Include="Scripts\Conductor\ScriptConductor.js" />
@@ -286,6 +287,7 @@
     <Content Include="Views\Unidad\ModalAgregarUnidad.cshtml" />
     <Content Include="Views\Unidad\ModalEditarUnidad.cshtml" />
     <Content Include="Views\PadreCliente\Cliente.cshtml" />
+    <Content Include="Views\ClienteHijo\PadreHijo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

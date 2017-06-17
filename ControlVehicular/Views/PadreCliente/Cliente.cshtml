@@ -51,7 +51,7 @@
         <!-- Modal content-->
         @using (Html.BeginForm("", "", FormMethod.Post, new { id = "formAgregarCliente" }))
             {
-
+            @Html.Hidden("Codigo")
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="modal-content">
                 <div class="modal-header">

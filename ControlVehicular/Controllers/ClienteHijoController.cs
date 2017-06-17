@@ -25,7 +25,7 @@ namespace ControlVehicular.Controllers
             return View();
         }
         [HttpGet]
-        public JsonResult GetHijoesPadre(int id)
+        public JsonResult GetHijosPadre(int id)
         {
             var hijosLista = hijos.Listar(id).ToList();
             var listaAux = hijosLista.Select(x => new ClienteHijoModelo(x));

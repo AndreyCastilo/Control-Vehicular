@@ -21,8 +21,7 @@ namespace Modelo.Modelo
 
         public IEnumerable<ClienteHijo> Listar(int padreCliente)
         {
-            IEnumerable<ClienteHijo> asaa = Conexion.Open.ClienteHijo;
-            List<ClienteHijo> as1 = asaa.ToList();
+
             return Conexion.Open.ClienteHijo.Where(x => x.PadreCliente == padreCliente).
                 OrderBy(e => e.Nombre).
                 ThenBy(e => e.MostrarComo);
