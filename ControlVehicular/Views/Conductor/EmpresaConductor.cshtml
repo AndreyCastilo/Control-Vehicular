@@ -79,11 +79,17 @@
                                             <br />
 
                                            <div>
-                                               @Html.LabelFor(m => m.FileCedulaImg, new {  @class = "custom-file-upload"  })
+                                               @Html.LabelFor(m => m.FileCedulaImg, new {  @class = "custom-file-upload" })
                                                @Html.EditorFor(model => model.URLFotografiaCedula, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
                                                @Html.TextBoxFor(m => m.FileCedulaImg, new { type = "file", name="files"})
                                                @Html.ValidationMessageFor(m => m.FileCedulaImg)
                                            </div>
+                                            <div class="wrapper">
+                                                <div class="imageSelector">
+                                                    <img id="imagenPreview" class="imageSelected" />
+                                                    <span class="editImage"  onclick="triggerUpload(event, '#formAgregarConductor #FileCedulaImg');"><i class="fa fa-pencil"></i></span>
+                                                </div>
+                                            </div>
                                             <br />
                                             <div>
                                                 @Html.LabelFor(m => m.FileLicenciaImg, new { @class = "custom-file-upload" } )

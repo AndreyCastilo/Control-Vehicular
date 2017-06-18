@@ -172,7 +172,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.min.css" />
-	<Content Include="Content\Conductor.css" />
+    <Content Include="Content\Conductor.css" />
     <Content Include="Content\ie8.css" />
     <Content Include="Content\ie9.css" />
     <Content Include="Content\main.css" />
@@ -185,6 +185,7 @@
     <Content Include="Global.asax" />
     <Content Include="images\avatar.jpg" />
     <Content Include="images\logo.jpg" />
+    <Content Include="images\no-image.png" />
     <Content Include="images\pic01.jpg" />
     <Content Include="images\pic02.jpg" />
     <Content Include="images\pic03.jpg" />
@@ -292,8 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ClienteHijo\" />
-	 <Folder Include="Storage\" />
+    <Folder Include="Storage\Conductores\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
