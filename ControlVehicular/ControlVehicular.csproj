@@ -171,6 +171,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fileinput.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Conductor.css" />
     <Content Include="Content\ie8.css" />
@@ -184,6 +185,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\avatar.jpg" />
+    <Content Include="images\loading.gif" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\no-image.png" />
     <Content Include="images\pic01.jpg" />
@@ -198,8 +200,6 @@
     <Content Include="images\pic10.jpg" />
     <Content Include="images\pic11.jpg" />
     <Content Include="images\pic12.jpg" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -237,14 +237,22 @@
     <Content Include="sass\libs\_vars.scss" />
     <Content Include="sass\main.scss" />
     <Content Include="sass\components\_map.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Cliente\ClienteHijoScript.js" />
     <Content Include="Scripts\Cliente\PadreClienteScript.js" />
     <Content Include="Scripts\Empresa\Empresa.js" />
     <Content Include="Scripts\Conductor\ScriptConductor.js" />
+    <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\ie\html5shiv.js" />
     <Content Include="Scripts\ie\respond.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Mapa.js" />
     <Content Include="Scripts\unidad.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
@@ -293,12 +301,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="storage\unidades\fotografias\" />
+    <Folder Include="storage\unidades\revisionTecnica\" />
+    <Folder Include="storage\unidades\tarjetaCirculacion\" />
     <Folder Include="Storage\Conductores\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>

@@ -36,6 +36,7 @@ namespace ControlVehicular.Models
         public string URLFotografiaUnidad {get; set;}
     
         public string URLTarjetaCirculacion { get; set; }
+
         public string URLRevisionTecnica {get; set;}
 
         public UnidadModelo(Unidad unidad) {
@@ -53,5 +54,8 @@ namespace ControlVehicular.Models
             this.URLTarjetaCirculacion = unidad.URLTarjetaCirculacion;
             this.URLRevisionTecnica = unidad.URLRevisionTecnica;
         }
+
+        // Fotos
+        public HttpPostedFileBase foto1 { get; set; }
     }
 }

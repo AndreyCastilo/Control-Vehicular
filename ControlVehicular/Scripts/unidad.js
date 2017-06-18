@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-
+    uploadView();
     cargarTabla();
 });
 
@@ -39,12 +39,28 @@ function Elemento(cod) {
 }
 
 let nuevaUnidad = () => {
-    $.post("/Unidad/Agregar",
-        $("#formAgregarUnidad").serialize(),
-        (data) => {
-            $("#modalAgregarUnidad").modal("hide")
-            alert(data.Unidad.Codigo)
-        })
+        let form = $("#formAgregarUnidad");
+        if (form.valid()) {
+            formdata = new FormData(form[0]);
+            $.ajax({
+                url: '/Unidad/Agregar2',
+                data: formdata,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                success: function (data, textStatus, jqXHR) {
+                    // Callback code
+                    // limpiar form...
+
+                    $('#modalAgregarUnidad').modal('toggle');
+                }
+            });
+        }
+}
+
+let getresult = (data) => {
+    console.log(JSON.stringify(data))
 }
 
 let editarUnidad= () => {
@@ -95,4 +111,13 @@ function Borrar() {
             $("#modalEditarUnidad").modal("hide");
 
         });
+}
+
+// View Settings
+
+let uploadView = () => {
+    $(".file").attr("data-show-preview", "false");
+    $(".file").fileinput({
+        'showUpload': false
+    })
 }
