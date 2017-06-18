@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modelo.Database;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace ControlVehicular.Models
 {
-    public class ClienteHijo
+    public class ClienteHijoModelo
     {
         public long Codigo { get; set; }
 
@@ -19,7 +20,7 @@ namespace ControlVehicular.Models
         public string MostrarComo { get; set; }
 
 
-        public ClienteHijo(ClienteHijo cliente)
+        public ClienteHijoModelo(ClienteHijo cliente)
         {
             this.Codigo = cliente.Codigo;
             this.Nombre = cliente.Nombre;

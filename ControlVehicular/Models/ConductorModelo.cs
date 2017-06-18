@@ -18,9 +18,33 @@ namespace ControlVehicular.Models
         [MaxLength(100)]
         public string TipoLicencia { get; set; }
 
+
+        [Required, FileExtensions(Extensions = "cvs",
+        ErrorMessage = "Specify a PNG file.")]
+
+        [Display(Name = "Fotografia Cedula")]
         public string URLFotografiaCedula { get; set; }
 
+
+
+        [Required, FileExtensions(Extensions = "cvs",
+        ErrorMessage = "Specify a PNG file.")]
+        [Display(Name = "Fotografia Licencia")]
         public string URLFotografiaLicencia { get; set; }
+
+
+        [Display(Name = "Imagen Cedula")]
+        public string FileCedulaImg { get; set; }
+
+        [Display(Name = "Imagen Licencia")]
+        public string FileLicenciaImg { get; set; }
+
+
+        [Display(Name = "Imagen Cedula")]
+        public string FileCedulaImgEditar { get; set; }
+
+        [Display(Name = "Imagen Licencia")]
+        public string FileLicenciaImgEditar { get; set; }
 
 
         [Required]

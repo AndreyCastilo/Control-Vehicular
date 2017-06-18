@@ -31,7 +31,7 @@ namespace Modelo.Modelo
                 registro.Tipo = seg.Tipo;
                 registro.Detalle = seg.Detalle;
                 cnx.SubmitChanges();
-                return seg;
+                return Elemento(seg.Codigo);
             }
         }
 
