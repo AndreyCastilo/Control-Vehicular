@@ -17,50 +17,18 @@ namespace ControlVehicular.Controllers
         private readonly string tarjetaCirulacion = "tarjetaCirculacion";
 
         private ConjuntoUnidad unidades = new ConjuntoUnidad();
+
         // GET: Unidad
         public ActionResult Index()
         {
             return View();
         }
 
+        #region CRUD UNIDAD
         [HttpPost]
-        public JsonResult Agregar(HttpPostedFileBase URLFotografiaUnidad, Unidad datos)
+        public ActionResult Agregar(Unidad datos, IEnumerable<HttpPostedFileBase> fotos)
         {
-            var unidadDB = unidades.Agregar(datos);
-            return Json(new { Resultado = true, Unidad = new UnidadModelo(unidadDB) });
-
-        }
-
-        [HttpPost]
-        public ActionResult Agregar2(Unidad datos, IEnumerable<HttpPostedFileBase> fotos)
-        {
-            var path = "";
-            int secuencia = 1;
-            foreach (var foto in fotos)
-            {
-                if (foto.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(foto.FileName);
-                    path = getPath(secuencia, datos.Placa, fileName);
-                    foto.SaveAs(path);
-                    switch(secuencia)
-                    {
-                        case 1:
-                            datos.URLFotografiaUnidad = path;
-                            break;
-                        case 2:
-                            datos.URLRevisionTecnica = path;
-                            break;
-                        case 3:
-                            datos.URLTarjetaCirculacion = path;
-                            break;
-                        default:
-                            break;
-                    }
-                    secuencia++;
-                }
-            }
-
+            guardaFotos(datos, fotos);
             var unidadDB = unidades.Agregar(datos);
             return Json(new { Resultado = true, Unidad = new UnidadModelo(unidadDB) });
 
@@ -81,21 +49,28 @@ namespace ControlVehicular.Controllers
             }
         }
 
-        public JsonResult ObtenerTodas()
-        {
-            var unidadesDB = unidades.ObtenerTodas().Select(em => new UnidadModelo(em)).ToList();
-            return Json(new { registro = unidadesDB }, JsonRequestBehavior.AllowGet);
-        }
-
         public JsonResult Elemento(int codigo)
         {
             var registro = unidades.Elemento(codigo);
-            return Json(new { Resultado = true, Unidad = new UnidadModelo(registro) }, JsonRequestBehavior.AllowGet);
+            var pathFotografia = "../.." + substring(registro.URLFotografiaUnidad, "\\storage", "");
+            var pathTarjeta = "../.." + substring(registro.URLTarjetaCirculacion, "\\storage", "");
+            var pathRevision = "../.." + substring(registro.URLRevisionTecnica, "\\storage", "");
+            return Json(new
+            {
+                Resultado = true,
+                Unidad = new UnidadModelo(registro),
+                urlFoto = pathFotografia,
+                urlTarjeta = pathTarjeta,
+                urlRevision = pathRevision
+            },
+                JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult Editar(Unidad uni)
+        public JsonResult Editar(Unidad uni, IEnumerable<HttpPostedFileBase> fotos)
         {
+            guardaFotos(uni, fotos);
+
             var cod = unidades.Editar(uni);
             return Json(new { Resultado = true, Unidad = new UnidadModelo(cod) });
         }
@@ -107,7 +82,58 @@ namespace ControlVehicular.Controllers
             return Json(true);
         }
 
+        #endregion
 
+        #region Metodos
+        public JsonResult ObtenerTodas()
+        {
+            var unidadesDB = unidades.ObtenerTodas().Select(em => new UnidadModelo(em)).ToList();
+            return Json(new { registro = unidadesDB }, JsonRequestBehavior.AllowGet);
+        }
+
+        public string substring(string original, string start, string end)
+        {
+            //String s = "<term>extant<definition>still in existence</definition></term>";
+            String searchString = start;
+            int startIndex = original.IndexOf(searchString);
+            searchString = end;
+            int endIndex = original.Length;
+            String substring = original.Substring(startIndex, endIndex + searchString.Length - startIndex);
+            var src = substring.Replace(@"\", "/");
+            return src;
+        }
+
+        public void guardaFotos(Unidad datos, IEnumerable<HttpPostedFileBase> fotos)
+        {
+            var path = "";
+            int secuencia = 1;
+            foreach (var foto in fotos)
+            {
+                if (foto != null && foto.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(foto.FileName);
+                    path = getPath(secuencia, datos.Placa, fileName);
+                    foto.SaveAs(path);
+                    switch (secuencia)
+                    {
+                        case 1:
+                            datos.URLFotografiaUnidad = path;
+                            break;
+                        case 2:
+                            datos.URLRevisionTecnica = path;
+                            break;
+                        case 3:
+                            datos.URLTarjetaCirculacion = path;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                secuencia++;
+            }
+        }
+
+        #endregion
 
     }
 }

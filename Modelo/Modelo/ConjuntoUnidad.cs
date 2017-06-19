@@ -43,9 +43,18 @@ namespace Modelo.Modelo
                 registro.Modelo = emp.Modelo;
                 registro.Placa = emp.Placa;
                 registro.UltimoAnnoRevision = emp.UltimoAnnoRevision;
-                registro.URLFotografiaUnidad = emp.URLFotografiaUnidad;
-                registro.URLRevisionTecnica = emp.URLRevisionTecnica;
-                registro.URLTarjetaCirculacion = emp.URLTarjetaCirculacion;
+                if (emp.URLFotografiaUnidad != null)
+                {
+                    registro.URLFotografiaUnidad = emp.URLFotografiaUnidad;
+                }
+                if(emp.URLRevisionTecnica != null)
+                {
+                    registro.URLRevisionTecnica = emp.URLRevisionTecnica;
+                }
+                if(emp.URLTarjetaCirculacion != null)
+                {
+                    registro.URLTarjetaCirculacion = emp.URLTarjetaCirculacion;
+                }
                 cnx.SubmitChanges();
                 return emp;
             }
