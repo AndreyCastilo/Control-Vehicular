@@ -1,6 +1,12 @@
-﻿<a href="#modalAgregarUnidad" data-toggle="modal" class="btn btn-outline-info btn-sm float-right">
-    <i class="fa fa-plus"></i> Agregar Unidad
-</a>
+﻿
+<h2>Unidades</h2>
+
+<div id="toolbar">
+    <a href="#modalAgregarUnidad" data-toggle="modal" class="btn btn-info btn-sm float-right">
+        <i class="fa fa-plus"></i> Agregar Unidad
+    </a>
+</div>
+<br />
 
 <table id="tablaUnidad"
        class="sortable table-bordered"
@@ -19,7 +25,7 @@
             <th data-field="Modelo" data-sortable="true">Modelo</th>
             <th data-field="Placa" data-sortable="true">Placa</th>
             <th data-field="UltimoAnnoRevision" data-sortable="true">Ultima Revision</th>
-            <th data-field="Latitud" data-sortable="true"></th>
+            <th data-field="Latitud" data-sortable="true">Latitud</th>
             <th data-field="Longitud" data-sortable="true">Longitud</th>
             <th data-field="Capacidad" data-sortable="true">Capacidad</th>
         </tr>
@@ -30,6 +36,7 @@
 
 @Html.Partial("ModalAgregarUnidad")
 @Html.Partial("ModalEditarUnidad")
+@Html.Partial("Modal_Images")
 
 @section Scripts
 {

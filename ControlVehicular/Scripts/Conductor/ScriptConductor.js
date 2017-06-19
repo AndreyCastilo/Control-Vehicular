@@ -5,12 +5,22 @@
 
 });
 
+function triggerUpload(event, elem) {
+    event.preventDefault;
+    $(""+elem+"").click();
+}
 
 $('#modalAgregarConductor #formAgregarConductor #FileCedulaImg').bind('change', function () {
     var str = "";
     str = $(this).val();
     var url = str.split("\\");
     $("#formAgregarConductor #URLFotografiaCedula").val(url[2]);
+    let filered = new FileReader();
+    filered.onload = function (e) {
+          $("#imagenPreview").attr("src",e.target.result)
+    }
+
+    filered.readAsDataURL(this.files[0]);
 });
 
 

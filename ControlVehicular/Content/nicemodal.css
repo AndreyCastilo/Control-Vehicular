@@ -7,6 +7,10 @@
     z-index: 10;
 }
 
+.niceModal .niceModal-content {
+    padding: 20px;
+}
+
 .niceModal .modal-header .niceModal-header-icon {
     font-size: 40px;
     color: rgba(255, 255, 255, 0.5);
@@ -38,6 +42,10 @@
     line-height: 1.45;
 }
 
+.niceModal .modal-body {
+    padding: 0px !important;
+}
+
 .niceModal  * {
     -webkit-font-smoothing: antialiased;
 }
@@ -65,19 +73,9 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-.niceModal .niceModal-content  .footer,.niceModal .modal-footer .footer,.niceModal .modal-footer .footer-3{
-    overflow: hidden;
-    border-radius: 4px;
-}
-.niceModal .niceModal-content  .footer button, .niceModal .modal-footer button{
-    margin: 0;
-    border: 0;
-    cursor: pointer;
-    width: 50%;
-    float: left;
-    padding: 10px;
-}
 
+
+ 
 .niceModal .modal-footer .footer-3 button{
     margin: 0;
     border: 0;

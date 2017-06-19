@@ -1,3 +1,13 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<input id="Button1" type="button" value="GetDirections" onclick="return Button1_onclick()" /></td>
+
+
+<div class="map featured">
+    <div id="map"></div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/Mapa.js")
+}

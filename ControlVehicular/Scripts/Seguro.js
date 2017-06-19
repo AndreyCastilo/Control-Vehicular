@@ -66,6 +66,7 @@ function Editar() {
                 id: codigo,
                 row: data.Empresa
             });
+
             $("#formsEditarSeguro #Nombre").val("")
             $("#formEditarSeguro #Empresa").val("")
             $("#formEditarSeguro #Tipo").val("")

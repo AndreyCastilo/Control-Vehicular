@@ -35,7 +35,7 @@
 </table>
 
 <!-- Modal -->
-<div id="modalAgregarHijo" class="modal fade" role="dialog">
+<div id="modalAgregarHijo" class="modal fadeInUp transitionIn niceModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         @using (Html.BeginForm("", "", FormMethod.Post, new { id = "formAgregarHijo" }))
@@ -43,30 +43,33 @@
             @Html.Hidden("PadreCliente") // Para el codigo de la empresa que ocupa el Conductor
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Agregar Hijo Cliente</h4>
+                                        <div class="modal-header transitionIn ">
+                                            <i class="niceModal-header-icon fa fa-plus"></i>
+                                            <h2 class="niceModal-header-title">Agregar Hijo Cliente</h2>
+                                            <p class="niceModal-header-subtitle">Digite la informacion del hijo que desea agregar</p>
+                                            <a href="javascript:void(0)" class="niceModal-button niceModal-button-close" data-dismiss="modal"></a>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="input-group col-md-12">
-                                                <span class="input-group-addon" id="basic-addon1">
-                                                    @Html.LabelFor(model => model.Nombre)
-                                                </span>
-                                                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                            <div class="niceModal-content">
+                                                <div class="input-group col-md-12">
+                                                    <span class="input-group-addon" id="basic-addon1">
+                                                        @Html.LabelFor(model => model.Nombre)
+                                                    </span>
+                                                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                                </div>
+                                                <br />
+                                                <div class="input-group">
+                                                    <span class="input-group-addon" id="basic-addon1">
+                                                        @Html.LabelFor(model => model.MostrarComo)
+                                                    </span>
+                                                    @Html.EditorFor(model => model.MostrarComo, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.MostrarComo, "", new { @class = "text-danger" })
+                                                </div>
                                             </div>
-                                            <br />
-                                            <div class="input-group">
-                                                <span class="input-group-addon" id="basic-addon1">
-                                                    @Html.LabelFor(model => model.MostrarComo)
-                                                </span>
-                                                @Html.EditorFor(model => model.MostrarComo, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.MostrarComo, "", new { @class = "text-danger" })
-                                            </div>
-                                           
                                         <div class="modal-footer">
-                                            <button type="button" onclick="guardarHijo()" class="btn-info"><i class="fa fa-plus"></i> Agregar</button>
-                                            <button type="button" class="btn-default" data-dismiss="modal">Cancelar</button>
+                                            <button type="button" onclick="guardarHijo()" class="btn btn-outline-info"><i class="fa fa-plus"></i> Agregar</button>
+                                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>
                            </div>

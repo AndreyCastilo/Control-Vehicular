@@ -12,11 +12,13 @@ namespace ControlVehicular.Models
         public long Codigo { get; set; }
         public int? Empresa {get; set;}
     
-        [MaxLength(100)]
+        [Display(Name = "Numero de placa"), MaxLength(100)]
         public string Placa { get; set; }
 
-        [MaxLength(100)]
+        [Display(Name = "Año"), MaxLength(100)]
         public string Anno { get; set; }
+
+        [Display(Name = "Ultimo año de revision")]
         public int? UltimoAnnoRevision {get; set;}
 
         [MaxLength(100)]
@@ -33,9 +35,13 @@ namespace ControlVehicular.Models
         [Required]
         public int Capacidad {get; set;}
 
+        [Display(Name = "Unidad")]
         public string URLFotografiaUnidad {get; set;}
-    
+
+        [Display(Name = "Tarjeta de Circulacion")]
         public string URLTarjetaCirculacion { get; set; }
+
+        [Display(Name = "Revision Tecnica")]
         public string URLRevisionTecnica {get; set;}
 
         public UnidadModelo(Unidad unidad) {
@@ -53,5 +59,8 @@ namespace ControlVehicular.Models
             this.URLTarjetaCirculacion = unidad.URLTarjetaCirculacion;
             this.URLRevisionTecnica = unidad.URLRevisionTecnica;
         }
+
+        // Fotos
+        public HttpPostedFileBase foto1 { get; set; }
     }
 }
