@@ -1,4 +1,21 @@
-﻿
+﻿$(document).ready(function () {
+    enviaCoordenadas()
+})
+
+function enviaCoordenadas() {
+    setTimeout(function () {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            console.log("Enviando coordenadas lat: " + pos.lat + " long: " + pos.lng)
+            enviaCoordenadas()
+        })
+    }, 1000*60)
+}
+
+
 var map;
 var actual;
 

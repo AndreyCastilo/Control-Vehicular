@@ -39,25 +39,25 @@ namespace Modelo.Database
     partial void InsertConductor(Conductor instance);
     partial void UpdateConductor(Conductor instance);
     partial void DeleteConductor(Conductor instance);
-    partial void InsertPadreCliente(PadreCliente instance);
-    partial void UpdatePadreCliente(PadreCliente instance);
-    partial void DeletePadreCliente(PadreCliente instance);
     partial void InsertEmpresa(Empresa instance);
     partial void UpdateEmpresa(Empresa instance);
     partial void DeleteEmpresa(Empresa instance);
+    partial void InsertUnidad(Unidad instance);
+    partial void UpdateUnidad(Unidad instance);
+    partial void DeleteUnidad(Unidad instance);
     partial void InsertRuta(Ruta instance);
     partial void UpdateRuta(Ruta instance);
     partial void DeleteRuta(Ruta instance);
     partial void InsertSeguro(Seguro instance);
     partial void UpdateSeguro(Seguro instance);
     partial void DeleteSeguro(Seguro instance);
-    partial void InsertUnidad(Unidad instance);
-    partial void UpdateUnidad(Unidad instance);
-    partial void DeleteUnidad(Unidad instance);
+    partial void InsertPadreCliente(PadreCliente instance);
+    partial void UpdatePadreCliente(PadreCliente instance);
+    partial void DeletePadreCliente(PadreCliente instance);
     #endregion
 		
 		public ConexionDataContext() : 
-				base(global::Modelo.Properties.Settings.Default.ControlVehicularConnectionString2, mappingSource)
+				base(global::Modelo.Properties.Settings.Default.ControlVehicularConnectionString3, mappingSource)
 		{
 			OnCreated();
 		}
@@ -110,19 +110,19 @@ namespace Modelo.Database
 			}
 		}
 		
-		public System.Data.Linq.Table<PadreCliente> PadreCliente
-		{
-			get
-			{
-				return this.GetTable<PadreCliente>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Empresa> Empresa
 		{
 			get
 			{
 				return this.GetTable<Empresa>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Unidad> Unidad
+		{
+			get
+			{
+				return this.GetTable<Unidad>();
 			}
 		}
 		
@@ -142,11 +142,11 @@ namespace Modelo.Database
 			}
 		}
 		
-		public System.Data.Linq.Table<Unidad> Unidad
+		public System.Data.Linq.Table<PadreCliente> PadreCliente
 		{
 			get
 			{
-				return this.GetTable<Unidad>();
+				return this.GetTable<PadreCliente>();
 			}
 		}
 	}
@@ -797,233 +797,6 @@ namespace Modelo.Database
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PadreCliente")]
-	public partial class PadreCliente : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Codigo;
-		
-		private System.Nullable<int> _Empresa;
-		
-		private string _Nombre;
-		
-		private string _MostrarComo;
-		
-		private string _Direccion;
-		
-		private EntitySet<ClienteHijo> _ClienteHijo;
-		
-		private EntityRef<Empresa> _Empresa1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCodigoChanging(int value);
-    partial void OnCodigoChanged();
-    partial void OnEmpresaChanging(System.Nullable<int> value);
-    partial void OnEmpresaChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    partial void OnMostrarComoChanging(string value);
-    partial void OnMostrarComoChanged();
-    partial void OnDireccionChanging(string value);
-    partial void OnDireccionChanged();
-    #endregion
-		
-		public PadreCliente()
-		{
-			this._ClienteHijo = new EntitySet<ClienteHijo>(new Action<ClienteHijo>(this.attach_ClienteHijo), new Action<ClienteHijo>(this.detach_ClienteHijo));
-			this._Empresa1 = default(EntityRef<Empresa>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Codigo
-		{
-			get
-			{
-				return this._Codigo;
-			}
-			set
-			{
-				if ((this._Codigo != value))
-				{
-					this.OnCodigoChanging(value);
-					this.SendPropertyChanging();
-					this._Codigo = value;
-					this.SendPropertyChanged("Codigo");
-					this.OnCodigoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Empresa", DbType="Int")]
-		public System.Nullable<int> Empresa
-		{
-			get
-			{
-				return this._Empresa;
-			}
-			set
-			{
-				if ((this._Empresa != value))
-				{
-					if (this._Empresa1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnEmpresaChanging(value);
-					this.SendPropertyChanging();
-					this._Empresa = value;
-					this.SendPropertyChanged("Empresa");
-					this.OnEmpresaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this.OnNombreChanging(value);
-					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MostrarComo", DbType="NVarChar(100)")]
-		public string MostrarComo
-		{
-			get
-			{
-				return this._MostrarComo;
-			}
-			set
-			{
-				if ((this._MostrarComo != value))
-				{
-					this.OnMostrarComoChanging(value);
-					this.SendPropertyChanging();
-					this._MostrarComo = value;
-					this.SendPropertyChanged("MostrarComo");
-					this.OnMostrarComoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Direccion
-		{
-			get
-			{
-				return this._Direccion;
-			}
-			set
-			{
-				if ((this._Direccion != value))
-				{
-					this.OnDireccionChanging(value);
-					this.SendPropertyChanging();
-					this._Direccion = value;
-					this.SendPropertyChanged("Direccion");
-					this.OnDireccionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PadreCliente_ClienteHijo", Storage="_ClienteHijo", ThisKey="Codigo", OtherKey="PadreCliente")]
-		public EntitySet<ClienteHijo> ClienteHijo
-		{
-			get
-			{
-				return this._ClienteHijo;
-			}
-			set
-			{
-				this._ClienteHijo.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_PadreCliente", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
-		public Empresa Empresa1
-		{
-			get
-			{
-				return this._Empresa1.Entity;
-			}
-			set
-			{
-				Empresa previousValue = this._Empresa1.Entity;
-				if (((previousValue != value) 
-							|| (this._Empresa1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Empresa1.Entity = null;
-						previousValue.PadreCliente.Remove(this);
-					}
-					this._Empresa1.Entity = value;
-					if ((value != null))
-					{
-						value.PadreCliente.Add(this);
-						this._Empresa = value.Codigo;
-					}
-					else
-					{
-						this._Empresa = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Empresa1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ClienteHijo(ClienteHijo entity)
-		{
-			this.SendPropertyChanging();
-			entity.PadreCliente1 = this;
-		}
-		
-		private void detach_ClienteHijo(ClienteHijo entity)
-		{
-			this.SendPropertyChanging();
-			entity.PadreCliente1 = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Empresa")]
 	public partial class Empresa : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1042,13 +815,13 @@ namespace Modelo.Database
 		
 		private EntitySet<Conductor> _Conductor;
 		
-		private EntitySet<PadreCliente> _PadreCliente;
+		private EntitySet<Unidad> _Unidad;
 		
 		private EntitySet<Ruta> _Ruta;
 		
 		private EntitySet<Seguro> _Seguro;
 		
-		private EntitySet<Unidad> _Unidad;
+		private EntitySet<PadreCliente> _PadreCliente;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1069,10 +842,10 @@ namespace Modelo.Database
 		public Empresa()
 		{
 			this._Conductor = new EntitySet<Conductor>(new Action<Conductor>(this.attach_Conductor), new Action<Conductor>(this.detach_Conductor));
-			this._PadreCliente = new EntitySet<PadreCliente>(new Action<PadreCliente>(this.attach_PadreCliente), new Action<PadreCliente>(this.detach_PadreCliente));
+			this._Unidad = new EntitySet<Unidad>(new Action<Unidad>(this.attach_Unidad), new Action<Unidad>(this.detach_Unidad));
 			this._Ruta = new EntitySet<Ruta>(new Action<Ruta>(this.attach_Ruta), new Action<Ruta>(this.detach_Ruta));
 			this._Seguro = new EntitySet<Seguro>(new Action<Seguro>(this.attach_Seguro), new Action<Seguro>(this.detach_Seguro));
-			this._Unidad = new EntitySet<Unidad>(new Action<Unidad>(this.attach_Unidad), new Action<Unidad>(this.detach_Unidad));
+			this._PadreCliente = new EntitySet<PadreCliente>(new Action<PadreCliente>(this.attach_PadreCliente), new Action<PadreCliente>(this.detach_PadreCliente));
 			OnCreated();
 		}
 		
@@ -1189,16 +962,16 @@ namespace Modelo.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_PadreCliente", Storage="_PadreCliente", ThisKey="Codigo", OtherKey="Empresa")]
-		public EntitySet<PadreCliente> PadreCliente
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Unidad", Storage="_Unidad", ThisKey="Codigo", OtherKey="Empresa")]
+		public EntitySet<Unidad> Unidad
 		{
 			get
 			{
-				return this._PadreCliente;
+				return this._Unidad;
 			}
 			set
 			{
-				this._PadreCliente.Assign(value);
+				this._Unidad.Assign(value);
 			}
 		}
 		
@@ -1228,16 +1001,16 @@ namespace Modelo.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Unidad", Storage="_Unidad", ThisKey="Codigo", OtherKey="Empresa")]
-		public EntitySet<Unidad> Unidad
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_PadreCliente", Storage="_PadreCliente", ThisKey="Codigo", OtherKey="Empresa")]
+		public EntitySet<PadreCliente> PadreCliente
 		{
 			get
 			{
-				return this._Unidad;
+				return this._PadreCliente;
 			}
 			set
 			{
-				this._Unidad.Assign(value);
+				this._PadreCliente.Assign(value);
 			}
 		}
 		
@@ -1273,13 +1046,13 @@ namespace Modelo.Database
 			entity.Empresa1 = null;
 		}
 		
-		private void attach_PadreCliente(PadreCliente entity)
+		private void attach_Unidad(Unidad entity)
 		{
 			this.SendPropertyChanging();
 			entity.Empresa1 = this;
 		}
 		
-		private void detach_PadreCliente(PadreCliente entity)
+		private void detach_Unidad(Unidad entity)
 		{
 			this.SendPropertyChanging();
 			entity.Empresa1 = null;
@@ -1309,16 +1082,435 @@ namespace Modelo.Database
 			entity.Empresa1 = null;
 		}
 		
-		private void attach_Unidad(Unidad entity)
+		private void attach_PadreCliente(PadreCliente entity)
 		{
 			this.SendPropertyChanging();
 			entity.Empresa1 = this;
 		}
 		
-		private void detach_Unidad(Unidad entity)
+		private void detach_PadreCliente(PadreCliente entity)
 		{
 			this.SendPropertyChanging();
 			entity.Empresa1 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Unidad")]
+	public partial class Unidad : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Codigo;
+		
+		private System.Nullable<int> _Empresa;
+		
+		private string _Placa;
+		
+		private string _Anno;
+		
+		private System.Nullable<int> _UltimoAnnoRevision;
+		
+		private string _Marca;
+		
+		private string _Modelo;
+		
+		private double _Latitud;
+		
+		private double _Longitud;
+		
+		private int _Capacidad;
+		
+		private string _URLFotografiaUnidad;
+		
+		private string _URLTarjetaCirculacion;
+		
+		private string _URLRevisionTecnica;
+		
+		private EntitySet<Ruta> _Ruta;
+		
+		private EntityRef<Empresa> _Empresa1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodigoChanging(int value);
+    partial void OnCodigoChanged();
+    partial void OnEmpresaChanging(System.Nullable<int> value);
+    partial void OnEmpresaChanged();
+    partial void OnPlacaChanging(string value);
+    partial void OnPlacaChanged();
+    partial void OnAnnoChanging(string value);
+    partial void OnAnnoChanged();
+    partial void OnUltimoAnnoRevisionChanging(System.Nullable<int> value);
+    partial void OnUltimoAnnoRevisionChanged();
+    partial void OnMarcaChanging(string value);
+    partial void OnMarcaChanged();
+    partial void OnModeloChanging(string value);
+    partial void OnModeloChanged();
+    partial void OnLatitudChanging(double value);
+    partial void OnLatitudChanged();
+    partial void OnLongitudChanging(double value);
+    partial void OnLongitudChanged();
+    partial void OnCapacidadChanging(int value);
+    partial void OnCapacidadChanged();
+    partial void OnURLFotografiaUnidadChanging(string value);
+    partial void OnURLFotografiaUnidadChanged();
+    partial void OnURLTarjetaCirculacionChanging(string value);
+    partial void OnURLTarjetaCirculacionChanged();
+    partial void OnURLRevisionTecnicaChanging(string value);
+    partial void OnURLRevisionTecnicaChanged();
+    #endregion
+		
+		public Unidad()
+		{
+			this._Ruta = new EntitySet<Ruta>(new Action<Ruta>(this.attach_Ruta), new Action<Ruta>(this.detach_Ruta));
+			this._Empresa1 = default(EntityRef<Empresa>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Codigo
+		{
+			get
+			{
+				return this._Codigo;
+			}
+			set
+			{
+				if ((this._Codigo != value))
+				{
+					this.OnCodigoChanging(value);
+					this.SendPropertyChanging();
+					this._Codigo = value;
+					this.SendPropertyChanged("Codigo");
+					this.OnCodigoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Empresa", DbType="Int")]
+		public System.Nullable<int> Empresa
+		{
+			get
+			{
+				return this._Empresa;
+			}
+			set
+			{
+				if ((this._Empresa != value))
+				{
+					if (this._Empresa1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEmpresaChanging(value);
+					this.SendPropertyChanging();
+					this._Empresa = value;
+					this.SendPropertyChanged("Empresa");
+					this.OnEmpresaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Placa", DbType="NVarChar(100)")]
+		public string Placa
+		{
+			get
+			{
+				return this._Placa;
+			}
+			set
+			{
+				if ((this._Placa != value))
+				{
+					this.OnPlacaChanging(value);
+					this.SendPropertyChanging();
+					this._Placa = value;
+					this.SendPropertyChanged("Placa");
+					this.OnPlacaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Anno", DbType="NVarChar(100)")]
+		public string Anno
+		{
+			get
+			{
+				return this._Anno;
+			}
+			set
+			{
+				if ((this._Anno != value))
+				{
+					this.OnAnnoChanging(value);
+					this.SendPropertyChanging();
+					this._Anno = value;
+					this.SendPropertyChanged("Anno");
+					this.OnAnnoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoAnnoRevision", DbType="Int")]
+		public System.Nullable<int> UltimoAnnoRevision
+		{
+			get
+			{
+				return this._UltimoAnnoRevision;
+			}
+			set
+			{
+				if ((this._UltimoAnnoRevision != value))
+				{
+					this.OnUltimoAnnoRevisionChanging(value);
+					this.SendPropertyChanging();
+					this._UltimoAnnoRevision = value;
+					this.SendPropertyChanged("UltimoAnnoRevision");
+					this.OnUltimoAnnoRevisionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Marca", DbType="NVarChar(100)")]
+		public string Marca
+		{
+			get
+			{
+				return this._Marca;
+			}
+			set
+			{
+				if ((this._Marca != value))
+				{
+					this.OnMarcaChanging(value);
+					this.SendPropertyChanging();
+					this._Marca = value;
+					this.SendPropertyChanged("Marca");
+					this.OnMarcaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Modelo", DbType="NVarChar(100)")]
+		public string Modelo
+		{
+			get
+			{
+				return this._Modelo;
+			}
+			set
+			{
+				if ((this._Modelo != value))
+				{
+					this.OnModeloChanging(value);
+					this.SendPropertyChanging();
+					this._Modelo = value;
+					this.SendPropertyChanged("Modelo");
+					this.OnModeloChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Latitud", DbType="Float NOT NULL")]
+		public double Latitud
+		{
+			get
+			{
+				return this._Latitud;
+			}
+			set
+			{
+				if ((this._Latitud != value))
+				{
+					this.OnLatitudChanging(value);
+					this.SendPropertyChanging();
+					this._Latitud = value;
+					this.SendPropertyChanged("Latitud");
+					this.OnLatitudChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Longitud", DbType="Float NOT NULL")]
+		public double Longitud
+		{
+			get
+			{
+				return this._Longitud;
+			}
+			set
+			{
+				if ((this._Longitud != value))
+				{
+					this.OnLongitudChanging(value);
+					this.SendPropertyChanging();
+					this._Longitud = value;
+					this.SendPropertyChanged("Longitud");
+					this.OnLongitudChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Capacidad", DbType="Int NOT NULL")]
+		public int Capacidad
+		{
+			get
+			{
+				return this._Capacidad;
+			}
+			set
+			{
+				if ((this._Capacidad != value))
+				{
+					this.OnCapacidadChanging(value);
+					this.SendPropertyChanging();
+					this._Capacidad = value;
+					this.SendPropertyChanged("Capacidad");
+					this.OnCapacidadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URLFotografiaUnidad", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string URLFotografiaUnidad
+		{
+			get
+			{
+				return this._URLFotografiaUnidad;
+			}
+			set
+			{
+				if ((this._URLFotografiaUnidad != value))
+				{
+					this.OnURLFotografiaUnidadChanging(value);
+					this.SendPropertyChanging();
+					this._URLFotografiaUnidad = value;
+					this.SendPropertyChanged("URLFotografiaUnidad");
+					this.OnURLFotografiaUnidadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URLTarjetaCirculacion", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string URLTarjetaCirculacion
+		{
+			get
+			{
+				return this._URLTarjetaCirculacion;
+			}
+			set
+			{
+				if ((this._URLTarjetaCirculacion != value))
+				{
+					this.OnURLTarjetaCirculacionChanging(value);
+					this.SendPropertyChanging();
+					this._URLTarjetaCirculacion = value;
+					this.SendPropertyChanged("URLTarjetaCirculacion");
+					this.OnURLTarjetaCirculacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URLRevisionTecnica", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string URLRevisionTecnica
+		{
+			get
+			{
+				return this._URLRevisionTecnica;
+			}
+			set
+			{
+				if ((this._URLRevisionTecnica != value))
+				{
+					this.OnURLRevisionTecnicaChanging(value);
+					this.SendPropertyChanging();
+					this._URLRevisionTecnica = value;
+					this.SendPropertyChanged("URLRevisionTecnica");
+					this.OnURLRevisionTecnicaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Unidad_Ruta", Storage="_Ruta", ThisKey="Codigo", OtherKey="Vehiculo")]
+		public EntitySet<Ruta> Ruta
+		{
+			get
+			{
+				return this._Ruta;
+			}
+			set
+			{
+				this._Ruta.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Unidad", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
+		public Empresa Empresa1
+		{
+			get
+			{
+				return this._Empresa1.Entity;
+			}
+			set
+			{
+				Empresa previousValue = this._Empresa1.Entity;
+				if (((previousValue != value) 
+							|| (this._Empresa1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Empresa1.Entity = null;
+						previousValue.Unidad.Remove(this);
+					}
+					this._Empresa1.Entity = value;
+					if ((value != null))
+					{
+						value.Unidad.Add(this);
+						this._Empresa = value.Codigo;
+					}
+					else
+					{
+						this._Empresa = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Empresa1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Ruta(Ruta entity)
+		{
+			this.SendPropertyChanging();
+			entity.Unidad = this;
+		}
+		
+		private void detach_Ruta(Ruta entity)
+		{
+			this.SendPropertyChanging();
+			entity.Unidad = null;
 		}
 	}
 	
@@ -1830,8 +2022,8 @@ namespace Modelo.Database
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Unidad")]
-	public partial class Unidad : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PadreCliente")]
+	public partial class PadreCliente : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1840,29 +2032,13 @@ namespace Modelo.Database
 		
 		private System.Nullable<int> _Empresa;
 		
-		private string _Placa;
+		private string _Nombre;
 		
-		private string _Anno;
+		private string _MostrarComo;
 		
-		private System.Nullable<int> _UltimoAnnoRevision;
+		private string _Direccion;
 		
-		private string _Marca;
-		
-		private string _Modelo;
-		
-		private double _Latitud;
-		
-		private double _Longitud;
-		
-		private int _Capacidad;
-		
-		private string _URLFotografiaUnidad;
-		
-		private string _URLTarjetaCirculacion;
-		
-		private string _URLRevisionTecnica;
-		
-		private EntitySet<Ruta> _Ruta;
+		private EntitySet<ClienteHijo> _ClienteHijo;
 		
 		private EntityRef<Empresa> _Empresa1;
 		
@@ -1874,33 +2050,17 @@ namespace Modelo.Database
     partial void OnCodigoChanged();
     partial void OnEmpresaChanging(System.Nullable<int> value);
     partial void OnEmpresaChanged();
-    partial void OnPlacaChanging(string value);
-    partial void OnPlacaChanged();
-    partial void OnAnnoChanging(string value);
-    partial void OnAnnoChanged();
-    partial void OnUltimoAnnoRevisionChanging(System.Nullable<int> value);
-    partial void OnUltimoAnnoRevisionChanged();
-    partial void OnMarcaChanging(string value);
-    partial void OnMarcaChanged();
-    partial void OnModeloChanging(string value);
-    partial void OnModeloChanged();
-    partial void OnLatitudChanging(double value);
-    partial void OnLatitudChanged();
-    partial void OnLongitudChanging(double value);
-    partial void OnLongitudChanged();
-    partial void OnCapacidadChanging(int value);
-    partial void OnCapacidadChanged();
-    partial void OnURLFotografiaUnidadChanging(string value);
-    partial void OnURLFotografiaUnidadChanged();
-    partial void OnURLTarjetaCirculacionChanging(string value);
-    partial void OnURLTarjetaCirculacionChanged();
-    partial void OnURLRevisionTecnicaChanging(string value);
-    partial void OnURLRevisionTecnicaChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnMostrarComoChanging(string value);
+    partial void OnMostrarComoChanged();
+    partial void OnDireccionChanging(string value);
+    partial void OnDireccionChanged();
     #endregion
 		
-		public Unidad()
+		public PadreCliente()
 		{
-			this._Ruta = new EntitySet<Ruta>(new Action<Ruta>(this.attach_Ruta), new Action<Ruta>(this.detach_Ruta));
+			this._ClienteHijo = new EntitySet<ClienteHijo>(new Action<ClienteHijo>(this.attach_ClienteHijo), new Action<ClienteHijo>(this.detach_ClienteHijo));
 			this._Empresa1 = default(EntityRef<Empresa>);
 			OnCreated();
 		}
@@ -1949,240 +2109,80 @@ namespace Modelo.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Placa", DbType="NVarChar(100)")]
-		public string Placa
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100)")]
+		public string Nombre
 		{
 			get
 			{
-				return this._Placa;
+				return this._Nombre;
 			}
 			set
 			{
-				if ((this._Placa != value))
+				if ((this._Nombre != value))
 				{
-					this.OnPlacaChanging(value);
+					this.OnNombreChanging(value);
 					this.SendPropertyChanging();
-					this._Placa = value;
-					this.SendPropertyChanged("Placa");
-					this.OnPlacaChanged();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Anno", DbType="NVarChar(100)")]
-		public string Anno
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MostrarComo", DbType="NVarChar(100)")]
+		public string MostrarComo
 		{
 			get
 			{
-				return this._Anno;
+				return this._MostrarComo;
 			}
 			set
 			{
-				if ((this._Anno != value))
+				if ((this._MostrarComo != value))
 				{
-					this.OnAnnoChanging(value);
+					this.OnMostrarComoChanging(value);
 					this.SendPropertyChanging();
-					this._Anno = value;
-					this.SendPropertyChanged("Anno");
-					this.OnAnnoChanged();
+					this._MostrarComo = value;
+					this.SendPropertyChanged("MostrarComo");
+					this.OnMostrarComoChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoAnnoRevision", DbType="Int")]
-		public System.Nullable<int> UltimoAnnoRevision
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Direccion
 		{
 			get
 			{
-				return this._UltimoAnnoRevision;
+				return this._Direccion;
 			}
 			set
 			{
-				if ((this._UltimoAnnoRevision != value))
+				if ((this._Direccion != value))
 				{
-					this.OnUltimoAnnoRevisionChanging(value);
+					this.OnDireccionChanging(value);
 					this.SendPropertyChanging();
-					this._UltimoAnnoRevision = value;
-					this.SendPropertyChanged("UltimoAnnoRevision");
-					this.OnUltimoAnnoRevisionChanged();
+					this._Direccion = value;
+					this.SendPropertyChanged("Direccion");
+					this.OnDireccionChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Marca", DbType="NVarChar(100)")]
-		public string Marca
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PadreCliente_ClienteHijo", Storage="_ClienteHijo", ThisKey="Codigo", OtherKey="PadreCliente")]
+		public EntitySet<ClienteHijo> ClienteHijo
 		{
 			get
 			{
-				return this._Marca;
+				return this._ClienteHijo;
 			}
 			set
 			{
-				if ((this._Marca != value))
-				{
-					this.OnMarcaChanging(value);
-					this.SendPropertyChanging();
-					this._Marca = value;
-					this.SendPropertyChanged("Marca");
-					this.OnMarcaChanged();
-				}
+				this._ClienteHijo.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Modelo", DbType="NVarChar(100)")]
-		public string Modelo
-		{
-			get
-			{
-				return this._Modelo;
-			}
-			set
-			{
-				if ((this._Modelo != value))
-				{
-					this.OnModeloChanging(value);
-					this.SendPropertyChanging();
-					this._Modelo = value;
-					this.SendPropertyChanged("Modelo");
-					this.OnModeloChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Latitud", DbType="Float NOT NULL")]
-		public double Latitud
-		{
-			get
-			{
-				return this._Latitud;
-			}
-			set
-			{
-				if ((this._Latitud != value))
-				{
-					this.OnLatitudChanging(value);
-					this.SendPropertyChanging();
-					this._Latitud = value;
-					this.SendPropertyChanged("Latitud");
-					this.OnLatitudChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Longitud", DbType="Float NOT NULL")]
-		public double Longitud
-		{
-			get
-			{
-				return this._Longitud;
-			}
-			set
-			{
-				if ((this._Longitud != value))
-				{
-					this.OnLongitudChanging(value);
-					this.SendPropertyChanging();
-					this._Longitud = value;
-					this.SendPropertyChanged("Longitud");
-					this.OnLongitudChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Capacidad", DbType="Int NOT NULL")]
-		public int Capacidad
-		{
-			get
-			{
-				return this._Capacidad;
-			}
-			set
-			{
-				if ((this._Capacidad != value))
-				{
-					this.OnCapacidadChanging(value);
-					this.SendPropertyChanging();
-					this._Capacidad = value;
-					this.SendPropertyChanged("Capacidad");
-					this.OnCapacidadChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URLFotografiaUnidad", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string URLFotografiaUnidad
-		{
-			get
-			{
-				return this._URLFotografiaUnidad;
-			}
-			set
-			{
-				if ((this._URLFotografiaUnidad != value))
-				{
-					this.OnURLFotografiaUnidadChanging(value);
-					this.SendPropertyChanging();
-					this._URLFotografiaUnidad = value;
-					this.SendPropertyChanged("URLFotografiaUnidad");
-					this.OnURLFotografiaUnidadChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URLTarjetaCirculacion", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string URLTarjetaCirculacion
-		{
-			get
-			{
-				return this._URLTarjetaCirculacion;
-			}
-			set
-			{
-				if ((this._URLTarjetaCirculacion != value))
-				{
-					this.OnURLTarjetaCirculacionChanging(value);
-					this.SendPropertyChanging();
-					this._URLTarjetaCirculacion = value;
-					this.SendPropertyChanged("URLTarjetaCirculacion");
-					this.OnURLTarjetaCirculacionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URLRevisionTecnica", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string URLRevisionTecnica
-		{
-			get
-			{
-				return this._URLRevisionTecnica;
-			}
-			set
-			{
-				if ((this._URLRevisionTecnica != value))
-				{
-					this.OnURLRevisionTecnicaChanging(value);
-					this.SendPropertyChanging();
-					this._URLRevisionTecnica = value;
-					this.SendPropertyChanged("URLRevisionTecnica");
-					this.OnURLRevisionTecnicaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Unidad_Ruta", Storage="_Ruta", ThisKey="Codigo", OtherKey="Vehiculo")]
-		public EntitySet<Ruta> Ruta
-		{
-			get
-			{
-				return this._Ruta;
-			}
-			set
-			{
-				this._Ruta.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Unidad", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_PadreCliente", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
 		public Empresa Empresa1
 		{
 			get
@@ -2199,12 +2199,12 @@ namespace Modelo.Database
 					if ((previousValue != null))
 					{
 						this._Empresa1.Entity = null;
-						previousValue.Unidad.Remove(this);
+						previousValue.PadreCliente.Remove(this);
 					}
 					this._Empresa1.Entity = value;
 					if ((value != null))
 					{
-						value.Unidad.Add(this);
+						value.PadreCliente.Add(this);
 						this._Empresa = value.Codigo;
 					}
 					else
@@ -2236,16 +2236,16 @@ namespace Modelo.Database
 			}
 		}
 		
-		private void attach_Ruta(Ruta entity)
+		private void attach_ClienteHijo(ClienteHijo entity)
 		{
 			this.SendPropertyChanging();
-			entity.Unidad = this;
+			entity.PadreCliente1 = this;
 		}
 		
-		private void detach_Ruta(Ruta entity)
+		private void detach_ClienteHijo(ClienteHijo entity)
 		{
 			this.SendPropertyChanging();
-			entity.Unidad = null;
+			entity.PadreCliente1 = null;
 		}
 	}
 }
