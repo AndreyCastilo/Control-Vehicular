@@ -37,7 +37,7 @@ namespace ControlVehicular.Controllers
             if (FileCedulaImg != null && IsImage(FileCedulaImg)) {
 
                 var fileNameCedula = Path.GetFileName(FileCedulaImg.FileName);
-                var pathCedula = Path.Combine(Server.MapPath("~/Storage/Conductores"),+conductorDB.Codigo +fileNameCedula);
+                var pathCedula = Path.Combine(Server.MapPath("~/storage/Conductores"),+conductorDB.Codigo +fileNameCedula);
                 FileCedulaImg.SaveAs(pathCedula);
                 conductorDB.URLFotografiaCedula = fileNameCedula.ToString();
             }
@@ -45,7 +45,7 @@ namespace ControlVehicular.Controllers
             if (FileLicenciaImg != null && IsImage(FileLicenciaImg) ) {
 
                 var fileNameLicencia = Path.GetFileName(FileLicenciaImg.FileName);
-                var pathLicencia = Path.Combine(Server.MapPath("~/Storage/Conductores"), conductorDB.Codigo+fileNameLicencia);
+                var pathLicencia = Path.Combine(Server.MapPath("~/storage/Conductores"), conductorDB.Codigo+fileNameLicencia);
                 FileLicenciaImg.SaveAs(pathLicencia);
                 conductorDB.URLFotografiaLicencia = fileNameLicencia.ToString();
             } 
@@ -68,11 +68,11 @@ namespace ControlVehicular.Controllers
                 var fileNameCedulaAnterior = conductorOriginal.Codigo + conductorOriginal.URLFotografiaCedula;
                 if (fileNameCedulaAnterior.Length > 0)
                 {
-                    String fullpath = Path.Combine(Server.MapPath("~/Storage/Conductores"), fileNameCedulaAnterior);
+                    String fullpath = Path.Combine(Server.MapPath("~/storage/Conductores"), fileNameCedulaAnterior);
                     DeleteImagenPath(fullpath);
                 }
                 var fileNameCedula = Path.GetFileName(FileCedulaImgEditar.FileName);
-                var pathCedula = Path.Combine(Server.MapPath("~/Storage/Conductores"), conductorOriginal.Codigo + fileNameCedula);
+                var pathCedula = Path.Combine(Server.MapPath("~/storage/Conductores"), conductorOriginal.Codigo + fileNameCedula);
                 FileCedulaImgEditar.SaveAs(pathCedula);
                 conductor.URLFotografiaCedula = fileNameCedula.ToString();
             }
@@ -86,11 +86,11 @@ namespace ControlVehicular.Controllers
                 var fileNameLicenciaAnterior = conductorOriginal.Codigo + conductorOriginal.URLFotografiaLicencia;
                 if (fileNameLicenciaAnterior.Length > 0)
                 {
-                    String fullpath = Path.Combine(Server.MapPath("~/Storage/Conductores"),fileNameLicenciaAnterior);
+                    String fullpath = Path.Combine(Server.MapPath("~/storage/Conductores"),fileNameLicenciaAnterior);
                     DeleteImagenPath(fullpath);
                 }
                 var fileNameLicencia = Path.GetFileName(FileLicenciaImgEditar.FileName);
-                var pathLicencia = Path.Combine(Server.MapPath("~/Storage/Conductores"), conductorOriginal.Codigo + fileNameLicencia );
+                var pathLicencia = Path.Combine(Server.MapPath("~/storage/Conductores"), conductorOriginal.Codigo + fileNameLicencia );
                 FileLicenciaImgEditar.SaveAs(pathLicencia);
                 conductor.URLFotografiaLicencia = fileNameLicencia.ToString();
             }
@@ -111,22 +111,39 @@ namespace ControlVehicular.Controllers
         public JsonResult Remover(int codigo)
         {
             var conductorOriginal = conductores.Obtener(codigo);
-            var pathCedula= Path.Combine(Server.MapPath("~/Storage/Conductores"), codigo+ conductorOriginal.URLFotografiaCedula);
-            var pathLicencia= Path.Combine(Server.MapPath("~/Storage/Conductores"), codigo + conductorOriginal.URLFotografiaLicencia);
+            var pathCedula= Path.Combine(Server.MapPath("~/storage/Conductores"), codigo+ conductorOriginal.URLFotografiaCedula);
+            var pathLicencia= Path.Combine(Server.MapPath("~/storage/Conductores"), codigo + conductorOriginal.URLFotografiaLicencia);
             DeleteImagenPath(pathCedula);
             DeleteImagenPath(pathLicencia);
             return Json(new { Resultado = conductores.Remover(codigo) });
         }
 
+
         [HttpGet]
         public JsonResult Obtener(int codigo)
         {
             Conductor registro = conductores.Obtener(codigo);
-            if (registro != null)
-                return Json(new { Resultado = true, Conductor = new ConductorModelo(registro) }, JsonRequestBehavior.AllowGet);
+            if (registro != null) {
+
+                var PathCompletoCedula= Path.Combine(Server.MapPath("/storage/Conductores/" + registro.Codigo + registro.URLFotografiaCedula));
+                var PathCompletoLicencia = Path.Combine(Server.MapPath("/storage/Conductores/" + registro.Codigo + registro.URLFotografiaLicencia));
+
+                var pathFotoCedula = "../../.." + substring(PathCompletoCedula, "\\storage", "");
+                var pathFotoLicencia= "../../.." + substring(PathCompletoLicencia, "\\storage", "");
+                return Json(new {
+                    Resultado = true,
+                    Conductor = new ConductorModelo(registro),
+                    urlCedula = pathFotoCedula,
+                    urlLicencia = pathFotoLicencia
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+
+             
             else
                 return Json(new { Resultado = false }, JsonRequestBehavior.AllowGet);
         }
+
 
         private void DeleteImagenPath(String path)
         {
@@ -152,6 +169,18 @@ namespace ControlVehicular.Controllers
                 }
             }
             return false;
+        }
+
+        private string substring(string original, string start, string end)
+        {
+            //String s = "<term>extant<definition>still in existence</definition></term>";
+            String searchString = start;
+            int startIndex = original.IndexOf(searchString);
+            searchString = end;
+            int endIndex = original.Length;
+            String substring = original.Substring(startIndex, endIndex + searchString.Length - startIndex);
+            var src = substring.Replace(@"\", "/");
+            return src;
         }
 
         private ConjuntoConductor conductores = new ConjuntoConductor();
