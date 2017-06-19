@@ -304,19 +304,17 @@
     <Content Include="Views\Unidad\Index.cshtml" />
     <Content Include="Views\Unidad\ModalAgregarUnidad.cshtml" />
     <Content Include="Views\Unidad\ModalEditarUnidad.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Unidad\Modal_Images.cshtml" />
-=======
     <Content Include="Views\PadreCliente\Cliente.cshtml" />
     <Content Include="Views\ClienteHijo\PadreHijo.cshtml" />
->>>>>>> 57f6415ed0692fb2413b851e2e5dddd2287f7bf6
+    <Content Include="Views\Conductor\Modal_Images_Conductor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="storage\Conductores\" />
     <Folder Include="storage\unidades\fotografias\" />
     <Folder Include="storage\unidades\revisionTecnica\" />
     <Folder Include="storage\unidades\tarjetaCirculacion\" />
-    <Folder Include="Storage\Conductores\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

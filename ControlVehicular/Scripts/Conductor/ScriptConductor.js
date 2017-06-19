@@ -1,7 +1,9 @@
 ﻿$(function () {
     cargarTabla();
-
-
+    onClickImg01();
+    onClickImg02();
+    onClickImg04();
+    onClickImg03();
 
 });
 
@@ -11,24 +13,24 @@ function triggerUpload(event, elem) {
 }
 
 $('#modalAgregarConductor #formAgregarConductor #FileCedulaImg').bind('change', function () {
-    var str = "";
-    str = $(this).val();
-    var url = str.split("\\");
-    $("#formAgregarConductor #URLFotografiaCedula").val(url[2]);
     let filered = new FileReader();
     filered.onload = function (e) {
-          $("#imagenPreview").attr("src",e.target.result)
+        var algo = e.target.result;
+        $("#imagenPreviewCedula").attr("src", e.target.result)
     }
 
+    var a = this.files[0];
     filered.readAsDataURL(this.files[0]);
 });
 
 
 $('#modalAgregarConductor #formAgregarConductor #FileLicenciaImg').bind('change', function () {
-    var str = "";
-    str = $(this).val();
-    var url = str.split("\\");
-    $("#formAgregarConductor #URLFotografiaLicencia").val(url[2]);
+    let filered = new FileReader();
+    filered.onload = function (e) {
+        $("#imagenPreviewLicencia").attr("src", e.target.result)
+    }
+
+    filered.readAsDataURL(this.files[0]);
 });
 
 
@@ -39,7 +41,12 @@ $('#modalEditarConductor #formEditarConductor #FileCedulaImgEditar').bind('chang
     var url = str.split("\\");
     var imagenURL = url[2];
     if (imagenURL.length > 0) {
-        $("#formEditarConductor #URLFotografiaCedula").val(imagenURL);
+        let filered = new FileReader();
+        filered.onload = function (e) {
+            $("#imagenPreviewCedulaEditar").attr("src", e.target.result)
+        }
+
+        filered.readAsDataURL(this.files[0]);
     }
 
 
@@ -52,7 +59,11 @@ $('#modalEditarConductor #formEditarConductor #FileLicenciaImgEditar').bind('cha
     var url = str.split("\\");
     var imagenURL = url[2];
     if (imagenURL.length > 0) {
-        $("#formEditarConductor #URLFotografiaLicencia").val(imagenURL);
+        let filered = new FileReader();
+        filered.onload = function (e) {
+            $("#imagenPreviewLicenciaEditar").attr("src", e.target.result)
+        }
+        filered.readAsDataURL(this.files[0]);
     }
 });
 
@@ -73,9 +84,10 @@ function AbrilModalEditarConductor(codigoConductor) {
                 $("#formEditarConductor  #Nombre").val(data.Conductor.Nombre);
                 $("#formEditarConductor  #TipoLicencia").val(data.Conductor.TipoLicencia);
                 $("#formEditarConductor  #FechaVencimiento").val(dtConvFromJSON(data.Conductor.FechaVencimiento));
-                $("#formEditarConductor  #URLFotografiaCedula").val(data.Conductor.URLFotografiaCedula);
-                $("#formEditarConductor  #URLFotografiaLicencia").val(data.Conductor.URLFotografiaLicencia);
-                $("#formEditarConductor  #Codigo").val(codigoConductor);
+                $("#formEditarConductor  #Codigo").val(codigoConductor);         
+                $("#imagenPreviewCedulaEditar").attr("src", data.urlCedula);
+                $("#imagenPreviewLicenciaEditar").attr("src", data.urlLicencia);
+
                 $("#modalEditarConductor").modal("show");
             }
         });
@@ -154,7 +166,8 @@ function cargarTabla() {
 
 
 function formatDate(value, row) {
-    return dtConvFromJSON(value);
+
+    return (value !=null)? dtConvFromJSON(value) : value;
 }
 
 
@@ -164,10 +177,10 @@ function limpiarFormAgregar() {
     $("#formAgregarConductor  #Nombre").val("");
     $("#formAgregarConductor  #TipoLicencia").val("");
     $("#formAgregarConductor  #FechaVencimiento").val("");
-    $("#formAgregarConductor  #URLFotografiaCedula").val("");
-    $("#formAgregarConductor  #URLFotografiaLicencia").val("");
     $('#formAgregarConductor #FileCedulaImg').val("")
     $("#formAgregarConductor #FileLicenciaImg").val("");
+    $("#imagenPreviewCedula").attr("src","")
+    $("#imagenPreviewLicencia").attr("src","")
 }
 
 function limpiarFormEditar() {
@@ -200,8 +213,40 @@ function borrarConductor() {
 }
 
 
-function OnChangeEvent() {
-    alert("cambio");
+let onClickImg01 = () => {
+    abreModalImagen("imagenPreviewCedulaEditar", 1)
+}
+let onClickImg02 = () => {
+    abreModalImagen("imagenPreviewLicenciaEditar", 2)
+}
 
+let onClickImg03 = () => {
+    abreModalImagen("imagenPreviewCedula", 3)
+}
+let onClickImg04 = () => {
+    abreModalImagen("imagenPreviewLicencia", 4)
+}
+
+// Modals de imagenes en editar
+let abreModalImagen = (nombreImg, num) => {
+    // Get the modal
+    var modal = document.getElementById('modal_' + nombreImg);
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById(nombreImg);
+    var modalImg = document.getElementById("img0" + num);
+    var captionText = document.getElementById("caption");
+    img.onclick = function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close-image")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
 }
 
