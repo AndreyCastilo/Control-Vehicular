@@ -148,15 +148,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClienteHijoController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\ConductorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PadreClienteController.cs" />
     <Compile Include="Controllers\SegurosController.cs" />
     <Compile Include="Controllers\UnidadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ClienteHijo.cs" />
+    <Compile Include="Models\ClienteHijoModelo.cs" />
     <Compile Include="Models\PadreClienteModelo.cs" />
     <Compile Include="Models\ConductorModelo.cs" />
     <Compile Include="Models\EmpresaModelo.cs" />
@@ -176,6 +178,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Content\fileinput.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Conductor.css" />
     <Content Include="Content\ie8.css" />
     <Content Include="Content\ie9.css" />
     <Content Include="Content\main.css" />
@@ -188,6 +191,7 @@
     <Content Include="images\avatar.jpg" />
     <Content Include="images\loading.gif" />
     <Content Include="images\logo.jpg" />
+    <Content Include="images\no-image.png" />
     <Content Include="images\pic01.jpg" />
     <Content Include="images\pic02.jpg" />
     <Content Include="images\pic03.jpg" />
@@ -248,6 +252,8 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Cliente\ClienteHijoScript.js" />
+    <Content Include="Scripts\Cliente\PadreClienteScript.js" />
     <Content Include="Scripts\Empresa\Empresa.js" />
     <Content Include="Scripts\Conductor\ScriptConductor.js" />
     <Content Include="Scripts\fileinput.js" />
@@ -255,6 +261,7 @@
     <Content Include="Scripts\ie\respond.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\Mapa.js" />
     <Content Include="Scripts\unidad.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
@@ -297,13 +304,19 @@
     <Content Include="Views\Unidad\Index.cshtml" />
     <Content Include="Views\Unidad\ModalAgregarUnidad.cshtml" />
     <Content Include="Views\Unidad\ModalEditarUnidad.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Unidad\Modal_Images.cshtml" />
+=======
+    <Content Include="Views\PadreCliente\Cliente.cshtml" />
+    <Content Include="Views\ClienteHijo\PadreHijo.cshtml" />
+>>>>>>> 57f6415ed0692fb2413b851e2e5dddd2287f7bf6
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="storage\unidades\fotografias\" />
     <Folder Include="storage\unidades\revisionTecnica\" />
     <Folder Include="storage\unidades\tarjetaCirculacion\" />
+    <Folder Include="Storage\Conductores\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

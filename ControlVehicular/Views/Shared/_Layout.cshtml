@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
     <link rel="stylesheet" href="~/Content/sweetalert.css" />
+    <link rel="stylesheet" href="~/Content/nicemodal.css"/>
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -94,11 +95,8 @@
 
                 @RenderBody()
 
-            <!--
-                <div class="map featured">
-                    <div id="map"></div>
-                </div>
-                -->
+
+             
 
     </div>
     @Scripts.Render("~/bundles/jquery")
@@ -107,47 +105,7 @@
 
     @Scripts.Render("~/bundles/bootstrap")
     <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 15
-        });
-          var infoWindow = new google.maps.InfoWindow({map: map});
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Posición encontrada');
-            map.setCenter(pos);
-
-                    var marker = new google.maps.Marker({
-          position: pos,
-          map: map,
-          title: 'Posición Actual'
-        });
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      }
-
+       
 
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>

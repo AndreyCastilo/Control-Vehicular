@@ -13,6 +13,8 @@ namespace ControlVehicular.Models
         public long Codigo { get; set; }
         public int? Empresa { get; set; }
 
+        public string EmpresaNombre { get; set; }
+
         [MaxLength(100)]
         public string Nombre { get; set; }
 
@@ -27,6 +29,8 @@ namespace ControlVehicular.Models
         public SeguroModelo(Seguro seguro) {
             this.Codigo = seguro.Codigo;
             this.Empresa = seguro.Empresa;
+            if(seguro.Empresa1!=null)
+                this.EmpresaNombre = seguro.Empresa1.Nombre;
             this.Nombre = seguro.Nombre;
             this.Tipo = seguro.Tipo;
             this.Detalle = seguro.Detalle;
