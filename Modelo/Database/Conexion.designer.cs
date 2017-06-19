@@ -39,12 +39,12 @@ namespace Modelo.Database
     partial void InsertConductor(Conductor instance);
     partial void UpdateConductor(Conductor instance);
     partial void DeleteConductor(Conductor instance);
-    partial void InsertPadreCliente(PadreCliente instance);
-    partial void UpdatePadreCliente(PadreCliente instance);
-    partial void DeletePadreCliente(PadreCliente instance);
     partial void InsertEmpresa(Empresa instance);
     partial void UpdateEmpresa(Empresa instance);
     partial void DeleteEmpresa(Empresa instance);
+    partial void InsertPadreCliente(PadreCliente instance);
+    partial void UpdatePadreCliente(PadreCliente instance);
+    partial void DeletePadreCliente(PadreCliente instance);
     partial void InsertRuta(Ruta instance);
     partial void UpdateRuta(Ruta instance);
     partial void DeleteRuta(Ruta instance);
@@ -110,19 +110,19 @@ namespace Modelo.Database
 			}
 		}
 		
-		public System.Data.Linq.Table<PadreCliente> PadreCliente
-		{
-			get
-			{
-				return this.GetTable<PadreCliente>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Empresa> Empresa
 		{
 			get
 			{
 				return this.GetTable<Empresa>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PadreCliente> PadreCliente
+		{
+			get
+			{
+				return this.GetTable<PadreCliente>();
 			}
 		}
 		
@@ -797,233 +797,6 @@ namespace Modelo.Database
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PadreCliente")]
-	public partial class PadreCliente : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Codigo;
-		
-		private System.Nullable<int> _Empresa;
-		
-		private string _Nombre;
-		
-		private string _MostrarComo;
-		
-		private string _Direccion;
-		
-		private EntitySet<ClienteHijo> _ClienteHijo;
-		
-		private EntityRef<Empresa> _Empresa1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCodigoChanging(int value);
-    partial void OnCodigoChanged();
-    partial void OnEmpresaChanging(System.Nullable<int> value);
-    partial void OnEmpresaChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    partial void OnMostrarComoChanging(string value);
-    partial void OnMostrarComoChanged();
-    partial void OnDireccionChanging(string value);
-    partial void OnDireccionChanged();
-    #endregion
-		
-		public PadreCliente()
-		{
-			this._ClienteHijo = new EntitySet<ClienteHijo>(new Action<ClienteHijo>(this.attach_ClienteHijo), new Action<ClienteHijo>(this.detach_ClienteHijo));
-			this._Empresa1 = default(EntityRef<Empresa>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Codigo
-		{
-			get
-			{
-				return this._Codigo;
-			}
-			set
-			{
-				if ((this._Codigo != value))
-				{
-					this.OnCodigoChanging(value);
-					this.SendPropertyChanging();
-					this._Codigo = value;
-					this.SendPropertyChanged("Codigo");
-					this.OnCodigoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Empresa", DbType="Int")]
-		public System.Nullable<int> Empresa
-		{
-			get
-			{
-				return this._Empresa;
-			}
-			set
-			{
-				if ((this._Empresa != value))
-				{
-					if (this._Empresa1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnEmpresaChanging(value);
-					this.SendPropertyChanging();
-					this._Empresa = value;
-					this.SendPropertyChanged("Empresa");
-					this.OnEmpresaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this.OnNombreChanging(value);
-					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MostrarComo", DbType="NVarChar(100)")]
-		public string MostrarComo
-		{
-			get
-			{
-				return this._MostrarComo;
-			}
-			set
-			{
-				if ((this._MostrarComo != value))
-				{
-					this.OnMostrarComoChanging(value);
-					this.SendPropertyChanging();
-					this._MostrarComo = value;
-					this.SendPropertyChanged("MostrarComo");
-					this.OnMostrarComoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Direccion
-		{
-			get
-			{
-				return this._Direccion;
-			}
-			set
-			{
-				if ((this._Direccion != value))
-				{
-					this.OnDireccionChanging(value);
-					this.SendPropertyChanging();
-					this._Direccion = value;
-					this.SendPropertyChanged("Direccion");
-					this.OnDireccionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PadreCliente_ClienteHijo", Storage="_ClienteHijo", ThisKey="Codigo", OtherKey="PadreCliente")]
-		public EntitySet<ClienteHijo> ClienteHijo
-		{
-			get
-			{
-				return this._ClienteHijo;
-			}
-			set
-			{
-				this._ClienteHijo.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_PadreCliente", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
-		public Empresa Empresa1
-		{
-			get
-			{
-				return this._Empresa1.Entity;
-			}
-			set
-			{
-				Empresa previousValue = this._Empresa1.Entity;
-				if (((previousValue != value) 
-							|| (this._Empresa1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Empresa1.Entity = null;
-						previousValue.PadreCliente.Remove(this);
-					}
-					this._Empresa1.Entity = value;
-					if ((value != null))
-					{
-						value.PadreCliente.Add(this);
-						this._Empresa = value.Codigo;
-					}
-					else
-					{
-						this._Empresa = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Empresa1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ClienteHijo(ClienteHijo entity)
-		{
-			this.SendPropertyChanging();
-			entity.PadreCliente1 = this;
-		}
-		
-		private void detach_ClienteHijo(ClienteHijo entity)
-		{
-			this.SendPropertyChanging();
-			entity.PadreCliente1 = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Empresa")]
 	public partial class Empresa : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1319,6 +1092,233 @@ namespace Modelo.Database
 		{
 			this.SendPropertyChanging();
 			entity.Empresa1 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PadreCliente")]
+	public partial class PadreCliente : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Codigo;
+		
+		private System.Nullable<int> _Empresa;
+		
+		private string _Nombre;
+		
+		private string _MostrarComo;
+		
+		private string _Direccion;
+		
+		private EntitySet<ClienteHijo> _ClienteHijo;
+		
+		private EntityRef<Empresa> _Empresa1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodigoChanging(int value);
+    partial void OnCodigoChanged();
+    partial void OnEmpresaChanging(System.Nullable<int> value);
+    partial void OnEmpresaChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnMostrarComoChanging(string value);
+    partial void OnMostrarComoChanged();
+    partial void OnDireccionChanging(string value);
+    partial void OnDireccionChanged();
+    #endregion
+		
+		public PadreCliente()
+		{
+			this._ClienteHijo = new EntitySet<ClienteHijo>(new Action<ClienteHijo>(this.attach_ClienteHijo), new Action<ClienteHijo>(this.detach_ClienteHijo));
+			this._Empresa1 = default(EntityRef<Empresa>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Codigo
+		{
+			get
+			{
+				return this._Codigo;
+			}
+			set
+			{
+				if ((this._Codigo != value))
+				{
+					this.OnCodigoChanging(value);
+					this.SendPropertyChanging();
+					this._Codigo = value;
+					this.SendPropertyChanged("Codigo");
+					this.OnCodigoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Empresa", DbType="Int")]
+		public System.Nullable<int> Empresa
+		{
+			get
+			{
+				return this._Empresa;
+			}
+			set
+			{
+				if ((this._Empresa != value))
+				{
+					if (this._Empresa1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEmpresaChanging(value);
+					this.SendPropertyChanging();
+					this._Empresa = value;
+					this.SendPropertyChanged("Empresa");
+					this.OnEmpresaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MostrarComo", DbType="NVarChar(100)")]
+		public string MostrarComo
+		{
+			get
+			{
+				return this._MostrarComo;
+			}
+			set
+			{
+				if ((this._MostrarComo != value))
+				{
+					this.OnMostrarComoChanging(value);
+					this.SendPropertyChanging();
+					this._MostrarComo = value;
+					this.SendPropertyChanged("MostrarComo");
+					this.OnMostrarComoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Direccion
+		{
+			get
+			{
+				return this._Direccion;
+			}
+			set
+			{
+				if ((this._Direccion != value))
+				{
+					this.OnDireccionChanging(value);
+					this.SendPropertyChanging();
+					this._Direccion = value;
+					this.SendPropertyChanged("Direccion");
+					this.OnDireccionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PadreCliente_ClienteHijo", Storage="_ClienteHijo", ThisKey="Codigo", OtherKey="PadreCliente")]
+		public EntitySet<ClienteHijo> ClienteHijo
+		{
+			get
+			{
+				return this._ClienteHijo;
+			}
+			set
+			{
+				this._ClienteHijo.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_PadreCliente", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
+		public Empresa Empresa1
+		{
+			get
+			{
+				return this._Empresa1.Entity;
+			}
+			set
+			{
+				Empresa previousValue = this._Empresa1.Entity;
+				if (((previousValue != value) 
+							|| (this._Empresa1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Empresa1.Entity = null;
+						previousValue.PadreCliente.Remove(this);
+					}
+					this._Empresa1.Entity = value;
+					if ((value != null))
+					{
+						value.PadreCliente.Add(this);
+						this._Empresa = value.Codigo;
+					}
+					else
+					{
+						this._Empresa = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Empresa1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ClienteHijo(ClienteHijo entity)
+		{
+			this.SendPropertyChanging();
+			entity.PadreCliente1 = this;
+		}
+		
+		private void detach_ClienteHijo(ClienteHijo entity)
+		{
+			this.SendPropertyChanging();
+			entity.PadreCliente1 = null;
 		}
 	}
 	
