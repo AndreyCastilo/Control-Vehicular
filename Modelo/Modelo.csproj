@@ -62,16 +62,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Database\Conexion.dbml.layout">
+      <DependentUpon>Conexion.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Database\Conexion.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Conexion.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Database\Conexion.dbml.layout">
-      <DependentUpon>Conexion.dbml</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
