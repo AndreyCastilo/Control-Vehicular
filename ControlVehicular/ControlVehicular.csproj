@@ -169,8 +169,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\modal_images.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Content\fileinput.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Conductor.css" />
@@ -182,7 +187,6 @@
     <Content Include="Content\nicemodal.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\avatar.jpg" />
     <Content Include="images\loading.gif" />
@@ -237,12 +241,16 @@
     <Content Include="sass\libs\_vars.scss" />
     <Content Include="sass\main.scss" />
     <Content Include="sass\components\_map.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
-    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Cliente\ClienteHijoScript.js" />
     <Content Include="Scripts\Cliente\PadreClienteScript.js" />
@@ -296,8 +304,12 @@
     <Content Include="Views\Unidad\Index.cshtml" />
     <Content Include="Views\Unidad\ModalAgregarUnidad.cshtml" />
     <Content Include="Views\Unidad\ModalEditarUnidad.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Unidad\Modal_Images.cshtml" />
+=======
     <Content Include="Views\PadreCliente\Cliente.cshtml" />
     <Content Include="Views\ClienteHijo\PadreHijo.cshtml" />
+>>>>>>> 57f6415ed0692fb2413b851e2e5dddd2287f7bf6
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
