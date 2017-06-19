@@ -307,13 +307,14 @@
     <Content Include="Views\Unidad\Modal_Images.cshtml" />
     <Content Include="Views\PadreCliente\Cliente.cshtml" />
     <Content Include="Views\ClienteHijo\PadreHijo.cshtml" />
+    <Content Include="Views\Conductor\Modal_Images_Conductor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="storage\Conductores\" />
     <Folder Include="storage\unidades\fotografias\" />
     <Folder Include="storage\unidades\revisionTecnica\" />
     <Folder Include="storage\unidades\tarjetaCirculacion\" />
-    <Folder Include="Storage\Conductores\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
