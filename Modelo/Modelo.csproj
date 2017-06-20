@@ -53,6 +53,7 @@
     <Compile Include="Modelo\ConjuntoEmpresa.cs" />
     <Compile Include="Modelo\ConjuntoConductor.cs" />
     <Compile Include="Modelo\ConjuntoPadresClientes.cs" />
+    <Compile Include="Modelo\ConjuntoRuta.cs" />
     <Compile Include="Modelo\ConjuntoSeguro.cs" />
     <Compile Include="Modelo\ConjuntoUnidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

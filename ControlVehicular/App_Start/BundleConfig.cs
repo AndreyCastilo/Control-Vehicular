@@ -38,6 +38,8 @@ namespace ControlVehicular
                        "~/Scripts/unidad.js",
                        "~/Scripts/fileinput.js",
                        "~/Scripts/es.js"));
+            bundles.Add(new ScriptBundle("~/bundles/ruta").Include(
+                       "~/Scripts/ruta.js"));
         }
     }
 }

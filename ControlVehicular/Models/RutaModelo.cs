@@ -19,11 +19,19 @@ namespace ControlVehicular.Models
 
         public int? Vehiculo { get; set; }
 
+        public List<Conductor> ListaConductores { get; set; }
+        public List<Unidad> ListaUnidades { get; set; }
+
         public RutaModelo(Ruta ruta) {
             this.Codigo = ruta.Codigo;
             this.Empresa = ruta.Empresa;
             this.Conductor = ruta.Conductor;
             this.Vehiculo = ruta.Vehiculo;
+            this.Nombre = ruta.Nombre;
         }
+
+        public RutaModelo() { }
+
+        
     }
 }

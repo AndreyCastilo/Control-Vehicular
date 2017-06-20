@@ -80,5 +80,11 @@ namespace Modelo.Modelo
                 cnx.SubmitChanges();
             }
         }
+
+        public IEnumerable<Unidad> Listar(int empresa)
+        {
+            return Conexion.Open.Unidad.Where(x => x.Empresa == empresa).
+                OrderBy(e => e.Codigo);
+        }
     }
 }

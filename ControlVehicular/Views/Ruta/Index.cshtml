@@ -1,0 +1,43 @@
+﻿@model RutaModelo
+@using ControlVehicular.Models
+
+<h2>Rutas</h2>
+
+<div id="toolbar">
+    <a href="#modalAgregarRuta" data-toggle="modal" class="btn btn-info">
+        <i class="fa fa-plus"></i> Agregar Ruta
+    </a>
+</div>
+<br />
+
+<table id="tablaRuta"
+       class="sortable table-bordered"
+       data-toolbar="#toolbar"
+       data-search="true"
+       data-pagination="true"
+       data-minimum-count-columns="2"
+       data-id-field="Codigo"
+       data-unique-id="Codigo"
+       data-page-size="8"
+       data-show-footer="false">
+    <thead>
+        <tr>
+            <th data-field="Empresa" data-sortable="true">Empresa</th>
+            <th data-field="Conductor" data-sortable="true">Conductor</th>
+            <th data-field="Vehiculo" data-sortable="true">Vehiculo</th>
+            <th data-field="Nombre" data-sortable="true">Nombre</th>
+            
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+@Html.Partial("ModalAgregarRuta")
+@Html.Partial("ModalEditarRuta")
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/ruta")
+    @Scripts.Render("~/bundles/jqueryval")
+}
