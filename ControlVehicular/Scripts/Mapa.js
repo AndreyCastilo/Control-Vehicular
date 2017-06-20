@@ -5,14 +5,21 @@
 function enviaCoordenadas() {
     setTimeout(function () {
         navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
+            let pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            console.log("Enviando coordenadas lat: " + pos.lat + " long: " + pos.lng)
-            enviaCoordenadas()
+            console.log(pos.lat + " LONG " + pos.lng);
+            let lati = 9.9842804;
+            let lng = -84.182705;
+            $.post('/Home/ActualizaCoordenadas/', {
+                codigoUnidad: 1, lat: lati, lon: lng
+            }, function resultado(result) {
+                alert(result.ok);
+                enviaCoordenadas()
+            })
         })
-    }, 1000*60)
+    }, 1000*10)
 }
 
 

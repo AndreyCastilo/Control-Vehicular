@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modelo.Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,5 +27,15 @@ namespace ControlVehicular.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public JsonResult ActualizaCoordenadas(int codigoUnidad, double lat, double lon) {
+            unidades.ActualizaCoordenadas(codigoUnidad, lat, lon);
+            return Json(new { ok=true });
+        }
+
+    
+
+        private ConjuntoUnidad unidades = new ConjuntoUnidad();
     }
 }

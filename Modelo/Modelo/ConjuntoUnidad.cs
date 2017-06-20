@@ -69,5 +69,16 @@ namespace Modelo.Modelo
                 cnx.SubmitChanges();
             }
         }
+
+        public void ActualizaCoordenadas(int codigo, double lat, double lon)
+        {
+            using (var cnx = Conexion.Open)
+            {
+                var obj = cnx.Unidad.FirstOrDefault(e => e.Codigo == codigo);
+                obj.Latitud = lat;
+                obj.Longitud = lon;
+                cnx.SubmitChanges();
+            }
+        }
     }
 }
