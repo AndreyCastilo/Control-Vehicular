@@ -153,6 +153,7 @@
     <Compile Include="Controllers\ConductorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PadreClienteController.cs" />
+    <Compile Include="Controllers\RutaController.cs" />
     <Compile Include="Controllers\SegurosController.cs" />
     <Compile Include="Controllers\UnidadController.cs" />
     <Compile Include="Global.asax.cs">
@@ -262,6 +263,7 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Mapa.js" />
+    <Content Include="Scripts\ruta.js" />
     <Content Include="Scripts\unidad.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
@@ -308,6 +310,9 @@
     <Content Include="Views\PadreCliente\Cliente.cshtml" />
     <Content Include="Views\ClienteHijo\PadreHijo.cshtml" />
     <Content Include="Views\Conductor\Modal_Images_Conductor.cshtml" />
+    <Content Include="Views\Ruta\Index.cshtml" />
+    <Content Include="Views\Ruta\ModalAgregarRuta.cshtml" />
+    <Content Include="Views\Ruta\ModalEditarRuta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

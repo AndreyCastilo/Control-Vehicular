@@ -81,6 +81,11 @@ namespace Modelo.Modelo
             }
         }
 
+        public IEnumerable<Unidad> Listar(int empresa)
+        {
+            return Conexion.Open.Unidad.Where(x => x.Empresa == empresa).
+                OrderBy(e => e.Codigo);
+
         public IEnumerable<ClienteHijo> ClientesEnRuta(int codigo)
         {
             List<ClienteHijo> CH = new List<ClienteHijo>();
@@ -101,6 +106,7 @@ namespace Modelo.Modelo
                 }
                 return CH.ToList();
             }
+
         }
     }
 }
