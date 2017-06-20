@@ -83,6 +83,23 @@ function calcRoute() {
 }
 
 
+function calcRoute(lat,lng) {
+    console.log(actual.lat, actual.lng);
+    var request = {
+        origin: { lat: actual.lat, lng: actual.lng },
+        destination: { lat:lat, lng: lng },
+        travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+    directionsService.route(request, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
+    });
+
+}
+
+
+
 
 function Button1_onclick() {
     calcRoute();
