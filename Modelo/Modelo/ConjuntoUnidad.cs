@@ -85,6 +85,28 @@ namespace Modelo.Modelo
         {
             return Conexion.Open.Unidad.Where(x => x.Empresa == empresa).
                 OrderBy(e => e.Codigo);
+
+        public IEnumerable<ClienteHijo> ClientesEnRuta(int codigo)
+        {
+            List<ClienteHijo> CH = new List<ClienteHijo>();
+
+
+            using (var cnx = Conexion.Open)
+            {
+                var obj = cnx.Unidad.FirstOrDefault(e => e.Codigo == codigo);
+                var ruta = cnx.Ruta.Where(e => e.Vehiculo == obj.Codigo);
+
+                foreach (Ruta ele in ruta) {
+                    var clienteRuta = cnx.ClienteRuta.Where(e => e.Ruta == ele.Codigo);
+
+                    foreach (ClienteRuta hijo in clienteRuta) {
+                        var clienteHijo = cnx.ClienteHijo.FirstOrDefault(e => e.Codigo == hijo.ClienteHijo);
+                        CH.Add(clienteHijo);
+                    }
+                }
+                return CH.ToList();
+            }
+
         }
     }
 }
