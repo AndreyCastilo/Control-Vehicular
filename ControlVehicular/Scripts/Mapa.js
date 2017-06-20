@@ -1,18 +1,50 @@
 ﻿$(document).ready(function () {
     enviaCoordenadas()
+    clientesEnRuta()
 })
+
+function clientesEnRuta() {
+    $.get("/Home/ClientesEnRuta", { codigoUnidad:1},
+        function resultado(result) {
+
+            var $table = $('#tablaViajes');
+
+
+            $table.bootstrapTable({
+                data: result.Clientes,
+            });
+
+           // $table.on('click-row.bs.table', function (e, row, $element) { Elemento(row.Codigo) });
+
+
+        })
+
+}
 
 function enviaCoordenadas() {
     setTimeout(function () {
+        
         navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
+            let pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            console.log("Enviando coordenadas lat: " + pos.lat + " long: " + pos.lng)
-            enviaCoordenadas()
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                title: 'Posición Actual'
+            });
+
+     
+         
+            $.post('/Home/ActualizaCoordenadas/', {
+                codigoUnidad: 1, lat: pos.lat, lon: pos.lng
+            }, function resultado(result) {
+            
+                enviaCoordenadas()
+            })
         })
-    }, 1000*60)
+    }, 1000*10)
 }
 
 
@@ -44,11 +76,11 @@ function initMap() {
 
             map.setCenter(pos);
 
-            //var marker = new google.maps.Marker({
-            //    position: pos,
-            //    map: map,
-            //    title: 'Posición Actual'
-            //});
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                title: 'Posición Actual'
+            });
 
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
