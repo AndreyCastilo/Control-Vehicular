@@ -55,26 +55,20 @@
                     <h4 class="modal-title">Agregar conductor</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="input-group col-md-12">
-                        <span class="input-group-addon" id="basic-addon1">
-                            @Html.LabelFor(model => model.Nombre)
-                        </span>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nombre)
                         @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                     </div>
                     <br />
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon1">
-                            @Html.LabelFor(model => model.TipoLicencia)
-                        </span>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TipoLicencia)
                         @Html.EditorFor(model => model.TipoLicencia, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.TipoLicencia, "", new { @class = "text-danger" })
                     </div>
                     <br />
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon1">
-                            @Html.LabelFor(model => model.FechaVencimiento)
-                        </span>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FechaVencimiento)
                         @Html.EditorFor(model => model.FechaVencimiento, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.FechaVencimiento, "", new { @class = "text-danger" })
                     </div>
@@ -189,7 +183,6 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" onclick="guardarEditarConductor()" class="btn-info"><i class="fa fa-plus"></i> Guardar</button>
-                                                                <button type="button" onclick="borrarConductor()" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar</button>
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                                             </div>
                                                         </div>
