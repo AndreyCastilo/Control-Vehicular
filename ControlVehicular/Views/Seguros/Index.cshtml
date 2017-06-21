@@ -40,26 +40,6 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.Empresa)
-                                @Html.DropDownListFor(m => m.Empresa, // 1. Store selected value in Model.State;
-                                                                             // when page is rendered after postback,
-                                                                             // take selected value from Model.State.
-
-                                              // 2. Take list of values from Model.States
-                                              Model.Empresas,
-
-                                              // 3. Text for the first 'default' option
-                                              "- Escoja una Empresa -",
-
-                                              //4. A class name to assign to <select> tag
-                                              new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Empresa, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
                             @Html.LabelFor(model => model.Tipo)
                             @Html.TextBoxFor(model => model.Tipo, new { @class = "form-control", @style = "width: 100%; max-width:100%;" })
                             @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
@@ -86,6 +66,13 @@
         }
     </div>
 </div>
+
+<div id="toolbar">
+    <a href="#modalAgregar" data-toggle="modal" class="btn btn-info">
+        <i class="fa fa-plus"></i> Agregar Seguro
+    </a>
+</div>
+<br />
 
 <table id="tablaSeguros"
        class="sortable table-bordered"
@@ -179,12 +166,6 @@
         }
     </div>
 </div>
-
-
-
-
-<br />
-
 
 
 @section Scripts{

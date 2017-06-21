@@ -12,9 +12,11 @@
 </br>
 <h2>Cliente</h2>
 
-<p>
+
+<div id="toolbar">
     <button type="button" class="btn btn-default" onclick="AbrirModalAgregarCliente();">Agregar Cliente</button>
-</p>
+</div>
+<br />
 <table id="tablaPadreCliente"
        class="sortable table-bordered"
        data-toolbar="#toolbar"
@@ -170,8 +172,13 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" onclick="guardarEditarCliente()" class="btn btn-info"><i class="fa fa-plus"></i> Editar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <div class="pull-left">
+                        <a href="" class="btn btn-success" id="verHijos">Hijos</a>
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" onclick="guardarEditarCliente()" class="btn btn-info"><i class="fa fa-plus"></i> Editar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
                 </div>
             </div>
         }

@@ -21,7 +21,11 @@ namespace ControlVehicular.Controllers
         // GET: Unidad
         public ActionResult Index()
         {
-            return View();
+            // Para verificar que haya una empresa seleccionada
+            if (VariablesGlobales.Codigo != 0)
+                return View();
+            return RedirectToAction("Index", "Empresa");
+
         }
 
         #region CRUD UNIDAD
@@ -29,6 +33,7 @@ namespace ControlVehicular.Controllers
         public ActionResult Agregar(Unidad datos, IEnumerable<HttpPostedFileBase> fotos)
         {
             guardaFotos(datos, fotos);
+            datos.Empresa = VariablesGlobales.Codigo; // Se asigna la unidad a la empresa
             var unidadDB = unidades.Agregar(datos);
             return Json(new { Resultado = true, Unidad = new UnidadModelo(unidadDB) });
 
@@ -87,7 +92,7 @@ namespace ControlVehicular.Controllers
         #region Metodos
         public JsonResult ObtenerTodas()
         {
-            var unidadesDB = unidades.ObtenerTodas().Select(em => new UnidadModelo(em)).ToList();
+            var unidadesDB = unidades.ObtenerTodas(VariablesGlobales.Codigo).Select(em => new UnidadModelo(em)).ToList();
             return Json(new { registro = unidadesDB }, JsonRequestBehavior.AllowGet);
         }
 

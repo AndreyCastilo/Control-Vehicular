@@ -103,3 +103,14 @@ function Borrar() {
         });
 }
 
+let seleccionarEmpresa = () => {
+    let codigo = $("#formEditarEmpresa #Codigo").val()
+    $.post("/Empresa/SeleccionarEmpresa",
+        { codigo: codigo },
+        (data) => {
+            if (data.result) {
+                $('#modalEditarEmpresa').modal('hide');
+                window.location.href = "/Home/Index";
+            }
+        })
+}

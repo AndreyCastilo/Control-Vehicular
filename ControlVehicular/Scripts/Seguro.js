@@ -33,7 +33,6 @@ function Guardar() {
                 $("#formAgregarSeguro #Tipo").val("")
                 $("#formAgregarSeguro #Detalle").val("")
 
-
                 $("#modalAgregar").modal("hide");
             });
         })
