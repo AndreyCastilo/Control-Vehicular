@@ -10,6 +10,14 @@
       <Association Name="PadreCliente_ClienteHijo" Member="PadreCliente1" ThisKey="PadreCliente" OtherKey="Codigo" Type="PadreCliente" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ClienteRuta" Member="ClienteRuta">
+    <Type Name="ClienteRuta">
+      <Column Name="Ruta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ClienteHijo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="ClienteHijo_ClienteRuta" Member="ClienteHijo1" ThisKey="ClienteHijo" OtherKey="Codigo" Type="ClienteHijo" IsForeignKey="true" />
+      <Association Name="Ruta_ClienteRuta" Member="Ruta1" ThisKey="Ruta" OtherKey="Codigo" Type="Ruta" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Conductor" Member="Conductor">
     <Type Name="Conductor">
       <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -21,14 +29,6 @@
       <Column Name="FechaVencimiento" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="Conductor_Ruta" Member="Ruta" ThisKey="Codigo" OtherKey="Conductor" Type="Ruta" />
       <Association Name="Empresa_Conductor" Member="Empresa1" ThisKey="Empresa" OtherKey="Codigo" Type="Empresa" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ClienteRuta" Member="ClienteRuta">
-    <Type Name="ClienteRuta">
-      <Column Name="Ruta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ClienteHijo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="ClienteHijo_ClienteRuta" Member="ClienteHijo1" ThisKey="ClienteHijo" OtherKey="Codigo" Type="ClienteHijo" IsForeignKey="true" />
-      <Association Name="Ruta_ClienteRuta" Member="Ruta1" ThisKey="Ruta" OtherKey="Codigo" Type="Ruta" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Empresa" Member="Empresa">
