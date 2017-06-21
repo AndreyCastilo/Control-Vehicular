@@ -1,4 +1,14 @@
-﻿$(document).ready(function () {
+﻿// Variables globales
+
+var map;
+var actual;
+var directionsDisplay;
+var directionsService;
+var marker;
+
+
+
+$(document).ready(function () {
     enviaCoordenadas()
     clientesEnRuta()
 })
@@ -14,6 +24,7 @@ function clientesEnRuta() {
                 data: result.Clientes,
             });
 
+           // $table.on('click-row.bs.table', function (e, row, $element) { Elemento(row.Codigo) });
 
 
         })
@@ -28,7 +39,9 @@ function enviaCoordenadas() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            var marker = new google.maps.Marker({
+
+            marker.setMap(null) // Para eliminar el marcador
+            marker = new google.maps.Marker({
                 position: pos,
                 map: map,
                 title: 'Posición Actual'
@@ -46,13 +59,6 @@ function enviaCoordenadas() {
     }, 1000*10)
 }
 
-
-var map;
-var actual;
-var markerActual;
-
-var directionsDisplay;
-var directionsService;
 function initMap() {
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
@@ -67,16 +73,15 @@ function initMap() {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
-            if (markerActual != undefined)
-                markerActual.setMap(null);
-           var pos = {
+            var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
             actual = pos;
 
             map.setCenter(pos);
-            markerActual = new google.maps.Marker({
+
+            marker = new google.maps.Marker({
                 position: pos,
                 map: map,
                 title: 'Posición Actual'

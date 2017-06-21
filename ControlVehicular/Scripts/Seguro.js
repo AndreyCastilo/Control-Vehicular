@@ -28,7 +28,6 @@ function Guardar() {
 
             $('#tablaSeguros').bootstrapTable("append", data.Seguro);
 
-            $("#formAgregarSeguro #Empresa").val("")
             $("#formAgregarSeguro #Nombre").val("")
             $("#formAgregarSeguro #Tipo").val("")
             $("#formAgregarSeguro #Detalle").val("")

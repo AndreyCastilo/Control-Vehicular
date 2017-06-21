@@ -170,6 +170,7 @@
     <Compile Include="Models\RutaModelo.cs" />
     <Compile Include="Models\SeguroModelo.cs" />
     <Compile Include="Models\UnidadModelo.cs" />
+    <Compile Include="Models\VariablesGlobales.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
