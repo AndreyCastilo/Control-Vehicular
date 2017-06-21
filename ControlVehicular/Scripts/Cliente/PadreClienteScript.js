@@ -75,7 +75,7 @@ function guardarEditarCliente() {
 
 function cargarTabla() {
     // no sé si mostrar los de solo una empresa o todos
-    $.get("/PadreCliente/GetClientes", { codigo: 1 },
+    $.get("/PadreCliente/GetClientes",
    function resultado(result) {
        var $table = $('#tablaPadreCliente');
        $table.bootstrapTable({
