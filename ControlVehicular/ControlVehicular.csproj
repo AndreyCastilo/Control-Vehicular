@@ -79,6 +79,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -149,10 +150,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteHijoController.cs" />
+    <Compile Include="Controllers\ClienteRutaController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\ConductorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PadreClienteController.cs" />
+    <Compile Include="Controllers\PadreRutaController.cs" />
     <Compile Include="Controllers\RutaController.cs" />
     <Compile Include="Controllers\SegurosController.cs" />
     <Compile Include="Controllers\UnidadController.cs" />
@@ -263,6 +266,8 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Mapa.js" />
+    <Content Include="Scripts\PadreRuta\ScriptListarHijos.js" />
+    <Content Include="Scripts\RutaClienteEmpresa\RutaClientes.js" />
     <Content Include="Scripts\ruta.js" />
     <Content Include="Scripts\unidad.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
@@ -293,8 +298,8 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Seguros\Shared\Error.cshtml" />
+    <Content Include="Views\Seguros\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -310,6 +315,10 @@
     <Content Include="Views\PadreCliente\Cliente.cshtml" />
     <Content Include="Views\ClienteHijo\PadreHijo.cshtml" />
     <Content Include="Views\Conductor\Modal_Images_Conductor.cshtml" />
+    <Content Include="Views\PadreRuta\RutaHijos.cshtml" />
+    <Content Include="Views\PadreRuta\ListaHijos.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\ClienteRuta\RutaClientesEmpresa.cshtml" />
     <Content Include="Views\Ruta\Index.cshtml" />
     <Content Include="Views\Ruta\ModalAgregarRuta.cshtml" />
     <Content Include="Views\Ruta\ModalEditarRuta.cshtml" />
@@ -320,6 +329,7 @@
     <Folder Include="storage\unidades\fotografias\" />
     <Folder Include="storage\unidades\revisionTecnica\" />
     <Folder Include="storage\unidades\tarjetaCirculacion\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
