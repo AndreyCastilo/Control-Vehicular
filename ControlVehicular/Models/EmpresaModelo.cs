@@ -10,18 +10,20 @@ namespace ControlVehicular.Models
 {
     public class EmpresaModelo
     {
+        [Display(Name = "Código")]
         public long Codigo { get; set; }
 
         [MaxLength(100)]
         public string Nombre { get; set; }
 
         [Required]
+        [Display(Name = "Física")]
         public bool Fisica { get; set; }
 
-        [MaxLength(10)]
+        [Display(Name = "Cédula"),MaxLength(10)]
         public string Cedula { get; set; }
 
-        [MaxLength(10)]
+        [Display(Name = "Teléfono")MaxLength(10)]
         public string Telefono { get; set; }
 
         public EmpresaModelo(Empresa empresa) {

@@ -25,17 +25,16 @@ function Guardar() {
     $.post("/Seguros/Guardar",
         $("#formAgregarSeguro").serialize(),
         function resultado(data) {
+            mensajeOk("Exito!", "Seguro agregado correctamente!", function () {
+                $('#tablaSeguros').bootstrapTable("append", data.Seguro);
 
-            $('#tablaSeguros').bootstrapTable("append", data.Seguro);
+                $("#formAgregarSeguro #Empresa").val("")
+                $("#formAgregarSeguro #Nombre").val("")
+                $("#formAgregarSeguro #Tipo").val("")
+                $("#formAgregarSeguro #Detalle").val("")
 
-            $("#formAgregarSeguro #Empresa").val("")
-            $("#formAgregarSeguro #Nombre").val("")
-            $("#formAgregarSeguro #Tipo").val("")
-            $("#formAgregarSeguro #Detalle").val("")
-
-
-            $("#modalAgregar").modal("hide");
-
+                $("#modalAgregar").modal("hide");
+            });
         })
 }
 
@@ -61,18 +60,19 @@ function Editar() {
     $.post("/Seguros/Editar",
         $("#formEditarSeguro").serialize(),
         function resultado(data) {
-            var $table = $('#tablaSeguros');
-            $table.bootstrapTable('updateByUniqueId', {
-                id: codigo,
-                row: data.Empresa
+            mensajeOk("Exito!", "Seguro editado correctamente!", function () {
+                var $table = $('#tablaSeguros');
+                $table.bootstrapTable('updateByUniqueId', {
+                    id: codigo,
+                    row: data.Empresa
+                });
+
+                $("#formsEditarSeguro #Nombre").val("")
+                $("#formEditarSeguro #Empresa").val("")
+                $("#formEditarSeguro #Tipo").val("")
+                $("#formEditarSeguro #Detalle").val("")
+                $("#modalEditar").modal("hide");
             });
-
-            $("#formsEditarSeguro #Nombre").val("")
-            $("#formEditarSeguro #Empresa").val("")
-            $("#formEditarSeguro #Tipo").val("")
-            $("#formEditarSeguro #Detalle").val("")
-            $("#modalEditar").modal("hide");
-
         })
 
 

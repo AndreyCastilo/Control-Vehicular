@@ -45,7 +45,7 @@ namespace Modelo.Modelo
 
         public IEnumerable<PadreCliente> GetClientes(int codigo)
         {
-            return Conexion.Open.PadreCliente.OrderByDescending(x => x.Codigo);
+            return Conexion.Open.PadreCliente.Where(c => c.Empresa == codigo).OrderByDescending(x => x.Codigo);
         }
 
         public Boolean Remover(int codigo)

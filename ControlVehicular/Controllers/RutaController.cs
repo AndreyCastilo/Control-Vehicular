@@ -19,18 +19,23 @@ namespace ControlVehicular.Controllers
         // GET: Ruta
         public ActionResult Index()
         {
-            var rutaModelo = new RutaModelo
+            if (VariablesGlobales.Codigo != 0)
             {
-                ListaConductores = conductores.Listar(1).ToList(),
-                ListaUnidades = unidades.Listar(1).ToList()
-                
-            };
-            return View(rutaModelo);
+                var rutaModelo = new RutaModelo
+                {
+                    ListaConductores = conductores.Listar(VariablesGlobales.Codigo).ToList(),
+                    ListaUnidades = unidades.Listar(VariablesGlobales.Codigo).ToList()
+
+                };
+                return View(rutaModelo);
+            }
+            return RedirectToAction("Index", "Empresa");
         }
 
         [HttpPost]
         public ActionResult Agregar(Ruta datos)
         {
+            datos.Empresa = VariablesGlobales.Codigo;
             var rutaDB = rutas.Agregar(datos);
             return Json(new { Resultado = true, Ruta = new RutaModelo(rutaDB) });
 

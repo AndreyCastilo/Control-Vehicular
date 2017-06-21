@@ -12,9 +12,11 @@
 </br>
 <h2>Cliente</h2>
 
-<p>
+
+<div id="toolbar">
     <button type="button" class="btn btn-default" onclick="AbrirModalAgregarCliente();">Agregar Cliente</button>
-</p>
+</div>
+<br />
 <table id="tablaPadreCliente"
        class="sortable table-bordered"
        data-toolbar="#toolbar"
@@ -81,26 +83,6 @@
                             @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
                         </div>
                     </div>            
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.Empresa)
-                                @Html.DropDownListFor(m => m.Empresa, // 1. Store selected value in Model.State;
-                                                                      // when page is rendered after postback,
-                                                                      // take selected value from Model.State.
-
-                                              // 2. Take list of values from Model.States
-                                              Model.Empresas,
-
-                                              // 3. Text for the first 'default' option
-                                              "- Escoja una Empresa -",
-
-                                              //4. A class name to assign to <select> tag
-                                              new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Empresa, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
                     
                 </div>
                 <div class="modal-footer">
@@ -148,30 +130,15 @@
                             @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.Empresa)
-                                @Html.DropDownListFor(m => m.Empresa, // 1. Store selected value in Model.State;
-                                                                      // when page is rendered after postback,
-                                                                      // take selected value from Model.State.
-
-                                              // 2. Take list of values from Model.States
-                                              Model.Empresas,
-
-                                              // 3. Text for the first 'default' option
-                                              "- Escoja una Empresa -",
-
-                                              //4. A class name to assign to <select> tag
-                                              new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Empresa, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" onclick="guardarEditarCliente()" class="btn btn-info"><i class="fa fa-plus"></i> Editar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <div class="pull-left">
+                        <a href="" class="btn btn-success" id="verHijos">Hijos</a>
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" onclick="guardarEditarCliente()" class="btn btn-info"><i class="fa fa-plus"></i> Editar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
                 </div>
             </div>
         }

@@ -38,10 +38,10 @@ let nuevaRuta = () => {
         $("#formAgregarRuta").serialize(),
        function (data) {
            if (data.Resultado) {
-               
+               mensajeOk("Exito!", "Ruta agregada correctamente!", function () {
                    $('#tablaRuta').bootstrapTable("append", data.Ruta);
                    $('#modalAgregarRuta').modal('toggle');
-              
+               });
            }
        });
     }
@@ -52,15 +52,17 @@ let editarRuta = () => {
     $.post("/Ruta/Editar",
         $("#formEditarRuta").serialize(),
         function resultado(data) {
-            var $table = $('#tablaRuta');
-            $table.bootstrapTable('updateByUniqueId', {
-                id: codigo,
-                row: data.Ruta
+            mensajeOk("Exito!", "Ruta editada correctamente!", function () {
+                var $table = $('#tablaRuta');
+                $table.bootstrapTable('updateByUniqueId', {
+                    id: codigo,
+                    row: data.Ruta
+                });
+                $("#formEditarRuta #Conductor").val("")
+                $("#formEditarRuta #Vehiculo").val("")
+                $("#formEditarRuta #Nombre").val("")
+                $("#modalEditarRuta").modal("hide");
             });
-            $("#formEditarRuta #Conductor").val("")
-            $("#formEditarRuta #Vehiculo").val("")
-            $("#formEditarRuta #Nombre").val("")
-            $("#modalEditarRuta").modal("hide");
         })
         
 }

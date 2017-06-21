@@ -9,7 +9,9 @@ namespace ControlVehicular.Models
 {
     public class RutaModelo
     {
+        [Display(Name = "Código")]
         public long Codigo { get; set; }
+        
         public int? Empresa { get; set; }
 
         [MaxLength(100)]

@@ -13,10 +13,14 @@ namespace ControlVehicular.Controllers
     public class ConductorController : Controller
     {
         // GET: Pacientes
-        public ActionResult EmpresaConductor(int id) // de la empresa
+        public ActionResult EmpresaConductor()
         {
-            ViewBag.Empresa = empresas.Elemento(id); //Cabmiar
-            return View();
+            if (VariablesGlobales.Codigo != 0)
+            {
+                ViewBag.Empresa = empresas.Elemento(VariablesGlobales.Codigo);
+                return View();
+            }
+            return RedirectToAction("Index", "Empresa");
         }
         [HttpGet]
         public JsonResult GetConductoresEmpresa(int id)
@@ -29,7 +33,7 @@ namespace ControlVehicular.Controllers
         [HttpPost]
         public JsonResult Guardar(Conductor conductor, HttpPostedFileBase FileCedulaImg, HttpPostedFileBase FileLicenciaImg)
         {
-
+            conductor.Empresa = VariablesGlobales.Codigo;
             var conductorDB = conductores.Agregar(conductor);
 
             if (FileCedulaImg != null && IsImage(FileCedulaImg)) {

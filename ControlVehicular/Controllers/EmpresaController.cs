@@ -17,6 +17,13 @@ namespace ControlVehicular.Controllers
         // GET: Empresa
         public ActionResult Index()
         {
+            if (VariablesGlobales.Codigo == 0) {
+                ViewBag.Codigo = 0;
+            }
+            else
+            {
+                ViewBag.Codigo = 1;
+            }
             return View();
         }
 
@@ -56,6 +63,13 @@ namespace ControlVehicular.Controllers
         public JsonResult ObtenerTodas() {
             var empresasDB = ConexionEmpresa.ObtenerTodas().Select(em => new EmpresaModelo(em)).ToList();
             return Json(new { registro = empresasDB},JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult SeleccionarEmpresa(int codigo)
+        {
+            VariablesGlobales.Codigo = codigo;
+            return Json(new { result = true });
         }
 
     }

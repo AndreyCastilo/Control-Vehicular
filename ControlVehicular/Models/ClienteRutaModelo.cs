@@ -1,6 +1,7 @@
 ﻿using Modelo.Database;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,9 +20,14 @@ namespace ControlVehicular.Models
 
         public int? HijoCliente { get; set; }
 
+        [Display(Name = "Código")]
         public String codigo { get; set; }
+
+        [Display(Name = "Nombre del Padre")]
         public String NombrePadreCliente { get; set; }
+        [Display(Name = "Nombre del Hijo")]
         public String NombreHijoCliente { get; set; }
+        [Display(Name = "Nombre de la ruta")]
         public String NombreRuta { get; set; }
 
         public IEnumerable<SelectListItem> Rutas { get; set; }

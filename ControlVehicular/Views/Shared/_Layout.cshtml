@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/Content/sweetalert.css" />
     <link rel="stylesheet" href="~/Content/nicemodal.css" />
     <link href="~/Content/datetimepicker4/_template.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/iziToast.min.css">
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -24,6 +25,8 @@
                     <li><a href="@(Url.Action("Index", "Seguros"))">Seguro</a></li>
                     <li><a href="@(Url.Action("Index", "Unidad"))">Unidad</a></li>
                     <li><a href="@(Url.Action("Index", "Ruta"))">Ruta</a></li>
+                    <li><a href="@(Url.Action("EmpresaConductor", "Conductor"))">Conductor</a></li>
+                    <li><a href="@(Url.Action("Cliente","PadreCliente"))">Padres</a></li>
                     
                 </ul>
             </nav>
@@ -107,5 +110,6 @@
         <script src="~/Scripts/Utilidades.js"></script>
         <script src="~/Scripts/sweetalert.min.js"></script>
         <script src="~/Scripts/date.js"></script>
+        <script src="~/Scripts/iziToast.min.js" type="text/javascript"></script>
 </body>
 </html>

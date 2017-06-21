@@ -10,18 +10,20 @@ namespace ControlVehicular.Models
 {
     public class PadreClienteModelo
     {
+        [Display(Name = "Código")]
         public long Codigo { get; set; }
         public int? Empresa { get; set; }
 
         [MaxLength(100)]
         public string Nombre { get; set; }
 
-        [MaxLength(100)]
+        [Display(Name = "Mostar como"),MaxLength(100)]
         public string MostrarComo { get; set; }
 
-        [DataType(DataType.MultilineText)]
+        [Display(Name = "Dirección"),DataType(DataType.MultilineText)]
         public string Direccion { get; set; }
 
+        [Display(Name = "Nombre de la empresa")]
         public string EmpresaNombre { get; set; }
 
         public IEnumerable<SelectListItem> Empresas { get; set; }

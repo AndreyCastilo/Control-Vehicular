@@ -17,17 +17,21 @@ namespace ControlVehicular.Controllers
         // GET: Seguro
         public ActionResult Index()
         {
-            IEnumerable<Empresa> empresas = ConexionEmpresa.ObtenerTodas();
+            if (VariablesGlobales.Codigo != 0)
+            {
+                IEnumerable<Empresa> empresas = ConexionEmpresa.ObtenerTodas();
 
-            var vm = new SeguroModelo(empresas);
+                var vm = new SeguroModelo(empresas);
 
-            return View(vm);
+                return View(vm);
+            }
+            return RedirectToAction("Index", "Empresa");
         }
 
         [HttpPost]
         public JsonResult Guardar(Seguro seg)
         {
-
+            seg.Empresa = VariablesGlobales.Codigo;
             var cod = ConexionSeguro.Guardar(seg);
 
             return Json(new { Resultado = true, Seguro = new SeguroModelo(cod) });
@@ -60,7 +64,7 @@ namespace ControlVehicular.Controllers
 
 
         public JsonResult ObtenerTodas(){
-            IEnumerable<Seguro> segurosDB = ConexionSeguro.ObtenerTodas();
+            IEnumerable<Seguro> segurosDB = ConexionSeguro.ObtenerTodas(VariablesGlobales.Codigo);
             return Json(new { registro = segurosDB.Select(em => new SeguroModelo(em)) }, JsonRequestBehavior.AllowGet);
         }
     }
