@@ -14,15 +14,20 @@ namespace ControlVehicular.Controllers
         // GET: PadreCliente
         public ActionResult Cliente()
         {
-            IEnumerable<Empresa> empresasA = empresas.ObtenerTodas();
+            if (VariablesGlobales.Codigo != 0)
+            {
+                IEnumerable<Empresa> empresasA = empresas.ObtenerTodas();
 
-            var vm = new PadreClienteModelo(empresasA);
-            return View(vm);
+                var vm = new PadreClienteModelo(empresasA);
+                return View(vm);
+            }
+            return RedirectToAction("Index", "Empresa");
         }
 
         [HttpPost]
         public JsonResult Guardar(PadreCliente clienteNuevo)
         {
+            clienteNuevo.Empresa = VariablesGlobales.Codigo;
             var clienteBase = clientes.Agregar(clienteNuevo);
             return Json(new { Resultado = true, PadreCliente = new PadreClienteModelo(clienteBase) });
         }
@@ -54,15 +59,11 @@ namespace ControlVehicular.Controllers
             
         }
 
-        public JsonResult GetClientes(int codigo)
+        public JsonResult GetClientes()
         {
-            if (codigo != 0)
-            {
-                var listaClientesBD = clientes.GetClientes(codigo);
+                var listaClientesBD = clientes.GetClientes(VariablesGlobales.Codigo);
                 var listaClientesModelo = listaClientesBD.Select(x => new PadreClienteModelo(x));
                 return Json( new { Registro = listaClientesModelo }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(true);
         }
 
         [HttpPost]
