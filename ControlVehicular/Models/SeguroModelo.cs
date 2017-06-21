@@ -10,15 +10,17 @@ namespace ControlVehicular.Models
 {
     public class SeguroModelo
     {
+        [Display(Name = "Código")]
         public long Codigo { get; set; }
         public int? Empresa { get; set; }
 
+        [Display(Name = "Nombre de la empresa")]
         public string EmpresaNombre { get; set; }
 
         [MaxLength(100)]
         public string Nombre { get; set; }
 
-        [MaxLength(100)]
+        [Display(Name = "Tipo de seguro"),MaxLength(100)]
         public string Tipo { get; set; }
 
         [DataType(DataType.MultilineText)]

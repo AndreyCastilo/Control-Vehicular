@@ -9,16 +9,17 @@ namespace ControlVehicular.Models
 {
     public class UnidadModelo
     {
+        [Display(Name = "Código")]
         public long Codigo { get; set; }
         public int? Empresa {get; set;}
     
-        [Display(Name = "Numero de placa"), MaxLength(100)]
+        [Display(Name = "Número de placa"), MaxLength(100)]
         public string Placa { get; set; }
 
         [Display(Name = "Año"), MaxLength(100)]
         public string Anno { get; set; }
 
-        [Display(Name = "Ultimo año de revision")]
+        [Display(Name = "Ultimo año de revisión")]
         public int? UltimoAnnoRevision {get; set;}
 
         [MaxLength(100)]
@@ -38,10 +39,10 @@ namespace ControlVehicular.Models
         [Display(Name = "Unidad")]
         public string URLFotografiaUnidad {get; set;}
 
-        [Display(Name = "Tarjeta de Circulacion")]
+        [Display(Name = "Tarjeta de Circulación")]
         public string URLTarjetaCirculacion { get; set; }
 
-        [Display(Name = "Revision Tecnica")]
+        [Display(Name = "Revisión Técnica")]
         public string URLRevisionTecnica {get; set;}
 
         public UnidadModelo(Unidad unidad) {

@@ -1,4 +1,4 @@
-﻿
+﻿/*
 function mensajeOk(titulo, texto, funcion) {
     swal({
         title: titulo,
@@ -10,6 +10,24 @@ function mensajeOk(titulo, texto, funcion) {
               funcion();
 
           });
+}
+*/
+function mensajeOk(titulo,texto,funcion) {
+    iziToast.success({
+        title: titulo,
+        message: texto,
+        onOpen: function (instance, toast, closedBy) {
+            funcion();
+        }
+    });
+}
+
+function mensajeSinEmpresa() {
+    iziToast.warning({
+        title: 'Nota',
+        message: 'No ha seleccionado ninguna empresa.',
+        position: 'topRight',
+    });
 }
 
 

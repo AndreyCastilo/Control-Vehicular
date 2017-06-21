@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ControlVehicular" Class="ConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ControlVehicular;Integrated Security=True" SettingsObjectName="Modelo.Properties.Settings" SettingsPropertyName="ControlVehicularConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=PABLO\SQLEXPRESS;Initial Catalog=ControlVehicular;Integrated Security=True" SettingsObjectName="Modelo.Properties.Settings" SettingsPropertyName="ControlVehicularConnectionString4" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ClienteHijo" Member="ClienteHijo">
     <Type Name="ClienteHijo">
       <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
