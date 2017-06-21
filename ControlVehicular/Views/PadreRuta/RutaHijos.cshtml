@@ -1,0 +1,36 @@
+﻿
+
+
+<h2>Rutas hijos</h2>
+<h5><strong>Padre Codigo:</strong> <span class="text-muted" id="padreId">@ViewBag.Padre.Codigo</span></h5>
+
+@section  Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+   <script src="@Url.Content("~/Scripts/PadreRuta/ScriptListarHijos.js")"></script>
+<script src="@Url.Content("~/Scripts/Mapa.js")"></script>
+}
+
+
+<div class="map featured">
+    <div id="map"></div>
+</div>
+
+
+<table id="TablaHijos"
+       class="sortable table-bordered"
+       data-toolbar="#toolbar"
+       data-search="true"
+       data-pagination="true"
+       data-minimum-count-columns="2"
+       data-id-field="Codigo"
+       data-unique-id="Codigo"
+       data-page-size="8"
+       data-show-footer="false">
+    <thead>
+        <tr>
+            <th data-field="Nombre" data-sortable="true">Nombre</th>
+            <th data-field="MostrarComo" data-sortable="true">Mostar Como</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>

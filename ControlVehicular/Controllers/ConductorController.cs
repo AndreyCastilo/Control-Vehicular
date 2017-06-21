@@ -15,9 +15,7 @@ namespace ControlVehicular.Controllers
         // GET: Pacientes
         public ActionResult EmpresaConductor(int id) // de la empresa
         {
-            int a = id;
-
-            ViewBag.Empresa = empresas.Elemento(1); //Cabmiar
+            ViewBag.Empresa = empresas.Elemento(id); //Cabmiar
             return View();
         }
         [HttpGet]

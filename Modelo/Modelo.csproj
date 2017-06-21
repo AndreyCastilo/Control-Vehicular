@@ -50,6 +50,7 @@
       <DependentUpon>Conexion.dbml</DependentUpon>
     </Compile>
     <Compile Include="Modelo\ConjuntoClienteHijo.cs" />
+    <Compile Include="Modelo\ConjuntoClienteRuta.cs" />
     <Compile Include="Modelo\ConjuntoEmpresa.cs" />
     <Compile Include="Modelo\ConjuntoConductor.cs" />
     <Compile Include="Modelo\ConjuntoPadresClientes.cs" />
