@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Empresa";
+
 }
 
 @Html.Partial("ModalAgregarEmpresa")
@@ -14,6 +15,7 @@
         <i class="fa fa-plus"></i> Agregar Empresa
     </a>
 </div>
+<input id="ConEmpresa" value=@ViewBag.Codigo type="hidden"/>
 <br />
 
 <table id="tablaEmpresas"
