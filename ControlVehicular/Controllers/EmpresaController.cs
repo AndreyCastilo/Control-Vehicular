@@ -17,6 +17,13 @@ namespace ControlVehicular.Controllers
         // GET: Empresa
         public ActionResult Index()
         {
+            if (VariablesGlobales.Codigo == 0) {
+                ViewBag.Codigo = 0;
+            }
+            else
+            {
+                ViewBag.Codigo = 1;
+            }
             return View();
         }
 

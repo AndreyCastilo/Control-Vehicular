@@ -22,6 +22,12 @@ function cargarTabla() {
        })
 }
 
+function empresaSeleccionada() {
+    if ( $("#ConEmpresa").val() == 0 ) {
+        mensajeSinEmpresa();
+    }
+}
+
 function formatoFisica(value) {
     return (value) ? 'Si' : 'No';
 }

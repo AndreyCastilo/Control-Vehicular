@@ -57,8 +57,7 @@ namespace Modelo.Database
     #endregion
 		
 		public ConexionDataContext() : 
-
-				base(global::Modelo.Properties.Settings.Default.ControlVehicularConnectionString3, mappingSource)
+				base(global::Modelo.Properties.Settings.Default.ControlVehicularConnectionString4, mappingSource)
 		{
 			OnCreated();
 		}
@@ -369,8 +368,7 @@ namespace Modelo.Database
 		
 		private EntityRef<Ruta> _Ruta1;
 		
-
-    #region Extensibility Method Definitions
+    #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
