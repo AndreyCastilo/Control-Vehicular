@@ -45,7 +45,7 @@ namespace ControlVehicular.Controllers
         [HttpGet]
         public JsonResult ObtenerTodas()
         {
-            var rutasDB = rutas.ObtenerTodas().Select(em => new RutaModelo(em)).ToList();
+            var rutasDB = rutas.ObtenerTodas(VariablesGlobales.Codigo).Select(em => new RutaModelo(em)).ToList();
             return Json(new { registro = rutasDB }, JsonRequestBehavior.AllowGet);
         }
         

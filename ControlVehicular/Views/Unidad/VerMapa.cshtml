@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "VerMapa";
+}
+
+<h2>VerMapa</h2>
+<input id="codigoUnidad" value=@ViewBag.codigoUnidad type="hidden" />
+
+<div class="map featured">
+    <div id="map"></div>
+</div>
+
+<div class="sm-padding">
+    <table id="tablaViajes"
+           class="sortable table-bordered"
+           data-toolbar="#toolbar"
+           data-search="true"
+           data-pagination="true"
+           data-minimum-count-columns="2"
+           data-id-field="Codigo"
+           data-unique-id="Codigo"
+           data-page-size="8"
+           data-show-footer="false">
+        <thead>
+            <tr>
+                <th data-field="Nombre" data-sortable="true">Nombre</th>
+                <th data-field="MostrarComo" data-sortable="true">MostrarComo</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+@section Scripts{
+    @Scripts.Render("~/Scripts/Mapa.js")
+}
