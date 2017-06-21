@@ -16,14 +16,14 @@
 
         <!-- Header -->
         <header id="header">
-            <h1><a href="#">Future Imperfect</a></h1>
+            <h1><a href="@(Url.Action("Index", "Home"))">Control Vehicular</a></h1>
             <nav class="links">
                 <ul>
                     <li><a href="@(Url.Action("Index", "Empresa"))">Empresa</a></li>
                     <li><a href="@(Url.Action("Index", "Seguros"))">Seguro</a></li>
                     <li><a href="@(Url.Action("Index", "Unidad"))">Unidad</a></li>
-                    <li><a href="#">Tempus</a></li>
-                    <li><a href="#">Adipiscing</a></li>
+                    <li><a href="@(Url.Action("Index", "Ruta"))">Ruta</a></li>
+                    
                 </ul>
             </nav>
             <nav class="main">
@@ -54,28 +54,29 @@
             <!-- Links -->
             <section>
                 <ul class="links">
+
                     <li>
-                        <a href="#">
-                            <h3>Lorem ipsum</h3>
-                            <p>Feugiat tempus veroeros dolor</p>
+                        <a href="@(Url.Action("Index", "Empresa"))">
+                            <h3>Empresa</h3>
+                            <p>Agrega una empresa</p>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <h3>Dolor sit amet</h3>
-                            <p>Sed vitae justo condimentum</p>
+                        <a href="@(Url.Action("Index", "Seguros"))">
+                            <h3>Seguro</h3>
+                            <p>Agrega un seguro</p>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <h3>Feugiat veroeros</h3>
-                            <p>Phasellus sed ultricies mi congue</p>
+                        <a href="@(Url.Action("Index", "Unidad"))">
+                            <h3>Unidad</h3>
+                            <p>Agrega una unidad</p>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <h3>Etiam sed consequat</h3>
-                            <p>Porta lectus amet ultricies</p>
+                        <a href="@(Url.Action("Index", "Ruta"))">
+                            <h3>Ruta</h3>
+                            <p>Agrega una ruta</p>
                         </a>
                     </li>
                 </ul>
