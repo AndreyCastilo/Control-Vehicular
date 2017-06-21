@@ -12,9 +12,16 @@ function mensajeOk(titulo, texto, funcion) {
           });
 }
 
+
+function toDate(selector) {
+    var from = $(selector).val().split("/");
+    return new Date(from[2], from[1]-1, from[0]).toISOString();
+}
+
 function dtConvFromJSON(data) {
+
+    if (data == null) return '';
     if (data.includes("Date")) {
-        if (data == null) return '';
         let r = /\/Date\(([0-9]+)\)\//gi
         let matches = data.match(r);
         if (matches == null) return '1/1/1950';
@@ -38,4 +45,10 @@ function dtConvFromJSON(data) {
         return data;
     }
    
+}
+
+function validatorDateFormat() {
+    $.validator.methods.date = function (value, element) {
+        return this.optional(element) || Date.parseExact(value, 'd/M/yyyy') !== null;
+    };
 }

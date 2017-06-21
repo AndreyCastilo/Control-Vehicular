@@ -4,8 +4,26 @@
     onClickImg02();
     onClickImg04();
     onClickImg03();
+    setUpDatePicker();
+    validatorDateFormat();
 
 });
+
+function setUpDatePicker() {
+    $('#formAgregarConductor #FechaVencimiento').datetimepicker({
+        format: "DD/MM/YYYY",
+        showClose: true,
+        showClear: true,
+        toolbarPlacement: 'top'
+    });
+
+    $('#formEditarConductor #FechaVencimiento').datetimepicker({
+        format: "DD/MM/YYYY",
+        showClose: true,
+        showClear: true,
+        toolbarPlacement: 'top'
+    });
+}
 
 function triggerUpload(event, elem) {
     event.preventDefault;
@@ -71,6 +89,7 @@ $('#modalEditarConductor #formEditarConductor #FileLicenciaImgEditar').bind('cha
 
 
 function AbrilModalAgregarConductor() {
+    $("#formAgregarConductor #FechaVencimiento").data("DateTimePicker").date(new Date());
     limpiarFormAgregar();
     $("#modalAgregarConductor").modal("show");
 }
@@ -96,10 +115,13 @@ function AbrilModalEditarConductor(codigoConductor) {
 
 function guardarConductor() {
     var codigoEmpresa = $("#EmpresaId").html();
+    var fecha = toDate("#formAgregarConductor #FechaVencimiento");
+    $("#formAgregarConductor #FechaVencimiento").val(fecha);
     var form = $("#formAgregarConductor");
     $("#formAgregarConductor #Empresa").val(codigoEmpresa);
 //    if ($("#formAgregarConductor").valid()) {
-        formdata = new FormData(form[0]);
+    formdata = new FormData(form[0]);
+    $("#formAgregarConductor #FechaVencimiento").val("");
         $.ajax({
             url: '/Conductor/Guardar',
             data: formdata,
@@ -123,10 +145,13 @@ function guardarConductor() {
 function guardarEditarConductor() {
     var conductorId = $("#modalEditarConductor #formEditarConductor  #Codigo").val();
     var form = $("#modalEditarConductor #formEditarConductor");
+    var fecha = toDate("#formEditarConductor #FechaVencimiento");
+     $("#formEditarConductor #FechaVencimiento").val(fecha);
    // if ($("#modalEditarConductor #formEditarConductor").valid()) {
    //     $("#formEditarConductor  #URLFotografiaCedula").prop("disabled", false);
    //     $("#formEditarConductor  #URLFotografiaLicencia").prop("disabled", false);
-        formdata = new FormData(form[0]);
+     formdata = new FormData(form[0]);
+     $("#formEditarConductor #FechaVencimiento").val("");
         $.ajax({
             url: '/Conductor/Editar',
             data: formdata,
