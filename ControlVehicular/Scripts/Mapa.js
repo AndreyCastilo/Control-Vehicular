@@ -14,7 +14,6 @@ function clientesEnRuta() {
                 data: result.Clientes,
             });
 
-           // $table.on('click-row.bs.table', function (e, row, $element) { Elemento(row.Codigo) });
 
 
         })
@@ -50,7 +49,7 @@ function enviaCoordenadas() {
 
 var map;
 var actual;
-
+var markerActual;
 
 var directionsDisplay;
 var directionsService;
@@ -68,15 +67,16 @@ function initMap() {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
+            if (markerActual != undefined)
+                markerActual.setMap(null);
+           var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
             actual = pos;
 
             map.setCenter(pos);
-
-            var marker = new google.maps.Marker({
+            markerActual = new google.maps.Marker({
                 position: pos,
                 map: map,
                 title: 'Posición Actual'

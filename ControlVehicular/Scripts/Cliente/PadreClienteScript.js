@@ -42,7 +42,7 @@ function AbrilModalEditarCliente(codigoCliente) {
     $.get("/PadreCliente/Obtener", { codigo: codigoCliente },
         function resultado(data) {
             if (data.Resultado) {
-
+                $("#verHijos").attr("href", "/ClienteHijo/PadreHijo/" + data.Cliente.Codigo + "/");
                 $("#formEditarCliente #Nombre").val(data.Cliente.Nombre);
                 $("#formEditarCliente #MostrarComo").val(data.Cliente.MostrarComo);
                 $("#formEditarCliente #Direccion").val(data.Cliente.Direccion);
