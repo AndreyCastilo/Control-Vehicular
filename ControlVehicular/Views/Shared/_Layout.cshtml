@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
     <link rel="stylesheet" href="~/Content/sweetalert.css" />
     <link rel="stylesheet" href="~/Content/nicemodal.css" />
+    <link href="~/Content/datetimepicker4/_template.css" rel="stylesheet">
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -99,11 +100,12 @@
         @Scripts.Render("~/bundles/jquery")
         @RenderSection("scripts", required: false)
         @Scripts.Render("~/bundles/bootstrap")
-        <script></script>
+  
         <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCCIL8RHRFSKIUHCaeViYANI9oe0N3gCs&callback=initMap"
                 async defer></script>
         <script src="~/Scripts/Utilidades.js"></script>
         <script src="~/Scripts/sweetalert.min.js"></script>
+        <script src="~/Scripts/date.js"></script>
 </body>
 </html>
