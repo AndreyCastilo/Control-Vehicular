@@ -17,7 +17,7 @@ namespace Modelo.Modelo
             {
                 cnx.Seguro.InsertOnSubmit(seguro);
                 cnx.SubmitChanges(); //Actualiza la llave primaria sobre el objeto
-                return seguro;
+                return Elemento(seguro.Codigo);
             }
         }
 

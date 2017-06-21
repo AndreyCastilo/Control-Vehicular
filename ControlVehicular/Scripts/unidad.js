@@ -90,7 +90,7 @@ let editarUnidad = () => {
                 });
                 // Callback code
                 // limpiar form...
-                $('#modalAgregarUnidad').modal('toggle');
+                //$('#modalAgregarUnidad').modal('toggle');
                 $("#formEditarUnidad #Marca").val("")
                 $("#formEditarUnidad #Placa").val("")
                 $("#formEditarUnidad #Modelo").val("")
