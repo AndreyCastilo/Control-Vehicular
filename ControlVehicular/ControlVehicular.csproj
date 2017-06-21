@@ -184,6 +184,7 @@
     <Content Include="Content\datetimepicker4\_template.min.css" />
     <Content Include="Content\datetimepicker4\___version.txt" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\iziToast.min.css" />
     <Content Include="Content\modal_images.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
@@ -354,6 +355,7 @@
     <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\ie\html5shiv.js" />
     <Content Include="Scripts\ie\respond.min.js" />
+    <Content Include="Scripts\iziToast.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Mapa.js" />

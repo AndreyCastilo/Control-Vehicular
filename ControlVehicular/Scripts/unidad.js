@@ -60,8 +60,10 @@ let nuevaUnidad = () => {
                 success: function (data, textStatus, jqXHR) {
                     // Callback code
                     // limpiar form...
-                    $('#tablaUnidad').bootstrapTable("append", data.Unidad);
-                    $('#modalAgregarUnidad').modal('toggle');
+                    mensajeOk("Exito!", "Unidad agregada correctamente!", function () {
+                        $('#tablaUnidad').bootstrapTable("append", data.Unidad);
+                        $('#modalAgregarUnidad').modal('toggle');
+                    });
                 }
             });
         }
@@ -83,25 +85,27 @@ let editarUnidad = () => {
             processData: false,
             type: 'POST',
             success: function (data, textStatus, jqXHR) {
-                var $table = $('#tablaUnidad');
-                $table.bootstrapTable('updateByUniqueId', {
-                    id: codigo,
-                    row: data.Unidad
+                mensajeOk("Exito!", "Unidad editada correctamente!", function () {
+                    var $table = $('#tablaUnidad');
+                    $table.bootstrapTable('updateByUniqueId', {
+                        id: codigo,
+                        row: data.Unidad
+                    });
+                    // Callback code
+                    // limpiar form...
+                    //$('#modalAgregarUnidad').modal('toggle');
+                    $("#formEditarUnidad #Marca").val("")
+                    $("#formEditarUnidad #Placa").val("")
+                    $("#formEditarUnidad #Modelo").val("")
+                    $("#formEditarUnidad #Anno").val("")
+                    $("#formEditarUnidad #UltimoAnnoRevision").val("")
+                    $("#formEditarUnidad #Capacidad").val("")
+                    $("#formEditarUnidad #Anno").val("")
+                    $("#formEditarUnidad #URLFotografiaUnidad").val("")
+                    $("#formEditarUnidad #URLRevisionTecnica").val("")
+                    $("#formEditarUnidad #URLTarjetaCirculacion").val("")
+                    $("#modalEditarUnidad").modal("hide");
                 });
-                // Callback code
-                // limpiar form...
-                //$('#modalAgregarUnidad').modal('toggle');
-                $("#formEditarUnidad #Marca").val("")
-                $("#formEditarUnidad #Placa").val("")
-                $("#formEditarUnidad #Modelo").val("")
-                $("#formEditarUnidad #Anno").val("")
-                $("#formEditarUnidad #UltimoAnnoRevision").val("")
-                $("#formEditarUnidad #Capacidad").val("")
-                $("#formEditarUnidad #Anno").val("")
-                $("#formEditarUnidad #URLFotografiaUnidad").val("")
-                $("#formEditarUnidad #URLRevisionTecnica").val("")
-                $("#formEditarUnidad #URLTarjetaCirculacion").val("")
-                $("#modalEditarUnidad").modal("hide");
             }
         });
 

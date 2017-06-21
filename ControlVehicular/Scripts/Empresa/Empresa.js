@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
   
     cargarTabla();
+    empresaSeleccionada();
 });
 
 
@@ -21,7 +22,6 @@ function cargarTabla() {
        })
 }
 
-
 function formatoFisica(value) {
     return (value) ? 'Si' : 'No';
 }
@@ -32,17 +32,18 @@ function Guardar() {
         $("#formAgregarEmpresa").serialize(),
         function resultado(data) {
 
-            console.log(data.Empresa)
-            $('#tablaEmpresas').bootstrapTable("append", data.Empresa);
+            mensajeOk("Exito!", "Empresa agregada correctamente!", function () {
+                console.log(data.Empresa)
+                $('#tablaEmpresas').bootstrapTable("append", data.Empresa);
 
-            $("#formAgregarEmpresa #Nombre").val("")
-            $("#formAgregarEmpresa #Fisica").val("")
-            $("#formAgregarEmpresa #Telefono").val("")
-            $("#formAgregarEmpresa #Cedula").val("")
+                $("#formAgregarEmpresa #Nombre").val("")
+                $("#formAgregarEmpresa #Fisica").val("")
+                $("#formAgregarEmpresa #Telefono").val("")
+                $("#formAgregarEmpresa #Cedula").val("")
 
 
-            $("#modalAgregarEmpresa").modal("hide");
-           
+                $("#modalAgregarEmpresa").modal("hide");
+            });
         })
 }
 
@@ -66,18 +67,19 @@ function Editar() {
     $.post("/Empresa/Editar",
         $("#formEditarEmpresa").serialize(),
         function resultado(data) {
-            var $table = $('#tablaEmpresas');
-            $table.bootstrapTable('updateByUniqueId', {
-                id: codigo,
-                row: data.Empresa
-            });
+            mensajeOk("Exito!", "Empresa editada correctamente!", function () {
+                var $table = $('#tablaEmpresas');
+                $table.bootstrapTable('updateByUniqueId', {
+                    id: codigo,
+                    row: data.Empresa
+                });
 
-            $("#formsEditarEmpresa #Nombre").val("")
-            $("#formEditarEmpresa #Fisica").val("")
-            $("#formEditarEmpresa #Telefono").val("")
-            $("#formEditarEmpresa #Cedula").val("")
-            $("#modalEditarEmpresa").modal("hide");
-          
+                $("#formsEditarEmpresa #Nombre").val("")
+                $("#formEditarEmpresa #Fisica").val("")
+                $("#formEditarEmpresa #Telefono").val("")
+                $("#formEditarEmpresa #Cedula").val("")
+                $("#modalEditarEmpresa").modal("hide");
+            });
         })
 
 
