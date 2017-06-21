@@ -9,13 +9,15 @@ namespace ControlVehicular.Models
 {
     public class ConductorModelo
     {
+        [Display(Name = "Código")]
         public long Codigo { get; set; }
+
         public int? Empresa { get; set; }
 
         [MaxLength(100)]
         public string Nombre { get; set; }
 
-        [MaxLength(100)]
+        [Display(Name = "Tipo de Licencia"),MaxLength(100)]
         public string TipoLicencia { get; set; }
 
 
@@ -48,7 +50,7 @@ namespace ControlVehicular.Models
 
 
         [Required]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [Display(Name = "Fecha de Vencimiento"),DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? FechaVencimiento { get; set; }
 
         public ConductorModelo(Conductor conductor)

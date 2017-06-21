@@ -9,14 +9,16 @@ namespace ControlVehicular.Models
 {
     public class ClienteHijoModelo
     {
+        [Display(Name = "Código")]
         public long Codigo { get; set; }
 
+        [Display(Name = "Padre del cliente")]
         public int? PadreCliente { get; set;}
 
         [MaxLength(100)]
         public string Nombre { get; set; }
 
-        [MaxLength(100)]
+        [Display(Name = "Mostrar como"),MaxLength(100)]
         public string MostrarComo { get; set; }
 
 
