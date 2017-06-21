@@ -13,7 +13,6 @@ namespace Modelo.Modelo
         {
             using (var conn = Conexion.Open)
             {
-
                 conn.Unidad.InsertOnSubmit(unidad);
                 conn.SubmitChanges();
                 return unidad;
@@ -85,6 +84,7 @@ namespace Modelo.Modelo
         {
             return Conexion.Open.Unidad.Where(x => x.Empresa == empresa).
                 OrderBy(e => e.Codigo);
+        }
 
         public IEnumerable<ClienteHijo> ClientesEnRuta(int codigo)
         {
