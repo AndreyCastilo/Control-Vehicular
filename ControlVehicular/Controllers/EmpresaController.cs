@@ -58,5 +58,12 @@ namespace ControlVehicular.Controllers
             return Json(new { registro = empresasDB},JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult SeleccionarEmpresa(int codigo)
+        {
+            VariablesGlobales.Codigo = codigo;
+            return Json(new { result = true });
+        }
+
     }
 }

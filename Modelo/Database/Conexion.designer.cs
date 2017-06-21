@@ -42,15 +42,15 @@ namespace Modelo.Database
     partial void InsertEmpresa(Empresa instance);
     partial void UpdateEmpresa(Empresa instance);
     partial void DeleteEmpresa(Empresa instance);
-    partial void InsertSeguro(Seguro instance);
-    partial void UpdateSeguro(Seguro instance);
-    partial void DeleteSeguro(Seguro instance);
-    partial void InsertRuta(Ruta instance);
-    partial void UpdateRuta(Ruta instance);
-    partial void DeleteRuta(Ruta instance);
     partial void InsertPadreCliente(PadreCliente instance);
     partial void UpdatePadreCliente(PadreCliente instance);
     partial void DeletePadreCliente(PadreCliente instance);
+    partial void InsertRuta(Ruta instance);
+    partial void UpdateRuta(Ruta instance);
+    partial void DeleteRuta(Ruta instance);
+    partial void InsertSeguro(Seguro instance);
+    partial void UpdateSeguro(Seguro instance);
+    partial void DeleteSeguro(Seguro instance);
     partial void InsertUnidad(Unidad instance);
     partial void UpdateUnidad(Unidad instance);
     partial void DeleteUnidad(Unidad instance);
@@ -118,11 +118,11 @@ namespace Modelo.Database
 			}
 		}
 		
-		public System.Data.Linq.Table<Seguro> Seguro
+		public System.Data.Linq.Table<PadreCliente> PadreCliente
 		{
 			get
 			{
-				return this.GetTable<Seguro>();
+				return this.GetTable<PadreCliente>();
 			}
 		}
 		
@@ -134,11 +134,11 @@ namespace Modelo.Database
 			}
 		}
 		
-		public System.Data.Linq.Table<PadreCliente> PadreCliente
+		public System.Data.Linq.Table<Seguro> Seguro
 		{
 			get
 			{
-				return this.GetTable<PadreCliente>();
+				return this.GetTable<Seguro>();
 			}
 		}
 		
@@ -815,11 +815,11 @@ namespace Modelo.Database
 		
 		private EntitySet<Conductor> _Conductor;
 		
-		private EntitySet<Seguro> _Seguro;
+		private EntitySet<PadreCliente> _PadreCliente;
 		
 		private EntitySet<Ruta> _Ruta;
 		
-		private EntitySet<PadreCliente> _PadreCliente;
+		private EntitySet<Seguro> _Seguro;
 		
 		private EntitySet<Unidad> _Unidad;
 		
@@ -842,9 +842,9 @@ namespace Modelo.Database
 		public Empresa()
 		{
 			this._Conductor = new EntitySet<Conductor>(new Action<Conductor>(this.attach_Conductor), new Action<Conductor>(this.detach_Conductor));
-			this._Seguro = new EntitySet<Seguro>(new Action<Seguro>(this.attach_Seguro), new Action<Seguro>(this.detach_Seguro));
-			this._Ruta = new EntitySet<Ruta>(new Action<Ruta>(this.attach_Ruta), new Action<Ruta>(this.detach_Ruta));
 			this._PadreCliente = new EntitySet<PadreCliente>(new Action<PadreCliente>(this.attach_PadreCliente), new Action<PadreCliente>(this.detach_PadreCliente));
+			this._Ruta = new EntitySet<Ruta>(new Action<Ruta>(this.attach_Ruta), new Action<Ruta>(this.detach_Ruta));
+			this._Seguro = new EntitySet<Seguro>(new Action<Seguro>(this.attach_Seguro), new Action<Seguro>(this.detach_Seguro));
 			this._Unidad = new EntitySet<Unidad>(new Action<Unidad>(this.attach_Unidad), new Action<Unidad>(this.detach_Unidad));
 			OnCreated();
 		}
@@ -962,16 +962,16 @@ namespace Modelo.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Seguro", Storage="_Seguro", ThisKey="Codigo", OtherKey="Empresa")]
-		public EntitySet<Seguro> Seguro
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_PadreCliente", Storage="_PadreCliente", ThisKey="Codigo", OtherKey="Empresa")]
+		public EntitySet<PadreCliente> PadreCliente
 		{
 			get
 			{
-				return this._Seguro;
+				return this._PadreCliente;
 			}
 			set
 			{
-				this._Seguro.Assign(value);
+				this._PadreCliente.Assign(value);
 			}
 		}
 		
@@ -988,16 +988,16 @@ namespace Modelo.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_PadreCliente", Storage="_PadreCliente", ThisKey="Codigo", OtherKey="Empresa")]
-		public EntitySet<PadreCliente> PadreCliente
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Seguro", Storage="_Seguro", ThisKey="Codigo", OtherKey="Empresa")]
+		public EntitySet<Seguro> Seguro
 		{
 			get
 			{
-				return this._PadreCliente;
+				return this._Seguro;
 			}
 			set
 			{
-				this._PadreCliente.Assign(value);
+				this._Seguro.Assign(value);
 			}
 		}
 		
@@ -1046,13 +1046,13 @@ namespace Modelo.Database
 			entity.Empresa1 = null;
 		}
 		
-		private void attach_Seguro(Seguro entity)
+		private void attach_PadreCliente(PadreCliente entity)
 		{
 			this.SendPropertyChanging();
 			entity.Empresa1 = this;
 		}
 		
-		private void detach_Seguro(Seguro entity)
+		private void detach_PadreCliente(PadreCliente entity)
 		{
 			this.SendPropertyChanging();
 			entity.Empresa1 = null;
@@ -1070,13 +1070,13 @@ namespace Modelo.Database
 			entity.Empresa1 = null;
 		}
 		
-		private void attach_PadreCliente(PadreCliente entity)
+		private void attach_Seguro(Seguro entity)
 		{
 			this.SendPropertyChanging();
 			entity.Empresa1 = this;
 		}
 		
-		private void detach_PadreCliente(PadreCliente entity)
+		private void detach_Seguro(Seguro entity)
 		{
 			this.SendPropertyChanging();
 			entity.Empresa1 = null;
@@ -1095,8 +1095,8 @@ namespace Modelo.Database
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Seguro")]
-	public partial class Seguro : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PadreCliente")]
+	public partial class PadreCliente : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1107,9 +1107,11 @@ namespace Modelo.Database
 		
 		private string _Nombre;
 		
-		private string _Tipo;
+		private string _MostrarComo;
 		
-		private string _Detalle;
+		private string _Direccion;
+		
+		private EntitySet<ClienteHijo> _ClienteHijo;
 		
 		private EntityRef<Empresa> _Empresa1;
 		
@@ -1123,14 +1125,15 @@ namespace Modelo.Database
     partial void OnEmpresaChanged();
     partial void OnNombreChanging(string value);
     partial void OnNombreChanged();
-    partial void OnTipoChanging(string value);
-    partial void OnTipoChanged();
-    partial void OnDetalleChanging(string value);
-    partial void OnDetalleChanged();
+    partial void OnMostrarComoChanging(string value);
+    partial void OnMostrarComoChanged();
+    partial void OnDireccionChanging(string value);
+    partial void OnDireccionChanged();
     #endregion
 		
-		public Seguro()
+		public PadreCliente()
 		{
+			this._ClienteHijo = new EntitySet<ClienteHijo>(new Action<ClienteHijo>(this.attach_ClienteHijo), new Action<ClienteHijo>(this.detach_ClienteHijo));
 			this._Empresa1 = default(EntityRef<Empresa>);
 			OnCreated();
 		}
@@ -1199,47 +1202,60 @@ namespace Modelo.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="NVarChar(100)")]
-		public string Tipo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MostrarComo", DbType="NVarChar(100)")]
+		public string MostrarComo
 		{
 			get
 			{
-				return this._Tipo;
+				return this._MostrarComo;
 			}
 			set
 			{
-				if ((this._Tipo != value))
+				if ((this._MostrarComo != value))
 				{
-					this.OnTipoChanging(value);
+					this.OnMostrarComoChanging(value);
 					this.SendPropertyChanging();
-					this._Tipo = value;
-					this.SendPropertyChanged("Tipo");
-					this.OnTipoChanged();
+					this._MostrarComo = value;
+					this.SendPropertyChanged("MostrarComo");
+					this.OnMostrarComoChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Detalle", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Detalle
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Direccion
 		{
 			get
 			{
-				return this._Detalle;
+				return this._Direccion;
 			}
 			set
 			{
-				if ((this._Detalle != value))
+				if ((this._Direccion != value))
 				{
-					this.OnDetalleChanging(value);
+					this.OnDireccionChanging(value);
 					this.SendPropertyChanging();
-					this._Detalle = value;
-					this.SendPropertyChanged("Detalle");
-					this.OnDetalleChanged();
+					this._Direccion = value;
+					this.SendPropertyChanged("Direccion");
+					this.OnDireccionChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Seguro", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PadreCliente_ClienteHijo", Storage="_ClienteHijo", ThisKey="Codigo", OtherKey="PadreCliente")]
+		public EntitySet<ClienteHijo> ClienteHijo
+		{
+			get
+			{
+				return this._ClienteHijo;
+			}
+			set
+			{
+				this._ClienteHijo.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_PadreCliente", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
 		public Empresa Empresa1
 		{
 			get
@@ -1256,12 +1272,12 @@ namespace Modelo.Database
 					if ((previousValue != null))
 					{
 						this._Empresa1.Entity = null;
-						previousValue.Seguro.Remove(this);
+						previousValue.PadreCliente.Remove(this);
 					}
 					this._Empresa1.Entity = value;
 					if ((value != null))
 					{
-						value.Seguro.Add(this);
+						value.PadreCliente.Add(this);
 						this._Empresa = value.Codigo;
 					}
 					else
@@ -1291,6 +1307,18 @@ namespace Modelo.Database
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_ClienteHijo(ClienteHijo entity)
+		{
+			this.SendPropertyChanging();
+			entity.PadreCliente1 = this;
+		}
+		
+		private void detach_ClienteHijo(ClienteHijo entity)
+		{
+			this.SendPropertyChanging();
+			entity.PadreCliente1 = null;
 		}
 	}
 	
@@ -1603,8 +1631,8 @@ namespace Modelo.Database
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PadreCliente")]
-	public partial class PadreCliente : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Seguro")]
+	public partial class Seguro : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1615,11 +1643,9 @@ namespace Modelo.Database
 		
 		private string _Nombre;
 		
-		private string _MostrarComo;
+		private string _Tipo;
 		
-		private string _Direccion;
-		
-		private EntitySet<ClienteHijo> _ClienteHijo;
+		private string _Detalle;
 		
 		private EntityRef<Empresa> _Empresa1;
 		
@@ -1633,15 +1659,14 @@ namespace Modelo.Database
     partial void OnEmpresaChanged();
     partial void OnNombreChanging(string value);
     partial void OnNombreChanged();
-    partial void OnMostrarComoChanging(string value);
-    partial void OnMostrarComoChanged();
-    partial void OnDireccionChanging(string value);
-    partial void OnDireccionChanged();
+    partial void OnTipoChanging(string value);
+    partial void OnTipoChanged();
+    partial void OnDetalleChanging(string value);
+    partial void OnDetalleChanged();
     #endregion
 		
-		public PadreCliente()
+		public Seguro()
 		{
-			this._ClienteHijo = new EntitySet<ClienteHijo>(new Action<ClienteHijo>(this.attach_ClienteHijo), new Action<ClienteHijo>(this.detach_ClienteHijo));
 			this._Empresa1 = default(EntityRef<Empresa>);
 			OnCreated();
 		}
@@ -1710,60 +1735,47 @@ namespace Modelo.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MostrarComo", DbType="NVarChar(100)")]
-		public string MostrarComo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="NVarChar(100)")]
+		public string Tipo
 		{
 			get
 			{
-				return this._MostrarComo;
+				return this._Tipo;
 			}
 			set
 			{
-				if ((this._MostrarComo != value))
+				if ((this._Tipo != value))
 				{
-					this.OnMostrarComoChanging(value);
+					this.OnTipoChanging(value);
 					this.SendPropertyChanging();
-					this._MostrarComo = value;
-					this.SendPropertyChanged("MostrarComo");
-					this.OnMostrarComoChanged();
+					this._Tipo = value;
+					this.SendPropertyChanged("Tipo");
+					this.OnTipoChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Direccion
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Detalle", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Detalle
 		{
 			get
 			{
-				return this._Direccion;
+				return this._Detalle;
 			}
 			set
 			{
-				if ((this._Direccion != value))
+				if ((this._Detalle != value))
 				{
-					this.OnDireccionChanging(value);
+					this.OnDetalleChanging(value);
 					this.SendPropertyChanging();
-					this._Direccion = value;
-					this.SendPropertyChanged("Direccion");
-					this.OnDireccionChanged();
+					this._Detalle = value;
+					this.SendPropertyChanged("Detalle");
+					this.OnDetalleChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PadreCliente_ClienteHijo", Storage="_ClienteHijo", ThisKey="Codigo", OtherKey="PadreCliente")]
-		public EntitySet<ClienteHijo> ClienteHijo
-		{
-			get
-			{
-				return this._ClienteHijo;
-			}
-			set
-			{
-				this._ClienteHijo.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_PadreCliente", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empresa_Seguro", Storage="_Empresa1", ThisKey="Empresa", OtherKey="Codigo", IsForeignKey=true)]
 		public Empresa Empresa1
 		{
 			get
@@ -1780,12 +1792,12 @@ namespace Modelo.Database
 					if ((previousValue != null))
 					{
 						this._Empresa1.Entity = null;
-						previousValue.PadreCliente.Remove(this);
+						previousValue.Seguro.Remove(this);
 					}
 					this._Empresa1.Entity = value;
 					if ((value != null))
 					{
-						value.PadreCliente.Add(this);
+						value.Seguro.Add(this);
 						this._Empresa = value.Codigo;
 					}
 					else
@@ -1815,18 +1827,6 @@ namespace Modelo.Database
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_ClienteHijo(ClienteHijo entity)
-		{
-			this.SendPropertyChanging();
-			entity.PadreCliente1 = this;
-		}
-		
-		private void detach_ClienteHijo(ClienteHijo entity)
-		{
-			this.SendPropertyChanging();
-			entity.PadreCliente1 = null;
 		}
 	}
 	
