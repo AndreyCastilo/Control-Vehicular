@@ -6,6 +6,14 @@
     onClickImg01();
 });
 
+function irMapa() {
+  var cod =  $("#formEditarUnidad #Codigo").val();
+
+    var url = "/Unidad/VerMapa?codigoUnidad=" + cod;
+    window.location.href = url; 
+    
+}
+
 function cargarTabla() {
     $.get("/Unidad/ObtenerTodas",
        function resultado(result) {

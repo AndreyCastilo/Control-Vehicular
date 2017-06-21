@@ -21,9 +21,9 @@ namespace Modelo.Modelo
             }
         }
 
-        public IEnumerable<Ruta> ObtenerTodas()
+        public IEnumerable<Ruta> ObtenerTodas(int cod)
         {
-            return Conexion.Open.Ruta.OrderBy(em => em.Codigo);
+            return Conexion.Open.Ruta.Where(e => e.Empresa == cod).OrderBy(em => em.Codigo);
         }
 
         public Ruta Elemento(int codigo)

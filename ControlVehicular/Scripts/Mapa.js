@@ -14,7 +14,10 @@ $(document).ready(function () {
 })
 
 function clientesEnRuta() {
-    $.get("/Home/ClientesEnRuta", { codigoUnidad:1},
+
+
+    var cod = $("#codigoUnidad").val();
+    $.get("/Home/ClientesEnRuta", { codigoUnidad: cod},
         function resultado(result) {
 
             var $table = $('#tablaViajes');
@@ -44,13 +47,14 @@ function enviaCoordenadas() {
             marker = new google.maps.Marker({
                 position: pos,
                 map: map,
+                icon: "../images/tourist.png",
                 title: 'Posición Actual'
             });
 
      
-         
+            var cod = $("#codigoUnidad").val();
             $.post('/Home/ActualizaCoordenadas/', {
-                codigoUnidad: 1, lat: pos.lat, lon: pos.lng
+                codigoUnidad: cod, lat: pos.lat, lon: pos.lng
             }, function resultado(result) {
             
                 enviaCoordenadas()
@@ -68,7 +72,6 @@ function initMap() {
         zoom: 15
     });
     directionsDisplay.setMap(map);
-    var infoWindow = new google.maps.InfoWindow({ map: map });
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -77,15 +80,24 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            actual = pos;
+         
 
             map.setCenter(pos);
 
             marker = new google.maps.Marker({
                 position: pos,
                 map: map,
+                icon: "../images/tourist.png",
                 title: 'Posición Actual'
             });
+
+            var cod = $("#codigoUnidad").val();
+            $.post('/Home/ActualizaCoordenadas/', {
+                codigoUnidad: cod, lat: pos.lat, lon: pos.lng
+            }, function resultado(result) {
+
+                enviaCoordenadas()
+            })
 
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());

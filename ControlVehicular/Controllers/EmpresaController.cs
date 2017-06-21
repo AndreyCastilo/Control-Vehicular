@@ -22,7 +22,7 @@ namespace ControlVehicular.Controllers
             }
             else
             {
-                ViewBag.Codigo = 1;
+                ViewBag.Codigo = VariablesGlobales.Codigo;
             }
             return View();
         }
@@ -62,7 +62,7 @@ namespace ControlVehicular.Controllers
 
         public JsonResult ObtenerTodas() {
             var empresasDB = ConexionEmpresa.ObtenerTodas().Select(em => new EmpresaModelo(em)).ToList();
-            return Json(new { registro = empresasDB},JsonRequestBehavior.AllowGet);
+            return Json(new { res = true, registro = empresasDB},JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

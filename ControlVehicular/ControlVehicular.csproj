@@ -188,6 +188,8 @@
     <Content Include="Content\iziToast.min.css" />
     <Content Include="Content\modal_images.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="images\busetaIcon.png" />
+    <Content Include="images\tourist.png" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -420,6 +422,7 @@
     <Content Include="Views\Ruta\Index.cshtml" />
     <Content Include="Views\Ruta\ModalAgregarRuta.cshtml" />
     <Content Include="Views\Ruta\ModalEditarRuta.cshtml" />
+    <Content Include="Views\Unidad\VerMapa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

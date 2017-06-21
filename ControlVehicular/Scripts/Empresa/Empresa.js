@@ -2,10 +2,12 @@
   
     cargarTabla();
     empresaSeleccionada();
+    //empresaSeleccionadaConEstilo();
 });
 
 
 function cargarTabla() {
+    let codigo = $("#ConEmpresa").val()
     $.get("/Empresa/ObtenerTodas",
        function resultado(result) {
 
@@ -17,7 +19,21 @@ function cargarTabla() {
            });
 
            $table.on('click-row.bs.table', function (e, row, $element) { Elemento(row.Codigo) });
+           var x = $table.bootstrapTable('getRowByUniqueId', codigo);
 
+           /*
+           Para cambiar a success la empresa seleccionada
+           var rows = $("#tablaEmpresas > tbody > tr");
+
+           for (i = 0; i < rows.length; i++) {
+               var uniqueid = rows[0].attributes[1].value;
+               if (uniqueid == codigo) {
+                   var ff = rows[i];
+                   ff.addClass("success");
+                   break;
+               }
+           }
+           */
          
        })
 }
@@ -25,6 +41,13 @@ function cargarTabla() {
 function empresaSeleccionada() {
     if ( $("#ConEmpresa").val() == 0 ) {
         mensajeSinEmpresa();
+    }
+}
+
+function empresaSeleccionadaConEstilo(table) {
+    let codigo = $("#ConEmpresa").val()
+    if (codigo != 0) {
+        let row = table.bootstrapTable('getRowByUniqueId', codigo);
     }
 }
 
