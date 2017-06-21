@@ -19,9 +19,10 @@ namespace Modelo.Modelo
             }
         }
 
-        public IEnumerable<Unidad> ObtenerTodas()
+        public IEnumerable<Unidad> ObtenerTodas(int? codigoEmpresa)
         {
-            return Conexion.Open.Unidad.OrderBy(em => em.Codigo);
+            // Devuelve todas las unidades de la empresa
+            return Conexion.Open.Unidad.Where(u => u.Empresa == codigoEmpresa).OrderBy(em => em.Codigo);
         }
 
         public Unidad Elemento(int codigo)
@@ -93,17 +94,22 @@ namespace Modelo.Modelo
 
                 using (var cnx = Conexion.Open)
                 {
-                    var obj = cnx.Unidad.FirstOrDefault(e => e.Codigo == codigo);
-                    var ruta = cnx.Ruta.Where(e => e.Vehiculo == obj.Codigo);
+                    var unidadInDb = cnx.Unidad.FirstOrDefault(e => e.Codigo == codigo);
+                if (unidadInDb != null)
+                {
+                    var ruta = cnx.Ruta.Where(e => e.Vehiculo == unidadInDb.Codigo);
 
-                    foreach (Ruta ele in ruta) {
+                    foreach (Ruta ele in ruta)
+                    {
                         var clienteRuta = cnx.ClienteRuta.Where(e => e.Ruta == ele.Codigo);
 
-                        foreach (ClienteRuta hijo in clienteRuta) {
+                        foreach (ClienteRuta hijo in clienteRuta)
+                        {
                             var clienteHijo = cnx.ClienteHijo.FirstOrDefault(e => e.Codigo == hijo.ClienteHijo);
                             CH.Add(clienteHijo);
                         }
                     }
+                }
                     return CH.ToList();
                 }
 

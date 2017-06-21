@@ -11,9 +11,12 @@
 <link rel="stylesheet" href="~/Content/Conductor.css" />
 <h2>Conductores</h2>
 <h5><strong>Empresa Codigo:</strong> <span class="text-muted" id="EmpresaId">@ViewBag.Empresa.Codigo</span></h5>
-<p>
-    <button type="button" class="btn btn-default" onclick="AbrilModalAgregarConductor();">Agregar Conductor</button>
-</p>
+
+<div id="toolbar">
+    <button type="button" class="btn btn-info" onclick="AbrilModalAgregarConductor();">Agregar Conductor</button>
+</div>
+<br />
+
 <table id="TablaConductores"
        class="sortable table-bordered"
        data-toolbar="#toolbar"

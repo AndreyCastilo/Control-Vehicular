@@ -1,4 +1,14 @@
-﻿$(document).ready(function () {
+﻿// Variables globales
+
+var map;
+var actual;
+var directionsDisplay;
+var directionsService;
+var marker;
+
+
+
+$(document).ready(function () {
     enviaCoordenadas()
     clientesEnRuta()
 })
@@ -29,7 +39,9 @@ function enviaCoordenadas() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            var marker = new google.maps.Marker({
+
+            marker.setMap(null) // Para eliminar el marcador
+            marker = new google.maps.Marker({
                 position: pos,
                 map: map,
                 title: 'Posición Actual'
@@ -47,13 +59,6 @@ function enviaCoordenadas() {
     }, 1000*10)
 }
 
-
-var map;
-var actual;
-
-
-var directionsDisplay;
-var directionsService;
 function initMap() {
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
@@ -76,7 +81,7 @@ function initMap() {
 
             map.setCenter(pos);
 
-            var marker = new google.maps.Marker({
+            marker = new google.maps.Marker({
                 position: pos,
                 map: map,
                 title: 'Posición Actual'

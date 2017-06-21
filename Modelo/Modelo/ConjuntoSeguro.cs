@@ -17,7 +17,7 @@ namespace Modelo.Modelo
             {
                 cnx.Seguro.InsertOnSubmit(seguro);
                 cnx.SubmitChanges(); //Actualiza la llave primaria sobre el objeto
-                return seguro;
+                return Elemento(seguro.Codigo);
             }
         }
 
@@ -51,9 +51,9 @@ namespace Modelo.Modelo
             }
         }
 
-        public IEnumerable<Seguro> ObtenerTodas()
+        public IEnumerable<Seguro> ObtenerTodas(int codigoEmpresa)
         {
-            return Conexion.Open.Seguro.OrderBy(seg => seg.Nombre);
+            return Conexion.Open.Seguro.Where(s => s.Empresa == codigoEmpresa).OrderBy(seg => seg.Nombre);
         }
 
     }
