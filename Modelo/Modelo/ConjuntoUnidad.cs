@@ -13,7 +13,6 @@ namespace Modelo.Modelo
         {
             using (var conn = Conexion.Open)
             {
-
                 conn.Unidad.InsertOnSubmit(unidad);
                 conn.SubmitChanges();
                 return unidad;
