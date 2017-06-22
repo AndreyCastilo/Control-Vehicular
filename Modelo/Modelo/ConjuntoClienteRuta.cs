@@ -25,11 +25,34 @@ namespace Modelo.Modelo
         public ClienteRuta Agregar (ClienteRuta clienteRuta) {
             using (var cnx = Conexion.Open)
             {
-                cnx.ClienteRuta.InsertOnSubmit(clienteRuta);
-                cnx.SubmitChanges();
+
+                    cnx.ClienteRuta.InsertOnSubmit(clienteRuta);
+                    cnx.SubmitChanges();
             }
             return clienteRuta;
         }
+
+
+
+        public Boolean Remover(ClienteRuta clienteRuta)
+        {
+            using (var cnx = Conexion.Open)
+            {
+                var obj = cnx.ClienteRuta.FirstOrDefault(x => x.Ruta == clienteRuta.Ruta && x.ClienteHijo == clienteRuta.ClienteHijo);
+                if (obj != null)
+                {
+                    cnx.ClienteRuta.DeleteOnSubmit(obj);
+                    cnx.SubmitChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+
 
         public IEnumerable<ClienteRuta> Listar(int codigoEmpresa) {
             return Conexion.Open.ClienteRuta.Where(x => x.Ruta1.Empresa == codigoEmpresa);

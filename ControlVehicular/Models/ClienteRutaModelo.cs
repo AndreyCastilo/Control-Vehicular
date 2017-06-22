@@ -14,6 +14,12 @@ namespace ControlVehicular.Models
 
         public int? Cliente { get; set; }
 
+        public int? Unidad { get; set; }
+
+        public int? PadreCliente { get; set; }
+
+        public int? HijoCliente { get; set; }
+
         [Display(Name = "Código")]
         public String codigo { get; set; }
 
@@ -36,6 +42,9 @@ namespace ControlVehicular.Models
             this.Cliente = clienteRuta.ClienteHijo;
             this.Ruta = clienteRuta.Ruta;
             this.NombreRuta = ruta.Nombre;
+            this.Unidad = ruta.Unidad.Codigo;
+            this.PadreCliente = padreCliente.Codigo;
+            this.HijoCliente = hijoCliente.Codigo;
             this.NombrePadreCliente = padreCliente.Nombre;
             this.NombreHijoCliente = hijoCliente.Nombre;
             this.codigo = clienteRuta.ClienteHijo.ToString() + "-" + clienteRuta.Ruta.ToString();
