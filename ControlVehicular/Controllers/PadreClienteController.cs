@@ -46,6 +46,7 @@ namespace ControlVehicular.Controllers
         public JsonResult Editar(PadreCliente cliente)
         {
             var resultado = clientes.Editar(cliente);
+            resultado.Empresa = VariablesGlobales.Codigo;
 
             if(resultado!= null)
             {

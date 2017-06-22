@@ -26,7 +26,7 @@ namespace Modelo.Modelo
                 var clienteAux = cnx.PadreCliente.FirstOrDefault(x => x.Codigo == cliente.Codigo);
                 if (clienteAux != null)
                 {
-                    clienteAux.Empresa = cliente.Empresa;
+                    
                     clienteAux.Nombre = cliente.Nombre;
                     clienteAux.MostrarComo = cliente.MostrarComo;
                     clienteAux.Direccion = cliente.Direccion;

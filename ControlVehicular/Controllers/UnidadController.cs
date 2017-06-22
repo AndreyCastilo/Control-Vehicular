@@ -87,6 +87,7 @@ namespace ControlVehicular.Controllers
             guardaFotos(uni, fotos);
 
             var cod = unidades.Editar(uni);
+            cod.Empresa = VariablesGlobales.Codigo;
             return Json(new { Resultado = true, Unidad = new UnidadModelo(cod) });
         }
 

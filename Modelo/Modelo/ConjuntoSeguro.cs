@@ -26,7 +26,7 @@ namespace Modelo.Modelo
             using (var cnx = Conexion.Open)
             {
                 var registro = cnx.Seguro.FirstOrDefault(s => s.Codigo == seg.Codigo);
-                registro.Empresa = seg.Empresa;
+               
                 registro.Nombre = seg.Nombre;
                 registro.Tipo = seg.Tipo;
                 registro.Detalle = seg.Detalle;
