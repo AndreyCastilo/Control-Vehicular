@@ -16,24 +16,29 @@ function cargarTabla() {
 
            $table.bootstrapTable({
                data: result.registro,
+               onPostBody: function (data) {
+                   alert("gola")
+               }
            });
 
-           $table.on('click-row.bs.table', function (e, row, $element) { Elemento(row.Codigo) });
-           var x = $table.bootstrapTable('getRowByUniqueId', codigo);
+           $table.on('click-row.bs.table', function (e, row, $element) {
+               Elemento(row.Codigo)
+           });
 
-           /*
-           Para cambiar a success la empresa seleccionada
+           
+           /*Para cambiar a success la empresa seleccionada
            var rows = $("#tablaEmpresas > tbody > tr");
 
            for (i = 0; i < rows.length; i++) {
                var uniqueid = rows[0].attributes[1].value;
                if (uniqueid == codigo) {
                    var ff = rows[i];
-                   ff.addClass("success");
+                   //ff.addClass("success");
                    break;
                }
            }
            */
+           
          
        })
 }
