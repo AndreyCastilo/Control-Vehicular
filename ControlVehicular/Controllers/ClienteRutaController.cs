@@ -12,14 +12,19 @@ namespace ControlVehicular.Controllers
     public class ClienteRutaController : Controller
     {
         // GET: ClienteRuta
-        public ActionResult RutaClientesEmpresa(int id)
+        public ActionResult RutaClientesEmpresa()
         {
-            ViewBag.Empresa = empresas.Elemento(id);
-            IEnumerable<Ruta> rutas = Conexion.Open.Ruta.Where(x=> x.Empresa == id);
-            IEnumerable<PadreCliente> padres = Conexion.Open.PadreCliente.Where(x => x.Empresa == id);
-            IEnumerable<PadreCliente> hijos = new LinkedList<PadreCliente>();
-            var vm = new ClienteRutaModelo(rutas,padres, hijos);
-            return View(vm);
+            if (VariablesGlobales.Codigo != 0)
+            {
+                ViewBag.Empresa = empresas.Elemento(VariablesGlobales.Codigo);
+                IEnumerable<Ruta> rutas = Conexion.Open.Ruta.Where(x => x.Empresa == VariablesGlobales.Codigo);
+                IEnumerable<PadreCliente> padres = Conexion.Open.PadreCliente.Where(x => x.Empresa == VariablesGlobales.Codigo);
+                IEnumerable<PadreCliente> hijos = new LinkedList<PadreCliente>();
+                var vm = new ClienteRutaModelo(rutas, padres, hijos);
+                return View(vm);
+            }
+            return RedirectToAction("Index", "Empresa");
+
         }
 
 

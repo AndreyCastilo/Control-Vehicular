@@ -21,7 +21,7 @@ namespace ControlVehicular.Controllers
         {
             int a = id;
 
-            ViewBag.Padre = padres.Obtener(1); //Cabmiar
+            ViewBag.Padre = padres.Obtener(id); //Cabmiar
             return View();
         }
         [HttpGet]

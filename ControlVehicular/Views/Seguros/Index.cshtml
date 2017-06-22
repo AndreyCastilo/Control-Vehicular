@@ -8,20 +8,13 @@
 
 <h2>Seguro</h2>
 
-<div class="row">
 
-    <div class="col-md-12">
-        <br />
-        <a href="#modalAgregar" data-toggle="modal" class="btn btn-default">
-            <i class="fa fa-plus"></i> Agregar Seguro
-        </a>
-    </div>
-</div>
 <div id="modalAgregar" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         @using (Html.BeginForm("", "", FormMethod.Post, new { id = "formAgregarSeguro" }))
         {
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="modal-content">
                 <div class="modal-header">
@@ -45,6 +38,7 @@
                             @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                    
                     <div class="row">
                         <div class="form-group col-md-12">
                             @Html.LabelFor(model => model.Detalle)
@@ -119,24 +113,7 @@
                             @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                                @Html.LabelFor(m => m.Empresa)
-                                @Html.DropDownListFor(m => m.Empresa, // 1. Store selected value in Model.State;
-                                                                      // when page is rendered after postback,
-                                                                      // take selected value from Model.State.
-
-                                              // 2. Take list of values from Model.States
-                                              Model.Empresas,
-
-                                              // 3. Text for the first 'default' option
-                                              "- Escoja una Empresa -",
-
-                                              //4. A class name to assign to <select> tag
-                                              new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Empresa, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <div class="form-group col-md-12">
                             @Html.LabelFor(model => model.Tipo)

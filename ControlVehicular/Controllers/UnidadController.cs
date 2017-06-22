@@ -27,7 +27,17 @@ namespace ControlVehicular.Controllers
             return RedirectToAction("Index", "Empresa");
 
         }
+        public ActionResult VerMapa(int codigoUnidad)
+        {
+            // Para verificar que haya una empresa seleccionada
+            if (VariablesGlobales.Codigo != 0)
+            {
+                ViewBag.codigoUnidad = codigoUnidad;
+                return View();
+            }
+            return RedirectToAction("Index", "Empresa");
 
+        }
         #region CRUD UNIDAD
         [HttpPost]
         public ActionResult Agregar(Unidad datos, IEnumerable<HttpPostedFileBase> fotos)
@@ -77,6 +87,7 @@ namespace ControlVehicular.Controllers
             guardaFotos(uni, fotos);
 
             var cod = unidades.Editar(uni);
+            cod.Empresa = VariablesGlobales.Codigo;
             return Json(new { Resultado = true, Unidad = new UnidadModelo(cod) });
         }
 
