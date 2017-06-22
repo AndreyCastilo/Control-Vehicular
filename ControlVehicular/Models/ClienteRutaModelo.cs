@@ -51,7 +51,7 @@ namespace ControlVehicular.Models
 
         }
 
-        public ClienteRutaModelo(IEnumerable<Ruta> rutas, IEnumerable<PadreCliente> padres, IEnumerable<PadreCliente> hijos)
+        public ClienteRutaModelo(IEnumerable<Ruta> rutas, IEnumerable<PadreCliente> padres, IEnumerable<ClienteHijo> hijos)
         {
 
             List<SelectListItem> items = new List<SelectListItem>();

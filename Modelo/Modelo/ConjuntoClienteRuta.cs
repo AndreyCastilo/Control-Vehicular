@@ -54,8 +54,8 @@ namespace Modelo.Modelo
 
 
 
-        public IEnumerable<ClienteRuta> Listar(int codigoEmpresa) {
-            return Conexion.Open.ClienteRuta.Where(x => x.Ruta1.Empresa == codigoEmpresa);
+        public IEnumerable<ClienteRuta> Listar(int codigoPadre) {
+            return Conexion.Open.ClienteRuta.Where(x => x.ClienteHijo1.PadreCliente1.Codigo == codigoPadre);
 
         }
     }

@@ -8,9 +8,19 @@ $(function () {
 });
 
 
+function limpiarFormAgregar() {
+    $("#formAgregarClienteRuta #NombreHijoCliente").val("");
+    $("#formAgregarClienteRuta #NombreRuta").val("");
+    $("#formAgregarClienteRuta #NombreHijoCliente").empty();
+    $("#formAgregarClienteRuta #NombrePadreCliente").val("");
+    $("#formAgregarClienteRuta #NombreHijoCliente").append('<option>' + "- Escoja un Hijo -" + '</option>');
+}
+
+
+
 function cargarTabla() {
-    var codigoEmpresa = $("#EmpresaId").html();
-    $.get("/ClienteRuta/Listar", { id: codigoEmpresa },
+    var codigoPadre= $("#PadreId").html();
+    $.get("/ClienteRuta/Listar", { id: codigoPadre },
    function resultado(result) {
        if (result.Resultado) {
            var $table = $('#TablaRutasEmpresa');
@@ -43,7 +53,7 @@ function GuardarClienteRuta() {
         data: { id: idJunto },
         success: function (data, textStatus, jqXHR) {
             if (data.Resultado) {
-                mensajeOk("Exito!", "Conductor agregado correctamente!", function () {
+                mensajeOk("Exito!", "Ruta Cliente agregada correctamente!", function () {
                     $('#TablaRutasEmpresa').bootstrapTable("append", data.ClienteRuta);
                     $("#modalAgregarClienteRuta").modal("hide");
                 })
@@ -95,14 +105,6 @@ function guardarEditarClienteRuta() {
 
 
     
-
-function limpiarFormAgregar() {
-    $("#formAgregarClienteRuta #NombreHijoCliente").val("");
-    $("#formAgregarClienteRuta #NombreRuta").val("");
-    $("#formAgregarClienteRuta #NombreHijoCliente").empty();
-    $("#formAgregarClienteRuta #NombrePadreCliente").val("");
-    $("#formAgregarClienteRuta #NombreHijoCliente").append('<option>' + "- Escoja un Hijo -" + '</option>');
-}
 
 
 
